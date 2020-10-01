@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service/src/test/java/com/sirnoob/productservice/controller'
+let g:netrw_dirhist_5='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service'
+let g:netrw_dirhist_4='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service/src/test/java/com/sirnoob/productservice/util'
+let g:netrw_dirhist_3='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service'
+let g:netrw_dirhist_2='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service/src/test/java/com/sirnoob/productservice'
+let g:netrw_dirhist_1='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service/src/test/java/com/sirnoob'
+let g:netrw_dirhist_0='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service/src/test/java/com'
+let g:netrw_dirhist_9='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service/src/test/java'
+let g:netrw_dirhist_8='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service/src/test'
+let g:netrw_dirhist_7='/home/martin/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service/src'
