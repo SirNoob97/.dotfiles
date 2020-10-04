@@ -9,7 +9,6 @@ inoremap <silent> <Plug>CocRefresh =coc#_complete()
 inoremap <C-V>  "+pa
 vnoremap  "+y
 vnoremap  "+d
-noremap <silent>  :call ToggleNetrw()
 snoremap <silent>  c
 nmap  h
 xmap  h
@@ -20,9 +19,9 @@ map <NL> j
 map  k
 map  l
 nnoremap <silent>  :nohlsearch
+map  :NERDTreeToggle
 nnoremap <silent>  :CtrlP
 snoremap  "_c
-nmap  <F9> <Plug>VimspectorToggleConditionalBreakpoint
 nmap  ca <Plug>NERDCommenterAltDelims
 xmap  cu <Plug>NERDCommenterUncomment
 nmap  cu <Plug>NERDCommenterUncomment
@@ -43,7 +42,6 @@ xmap  cm <Plug>NERDCommenterMinimal
 nmap  cm <Plug>NERDCommenterMinimal
 xmap  cc <Plug>NERDCommenterComment
 nmap  cc <Plug>NERDCommenterComment
-nmap  . <Plug>VimspectorToggleConditionalBreakpoint
 vmap  ca <Plug>(coc-codeaction-selected)
 nmap  cs <Plug>NERDCommenterSexy
 nnoremap <silent>  co :CocList outline
@@ -65,10 +63,8 @@ nmap  p :bprev
 nmap  n :bnext
 xnoremap ++ :m '<-2v
 nnoremap ++ :m -2
-nmap , <Plug>VimspectorAddFunctionBreakpoint
 xnoremap -- :m '>+1v
 nnoremap -- :m +1
-nmap . <Plug>VimspectorToggleBreakpoint
 nmap \\ <Plug>NERDCommenterToggle
 xmap \\ <Plug>NERDCommenterToggle
 xmap gx <Plug>NetrwBrowseXVis
@@ -81,23 +77,8 @@ snoremap <C-R> "_c
 snoremap <silent> <C-H> c
 snoremap <silent> <Del> c
 snoremap <silent> <BS> c
-nmap <F12> <Plug>VimspectorStepOut
-nmap <F11> <Plug>VimspectorStepInto
-nmap <F10> <Plug>VimspectorStepOver
-nmap <F9> <Plug>VimspectorToggleBreakpoint
-nnoremap <silent> <Plug>VimspectorStepOut :call vimspector#StepOut()
-nnoremap <silent> <Plug>VimspectorStepInto :call vimspector#StepInto()
-nnoremap <silent> <Plug>VimspectorStepOver :call vimspector#StepOver()
-nnoremap <silent> <Plug>VimspectorAddFunctionBreakpoint :call vimspector#AddFunctionBreakpoint( expand( '<cexpr>' ) )
-nnoremap <silent> <Plug>VimspectorToggleConditionalBreakpoint :call vimspector#ToggleBreakpoint( { 'condition': input( 'Enter condition expression: ' ),   'hitCondition': input( 'Enter hit count expression: ' ) } )
-nnoremap <silent> <Plug>VimspectorToggleBreakpoint :call vimspector#ToggleBreakpoint()
-nnoremap <silent> <Plug>VimspectorPause :call vimspector#Pause()
-nnoremap <silent> <Plug>VimspectorRestart :call vimspector#Restart()
-nnoremap <silent> <Plug>VimspectorStop :call vimspector#Stop()
-nnoremap <silent> <Plug>VimspectorContinue :call vimspector#Continue()
 vnoremap <silent> <Plug>(coc-snippets-select) :call coc#rpc#notify('doKeymap', ['snippets-select'])
-nnoremap <SNR>75_: :=v:count ? v:count : ''
-noremap <silent> <C-F> :call ToggleNetrw()
+nnoremap <SNR>91_: :=v:count ? v:count : ''
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 nnoremap <silent> <C-P> :CtrlP
@@ -160,14 +141,7 @@ nnoremap <Plug>(coc-codelens-action) :call       CocActionAsync('codeLensActio
 nnoremap <Plug>(coc-range-select) :call       CocAction('rangeSelect',     '', v:true)
 vnoremap <Plug>(coc-range-select-backward) :call       CocAction('rangeSelect',     visualmode(), v:false)
 vnoremap <Plug>(coc-range-select) :call       CocAction('rangeSelect',     visualmode(), v:true)
-nmap <F8> <Plug>VimspectorAddFunctionBreakpoint
-nmap <F7> <Plug>VimspectorStepInto
-nmap <F6> <Plug>VimspectorPause
-nmap <F5> <Plug>VimspectorContinue
-nmap <F4> <Plug>VimspectorRestart
-nmap <F3> <Plug>VimspectorStop
-nmap <F2> <Plug>VimspectorContinue
-nmap <F1> :CocCommand java.debug.vimspector.start
+map <C-N> :NERDTreeToggle
 map <C-L> l
 map <C-K> k
 map <C-J> j
@@ -198,7 +172,7 @@ set mouse=a
 set omnifunc=syntaxcomplete#Complete
 set printoptions=paper:a4
 set ruler
-set runtimepath=~/.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/java-syntax.vim,~/.vim/plugged/vimspector,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-fugitive,~/.vim/plugged/nerdcommenter,~/.vim/plugged/undotree,~/.vim/plugged/ctrlp.vim,~/.vim/plugged/gruvbox,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.config/coc/extensions/node_modules/coc-snippets,~/.vim/after
+set runtimepath=~/.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/java-syntax.vim,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-fugitive,~/.vim/plugged/nerdtree,~/.vim/plugged/nerdcommenter,~/.vim/plugged/undotree,~/.vim/plugged/ctrlp.vim,~/.vim/plugged/gruvbox,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/after,~/.config/coc/extensions/node_modules/coc-snippets
 set shiftwidth=2
 set showcmd
 set showmatch
@@ -224,14 +198,14 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service
+cd ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/LooksLikeReddit
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
-edit src/test/java/com/sirnoob/productservice/util/RandomEntityGenerator.java
+edit ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/LooksLikeReddit/learning-gateway-service/src/main/resources/application.yml
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -252,11 +226,11 @@ setlocal buflisted
 setlocal buftype=
 setlocal cindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal cinoptions=j1
+setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=//%s
+setlocal comments=:#
+setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -273,8 +247,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'java'
-setlocal filetype=java
+if &filetype != 'yaml'
+setlocal filetype=yaml
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -295,9 +269,9 @@ setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=-1
 setlocal include=
-setlocal includeexpr=substitute(v:fname,'\\.','/','g')
-setlocal indentexpr=GetJavaIndent()
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e,0=extends,0=implements
+setlocal includeexpr=
+setlocal indentexpr=GetYAMLIndent(v:lnum)
+setlocal indentkeys=!^F,o,O,0#,0},0],<:>,0-
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
@@ -340,8 +314,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=.java
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'java'
-setlocal syntax=java
+if &syntax != 'yaml'
+setlocal syntax=yaml
 endif
 setlocal tabstop=2
 setlocal tagcase=
@@ -358,20 +332,23 @@ setlocal varsofttabstop=
 setlocal vartabstop=
 setlocal wincolor=
 setlocal nowinfixheight
-setlocal nowinfixwidth
+setlocal winfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 156 - ((24 * winheight(0) + 25) / 50)
+let s:l = 3 - ((2 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-156
+3
 normal! 0
-lcd ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service
 tabnext 1
-badd +156 ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/Online_store/product-service/src/test/java/com/sirnoob/productservice/util/RandomEntityGenerator.java
+badd +14 gateway-service/src/main/resources/application.yml
+badd +1 Backend/src/main/resources/application.properties
+badd +20 learning-gateway-service/src/main/java/com/sirnoob/learninggatewayservice/entity/LearningEntity.java
+badd +25 ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/LooksLikeReddit/learning-gateway-service/src/main/java/com/sirnoob/learninggatewayservice/controller/LearningController.java
+badd +3 ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/LooksLikeReddit/learning-gateway-service/src/main/resources/application.yml
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

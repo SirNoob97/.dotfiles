@@ -103,11 +103,11 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'uiiaoo/java-syntax.vim'
-Plug 'puremourning/vimspector', {'for': ['java']}
 
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 
+Plug 'preservim/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'mbbill/undotree'
@@ -131,80 +131,9 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-" Netrw
-let g:netrw_liststyle = 3
-let g:netrw_altv = 1
-let g:netrw_browse_split = 4
-let g:netrw_winsize = 20
-let g:netrw_banner = 0
-
-function! OpenToRight()
-  :normal v
-  let g:path=expand('%:p')
-  execute 'q!'
-  execute 'belowright vnew' g:path
-  :normal <C-w>l
-endfunction
-
-function! OpenBelow()
-  :normal v
-  let g:path=expand('%:p')
-  execute 'q!'
-  execute 'belowright new' g:path
-  :normal <C-w>l
-endfunction
-
-function! OpenTab()
-  :normal v
-  let g:path=expand('%:p')
-  execute 'q!'
-  execute 'tabedit' g:path
-  :normal <C-w>l
-endfunction
-
-function! NetrwMappings()
-  noremap <buffer> <C-l> <C-w>l
-  noremap <silent> <C-f> :call ToggleNetrw()<CR>
-  noremap <buffer> V :call OpenToRight()<cr>
-  noremap <buffer> H :call OpenBelow()<cr>
-  noremap <buffer> T :call OpenTab()<cr>
-endfunction
-
-augroup netrw_mappings
-  autocmd!
-  autocmd filetype netrw call NetrwMappings()
-augroup END
-
-function! ToggleNetrw()
-  if g:NetrwIsOpen
-    let i = bufnr("$")
-    while (i >= 1)
-      if (getbufvar(i, "&filetype") == "netrw")
-        silent exe "bwipeout " . i
-      endif
-      let i-=1
-    endwhile
-    let g:NetrwIsOpen=0
-  else
-    let g:NetrwIsOpen=1
-    silent Vexplore
-  endif
-endfunction
-
- "Check before opening buffer on any file
-function! NetrwOnBufferOpen()
-  if exists('b:noNetrw')
-    return
-  endif
-  call ToggleNetrw()
-endfunction
-
-augroup ProjectDrawer
-autocmd!
-autocmd VimEnter * :call NetrwOnBufferOpen()
-augroup END
-
-let g:NetrwIsOpen=0
+" NerdTree
+let g:NERDTreeShowHidden = 1
+map <C-n> :NERDTreeToggle<CR>
 
 "UndoTree
 let g:undotree_WindowLayout = 3
@@ -262,20 +191,6 @@ function! s:show_documentation()
 endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Vimspector/Debug
-let g:vimspector_enable_mappings = 'HUMAN'
-nmap <F1> :CocCommand java.debug.vimspector.start<CR>
-nmap <F2> <Plug>VimspectorContinue
-nmap <F3> <Plug>VimspectorStop
-nmap <F4> <Plug>VimspectorRestart
-nmap <F5> <Plug>VimspectorPause
-nmap <F6> <Plug>VimspectorStepOver
-nmap <F7> <Plug>VimspectorStepInto
-nmap <F8> <Plug>VimspectorStepOut
-nmap . <Plug>VimspectorToggleBreakpoint
-nmap <leader>. <Plug>VimspectorToggleConditionalBreakpoint
-nmap , <Plug>VimspectorAddFunctionBreakpoint
 
 " Mark in red the spaces at the end of the line
 if &t_Co > 2
