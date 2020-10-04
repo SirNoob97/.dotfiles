@@ -1,3 +1,12 @@
+" Disable Ntrw
+let g:loaded_netrw = 1
+let g:loaded_netrwFileHandlers = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwPlugin = 1
+
+
+
+
 set nocompatible
 set encoding=UTF-8
 set mouse=a
@@ -103,6 +112,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'uiiaoo/java-syntax.vim'
+Plug 'puremourning/vimspector'
 
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
@@ -132,13 +142,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " NerdTree
-let g:NERDTreeShowHidden = 1
 map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = ['node_modules$']
 
 "UndoTree
 let g:undotree_WindowLayout = 3
 nnoremap <leader>u :UndotreeToggle<CR>
-let NERDTreeIgnore = ['node_modules$']
 
 " Nerd Commenter
 vmap \\ <plug>NERDCommenterToggle

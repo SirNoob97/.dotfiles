@@ -18,6 +18,7 @@ map  l
 nnoremap <silent>  :nohlsearch
 map  :NERDTreeToggle
 nnoremap <silent>  :CtrlP
+noremap  cd <Plug>(coc-codeaction-selected)
 nmap  ca <Plug>NERDCommenterAltDelims
 xmap  cu <Plug>NERDCommenterUncomment
 nmap  cu <Plug>NERDCommenterUncomment
@@ -39,9 +40,8 @@ nmap  cm <Plug>NERDCommenterMinimal
 xmap  cc <Plug>NERDCommenterComment
 nmap  cc <Plug>NERDCommenterComment
 vmap  ca <Plug>(coc-codeaction-selected)
-nmap  cs <Plug>NERDCommenterSexy
+nnoremap <silent>  cs :CocList -I symbols
 nnoremap <silent>  co :CocList outline
-noremap  cd <Plug>(coc-codeaction-selected)
 nmap  gf <Plug>(coc-fix-current)
 nmap <silent>  a :CocList actions
 xmap  f <Plug>(coc-format-selected)
@@ -63,15 +63,21 @@ vnoremap -- :m '>+1v
 nnoremap -- :m +1
 nmap \\ <Plug>NERDCommenterToggle
 vmap \\ <Plug>NERDCommenterToggle
-vmap gx <Plug>NetrwBrowseXVis
-nmap gx <Plug>NetrwBrowseX
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> <Plug>VimspectorStepOut :call vimspector#StepOut()
+nnoremap <silent> <Plug>VimspectorStepInto :call vimspector#StepInto()
+nnoremap <silent> <Plug>VimspectorStepOver :call vimspector#StepOver()
+nnoremap <silent> <Plug>VimspectorAddFunctionBreakpoint :call vimspector#AddFunctionBreakpoint( expand( '<cexpr>' ) )
+nnoremap <silent> <Plug>VimspectorToggleConditionalBreakpoint :call vimspector#ToggleBreakpoint( { 'condition': input( 'Enter condition expression: ' ),   'hitCondition': input( 'Enter hit count expression: ' ) } )
+nnoremap <silent> <Plug>VimspectorToggleBreakpoint :call vimspector#ToggleBreakpoint()
+nnoremap <silent> <Plug>VimspectorPause :call vimspector#Pause()
+nnoremap <silent> <Plug>VimspectorRestart :call vimspector#Restart()
+nnoremap <silent> <Plug>VimspectorStop :call vimspector#Stop()
+nnoremap <silent> <Plug>VimspectorContinue :call vimspector#Continue()
 vnoremap <silent> <Plug>(coc-snippets-select) :call coc#rpc#notify('doKeymap', ['snippets-select'])
-vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
-nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 nnoremap <silent> <C-P> :CtrlP
 xnoremap <silent> <Plug>NERDCommenterUncomment :call NERDComment("x", "Uncomment")
 nnoremap <silent> <Plug>NERDCommenterUncomment :call NERDComment("n", "Uncomment")
@@ -161,7 +167,7 @@ set mouse=a
 set omnifunc=syntaxcomplete#Complete
 set printoptions=paper:a4
 set ruler
-set runtimepath=~/.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/java-syntax.vim,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-fugitive,~/.vim/plugged/nerdtree,~/.vim/plugged/nerdcommenter,~/.vim/plugged/undotree,~/.vim/plugged/ctrlp.vim,~/.vim/plugged/gruvbox,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/after,~/.config/coc/extensions/node_modules/coc-snippets
+set runtimepath=~/.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/java-syntax.vim,~/.vim/plugged/vimspector,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-fugitive,~/.vim/plugged/nerdtree,~/.vim/plugged/nerdcommenter,~/.vim/plugged/undotree,~/.vim/plugged/ctrlp.vim,~/.vim/plugged/gruvbox,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.config/coc/extensions/node_modules/coc-snippets,~/.vim/after
 set shiftwidth=2
 set showcmd
 set showmatch
@@ -194,6 +200,8 @@ endif
 set shortmess=aoO
 argglobal
 %argdel
+$argadd .vimrc
+edit .vimrc
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -201,7 +209,18 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-enew
+vnoremap <buffer> <silent> [" :exe "normal! gv"|call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
+nnoremap <buffer> <silent> [" :call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
+vnoremap <buffer> <silent> [] m':exe "normal! gv"|call search('^\s*endf\%[unction]\>', "bW")
+nnoremap <buffer> <silent> [] m':call search('^\s*endf\%[unction]\>', "bW")
+vnoremap <buffer> <silent> [[ m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "bW")
+nnoremap <buffer> <silent> [[ m':call search('^\s*fu\%[nction]\>', "bW")
+vnoremap <buffer> <silent> ]" :exe "normal! gv"|call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
+nnoremap <buffer> <silent> ]" :call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
+vnoremap <buffer> <silent> ][ m':exe "normal! gv"|call search('^\s*endf\%[unction]\>', "W")
+nnoremap <buffer> <silent> ][ m':call search('^\s*endf\%[unction]\>', "W")
+vnoremap <buffer> <silent> ]] m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "W")
+nnoremap <buffer> <silent> ]] m':call search('^\s*fu\%[nction]\>', "W")
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -218,8 +237,8 @@ setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=/*%s*/
+setlocal comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",:\"
+setlocal commentstring=\"%s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -236,8 +255,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != ''
-setlocal filetype=
+if &filetype != 'vim'
+setlocal filetype=vim
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -259,11 +278,11 @@ setlocal iminsert=0
 setlocal imsearch=-1
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal indentexpr=GetVimIndent()
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e,=end,=else,=cat,=fina,=END,0\\,0=\"\\\ 
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
+setlocal keywordprg=:help
 setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
@@ -303,8 +322,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=.java
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != ''
-setlocal syntax=
+if &syntax != 'vim'
+setlocal syntax=vim
 endif
 setlocal tabstop=2
 setlocal tagcase=
@@ -313,7 +332,7 @@ setlocal tags=
 setlocal termwinkey=
 setlocal termwinscroll=10000
 setlocal termwinsize=
-setlocal textwidth=0
+setlocal textwidth=78
 setlocal thesaurus=
 setlocal undofile
 setlocal undolevels=-123456
@@ -325,7 +344,15 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 115 - ((15 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+115
+normal! 029|
 tabnext 1
+badd +0 .vimrc
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
