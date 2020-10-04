@@ -9,10 +9,7 @@ inoremap <silent> <Plug>CocRefresh =coc#_complete()
 inoremap <C-V>  "+pa
 vnoremap  "+y
 vnoremap  "+d
-snoremap <silent>  c
-nmap  h
-xmap  h
-omap  h
+map  h
 vmap 	 :>>v
 nmap 	 :>>
 map <NL> j
@@ -21,7 +18,6 @@ map  l
 nnoremap <silent>  :nohlsearch
 map  :NERDTreeToggle
 nnoremap <silent>  :CtrlP
-snoremap  "_c
 nmap  ca <Plug>NERDCommenterAltDelims
 xmap  cu <Plug>NERDCommenterUncomment
 nmap  cu <Plug>NERDCommenterUncomment
@@ -61,24 +57,19 @@ nnoremap  h :split
 nmap  d :bdelete
 nmap  p :bprev
 nmap  n :bnext
-xnoremap ++ :m '<-2v
+vnoremap ++ :m '<-2v
 nnoremap ++ :m -2
-xnoremap -- :m '>+1v
+vnoremap -- :m '>+1v
 nnoremap -- :m +1
 nmap \\ <Plug>NERDCommenterToggle
-xmap \\ <Plug>NERDCommenterToggle
-xmap gx <Plug>NetrwBrowseXVis
+vmap \\ <Plug>NERDCommenterToggle
+vmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gd <Plug>(coc-definition)
-snoremap <C-R> "_c
-snoremap <silent> <C-H> c
-snoremap <silent> <Del> c
-snoremap <silent> <BS> c
 vnoremap <silent> <Plug>(coc-snippets-select) :call coc#rpc#notify('doKeymap', ['snippets-select'])
-nnoremap <SNR>91_: :=v:count ? v:count : ''
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 nnoremap <silent> <C-P> :CtrlP
@@ -145,9 +136,7 @@ map <C-N> :NERDTreeToggle
 map <C-L> l
 map <C-K> k
 map <C-J> j
-nmap <C-H> h
-xmap <C-H> h
-omap <C-H> h
+map <C-H> h
 vmap <S-Tab> :<< v
 nmap <S-Tab> :<< 
 vnoremap <C-D> "+d
@@ -183,7 +172,7 @@ set smarttab
 set softtabstop=2
 set splitbelow
 set splitright
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.class
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set suffixesadd=.java
 set noswapfile
 set tabline=%!airline#extensions#tabline#get()
@@ -198,14 +187,13 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/LooksLikeReddit
+cd ~/
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
-edit ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/LooksLikeReddit/learning-gateway-service/src/main/resources/application.yml
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -213,6 +201,7 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
+enew
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -229,8 +218,8 @@ setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -247,8 +236,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'yaml'
-setlocal filetype=yaml
+if &filetype != ''
+setlocal filetype=
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -262,7 +251,7 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=croql
+setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
@@ -270,8 +259,8 @@ setlocal iminsert=0
 setlocal imsearch=-1
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=GetYAMLIndent(v:lnum)
-setlocal indentkeys=!^F,o,O,0#,0},0],<:>,0-
+setlocal indentexpr=
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
@@ -314,8 +303,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=.java
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'yaml'
-setlocal syntax=yaml
+if &syntax != ''
+setlocal syntax=
 endif
 setlocal tabstop=2
 setlocal tagcase=
@@ -332,23 +321,11 @@ setlocal varsofttabstop=
 setlocal vartabstop=
 setlocal wincolor=
 setlocal nowinfixheight
-setlocal winfixwidth
+setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-silent! normal! zE
-let s:l = 3 - ((2 * winheight(0) + 25) / 50)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-3
-normal! 0
 tabnext 1
-badd +14 gateway-service/src/main/resources/application.yml
-badd +1 Backend/src/main/resources/application.properties
-badd +20 learning-gateway-service/src/main/java/com/sirnoob/learninggatewayservice/entity/LearningEntity.java
-badd +25 ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/LooksLikeReddit/learning-gateway-service/src/main/java/com/sirnoob/learninggatewayservice/controller/LearningController.java
-badd +3 ~/Documents/Preparacion_JAVA_para_BackEnd/WorkSpaceSpring/LooksLikeReddit/learning-gateway-service/src/main/resources/application.yml
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

@@ -138,6 +138,7 @@ map <C-n> :NERDTreeToggle<CR>
 "UndoTree
 let g:undotree_WindowLayout = 3
 nnoremap <leader>u :UndotreeToggle<CR>
+let NERDTreeIgnore = ['node_modules$']
 
 " Nerd Commenter
 vmap \\ <plug>NERDCommenterToggle
