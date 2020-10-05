@@ -67,16 +67,6 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> <Plug>VimspectorStepOut :call vimspector#StepOut()
-nnoremap <silent> <Plug>VimspectorStepInto :call vimspector#StepInto()
-nnoremap <silent> <Plug>VimspectorStepOver :call vimspector#StepOver()
-nnoremap <silent> <Plug>VimspectorAddFunctionBreakpoint :call vimspector#AddFunctionBreakpoint( expand( '<cexpr>' ) )
-nnoremap <silent> <Plug>VimspectorToggleConditionalBreakpoint :call vimspector#ToggleBreakpoint( { 'condition': input( 'Enter condition expression: ' ),   'hitCondition': input( 'Enter hit count expression: ' ) } )
-nnoremap <silent> <Plug>VimspectorToggleBreakpoint :call vimspector#ToggleBreakpoint()
-nnoremap <silent> <Plug>VimspectorPause :call vimspector#Pause()
-nnoremap <silent> <Plug>VimspectorRestart :call vimspector#Restart()
-nnoremap <silent> <Plug>VimspectorStop :call vimspector#Stop()
-nnoremap <silent> <Plug>VimspectorContinue :call vimspector#Continue()
 vnoremap <silent> <Plug>(coc-snippets-select) :call coc#rpc#notify('doKeymap', ['snippets-select'])
 nnoremap <silent> <C-P> :CtrlP
 xnoremap <silent> <Plug>NERDCommenterUncomment :call NERDComment("x", "Uncomment")
@@ -101,6 +91,16 @@ xnoremap <silent> <Plug>NERDCommenterToggle :call NERDComment("x", "Toggle")
 nnoremap <silent> <Plug>NERDCommenterToggle :call NERDComment("n", "Toggle")
 xnoremap <silent> <Plug>NERDCommenterComment :call NERDComment("x", "Comment")
 nnoremap <silent> <Plug>NERDCommenterComment :call NERDComment("n", "Comment")
+nnoremap <silent> <Plug>VimspectorStepOut :call vimspector#StepOut()
+nnoremap <silent> <Plug>VimspectorStepInto :call vimspector#StepInto()
+nnoremap <silent> <Plug>VimspectorStepOver :call vimspector#StepOver()
+nnoremap <silent> <Plug>VimspectorAddFunctionBreakpoint :call vimspector#AddFunctionBreakpoint( expand( '<cexpr>' ) )
+nnoremap <silent> <Plug>VimspectorToggleConditionalBreakpoint :call vimspector#ToggleBreakpoint( { 'condition': input( 'Enter condition expression: ' ),   'hitCondition': input( 'Enter hit count expression: ' ) } )
+nnoremap <silent> <Plug>VimspectorToggleBreakpoint :call vimspector#ToggleBreakpoint()
+nnoremap <silent> <Plug>VimspectorPause :call vimspector#Pause()
+nnoremap <silent> <Plug>VimspectorRestart :call vimspector#Restart()
+nnoremap <silent> <Plug>VimspectorStop :call vimspector#Stop()
+nnoremap <silent> <Plug>VimspectorContinue :call vimspector#Continue()
 onoremap <silent> <Plug>(coc-classobj-a) :call coc#rpc#request('selectSymbolRange', [v:false, '', ['Interface', 'Struct', 'Class']])
 onoremap <silent> <Plug>(coc-classobj-i) :call coc#rpc#request('selectSymbolRange', [v:true, '', ['Interface', 'Struct', 'Class']])
 vnoremap <silent> <Plug>(coc-classobj-a) :call coc#rpc#request('selectSymbolRange', [v:false, visualmode(), ['Interface', 'Struct', 'Class']])
@@ -167,7 +167,7 @@ set mouse=a
 set omnifunc=syntaxcomplete#Complete
 set printoptions=paper:a4
 set ruler
-set runtimepath=~/.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/java-syntax.vim,~/.vim/plugged/vimspector,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-fugitive,~/.vim/plugged/nerdtree,~/.vim/plugged/nerdcommenter,~/.vim/plugged/undotree,~/.vim/plugged/ctrlp.vim,~/.vim/plugged/gruvbox,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.config/coc/extensions/node_modules/coc-snippets,~/.vim/after
+set runtimepath=~/.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/java-syntax.vim,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-fugitive,~/.vim/plugged/nerdtree,~/.vim/plugged/nerdcommenter,~/.vim/plugged/undotree,~/.vim/plugged/ctrlp.vim,~/.vim/plugged/gruvbox,~/.vim/plugged/vimspector,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.config/coc/extensions/node_modules/coc-snippets,~/.vim/after
 set shiftwidth=2
 set showcmd
 set showmatch
@@ -345,12 +345,12 @@ set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 115 - ((15 * winheight(0) + 18) / 36)
+let s:l = 115 - ((27 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 115
-normal! 029|
+normal! 0
 tabnext 1
 badd +0 .vimrc
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
@@ -364,7 +364,6 @@ if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &so = s:so_save | let &siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
