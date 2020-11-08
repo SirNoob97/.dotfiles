@@ -6,7 +6,6 @@ let g:loaded_netrwPlugin = 1
 
 
 
-
 set nocompatible
 set encoding=UTF-8
 set mouse=a
@@ -58,9 +57,14 @@ set background=dark
 
 set backspace=indent,eol,start
 
+set spelllang=en_gb
+
 filetype indent plugin on
 
 let mapleader=" "
+
+" toggle spell checker
+map <F5> :setlocal spell!<CR>
 
 " disable highlighting search result on Enter key
 nnoremap <silent> <CR> :nohlsearch<CR><CR>
