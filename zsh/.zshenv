@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+export skip_global_compinit=1
+
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 export PATH=$PATH:$JAVA_HOME/bin
 
