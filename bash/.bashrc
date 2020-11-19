@@ -5,6 +5,12 @@ export OSH=/home/martin/.oh-my-bash
 # it'll load a random theme each time that oh-my-bash is loaded.
 OSH_THEME="minimal"
 
+HISTCONTROL=ignoreboth
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -72,9 +78,8 @@ plugins=(
 )
 
 source $OSH/oh-my-bash.sh
-
-bind 'TAB: menu-complete'
-bind 'set show-all-if-ambiguous on'
+source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
+source bashenv
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -101,5 +106,8 @@ bind 'set show-all-if-ambiguous on'
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias bashconfig="mate ~/.bashrc"
+ alias bashconfig="sudo vim ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
+
+bind 'TAB: menu-complete'
+bind 'set show-all-if-ambiguous on'
