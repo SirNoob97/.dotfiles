@@ -10,6 +10,7 @@ set nocompatible
 set encoding=UTF-8
 set mouse=a
 set t_Co=256
+set background=dark
 
 filetype plugin indent on
 
@@ -52,8 +53,6 @@ set nowrap
 
 set showmatch
 set showcmd
-
-set background=dark
 
 set backspace=indent,eol,start
 
