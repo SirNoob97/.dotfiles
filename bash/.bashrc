@@ -109,5 +109,5 @@ source bashenv
  alias bashconfig="sudo vim ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
 
-bind 'TAB: menu-complete'
-bind 'set show-all-if-ambiguous on'
+#bind 'TAB: menu-complete'
+#bind 'set show-all-if-ambiguous on'
