@@ -5,13 +5,5 @@
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
-  "java.jdt.ls.vmargs": "-javaagent:/home/martin/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar",
-  "languageserver": {
-    "sql": {
-      "command": "sql-language-server",
-      "args": ["up", "--method", "stdio"],
-      "filetypes": ["sql", "mysql"]
-    }
-  },
-  "java.debug.vimspector.substitution.adapterPort": "5005"
+  "java.jdt.ls.vmargs": "-javaagent:/home/martin/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar"
 }
