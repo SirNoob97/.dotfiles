@@ -68,7 +68,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux zsh-autosuggestions)
+plugins=(git docker docker-compose tmux zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
@@ -98,3 +98,5 @@ source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
 # Example aliases
 alias zshconfig="sudo vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias docker="sudo docker"
+alias dockercompose="sudo docker-compose"
