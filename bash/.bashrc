@@ -1,110 +1,70 @@
-# Path to your oh-my-bash installation.
-export OSH=/home/martin/.oh-my-bash
+#!/usr/bin/env bash
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="minimal"
+# If not running interactively, don't do anything
+case $- in
+  *i*) ;;
+    *) return;;
+esac
 
-HISTCONTROL=ignoreboth
+# Path to the bash it configuration
+export BASH_IT="/home/martin/.bash_it"
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+# Lock and Load a custom theme file.
+# Leave empty to disable theming.
+# location /.bash_it/themes/
+export BASH_IT_THEME='bobby'
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# (Advanced): Change this to the name of your remote repo if you
+# cloned bash-it with a remote other than origin such as `bash-it`.
+# export BASH_IT_REMOTE='bash-it'
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# (Advanced): Change this to the name of the main development branch if
+# you renamed it or if it was changed for some reason
+# export BASH_IT_DEVELOPMENT_BRANCH='master'
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Your place for hosting Git repos. I use this for private repos.
+export GIT_HOSTING='git@git.domain.com'
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_OSH_DAYS=13
+# Don't check mail when opening terminal.
+unset MAILCHECK
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# Change this to your console based IRC client of choice.
+export IRC_CLIENT='irssi'
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# Set this to the command you use for todo.txt-cli
+export TODO="t"
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+# Set this to false to turn off version control status checking within the prompt for all themes
+export SCM_CHECK=true
+# Set to actual location of gitstatus directory if installed
+#export SCM_GIT_GITSTATUS_DIR="$HOME/gitstatus"
+# per default gitstatus uses 2 times as many threads as CPU cores, you can change this here if you must
+#export GITSTATUS_NUM_THREADS=8
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# Set Xterm/screen/Tmux title with only a short hostname.
+# Uncomment this (or set SHORT_HOSTNAME to something else),
+# Will otherwise fall back on $HOSTNAME.
+#export SHORT_HOSTNAME=$(hostname -s)
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Set Xterm/screen/Tmux title with only a short username.
+# Uncomment this (or set SHORT_USER to something else),
+# Will otherwise fall back on $USER.
+#export SHORT_USER=${USER:0:8}
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+# Set Xterm/screen/Tmux title with shortened command and directory.
+# Uncomment this to set.
+#export SHORT_TERM_LINE=true
 
-# Would you like to use another custom folder than $OSH/custom?
-# OSH_CUSTOM=/path/to/new-custom-folder
+# Set vcprompt executable path for scm advance info in prompt (demula theme)
+# https://github.com/djl/vcprompt
+#export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
 
-# Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
-# Custom completions may be added to ~/.oh-my-bash/custom/completions/
-# Example format: completions=(ssh git bundler gem pip pip3)
-# Add wisely, as too many completions slow down shell startup.
-completions=(
-  git
-  composer
-  ssh
-  maven
-)
+# (Advanced): Uncomment this to make Bash-it reload itself automatically
+# after enabling or disabling aliases, plugins, and completions.
+# export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 
-# Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
-# Custom aliases may be added to ~/.oh-my-bash/custom/aliases/
-# Example format: aliases=(vagrant composer git-avh)
-# Add wisely, as too many aliases slow down shell startup.
-aliases=(
-  general
-)
+# Uncomment this to make Bash-it create alias reload.
+# export BASH_IT_RELOAD_LEGACY=1
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
-# Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  bashmarks
-)
-
-source $OSH/oh-my-bash.sh
-source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
-source bashenv
-
-# User configuration
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-bash libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-bash
-# users are encouraged to define aliases within the OSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
- alias bashconfig="sudo vim ~/.bashrc"
-# alias ohmybash="mate ~/.oh-my-bash"
+# Load Bash It
+source "$BASH_IT"/bash_it.sh
