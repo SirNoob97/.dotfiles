@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+HISTCONTROL=ignoreboth
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
 # If not running interactively, don't do anything
 case $- in
   *i*) ;;
@@ -66,5 +72,10 @@ export SCM_CHECK=true
 # Uncomment this to make Bash-it create alias reload.
 # export BASH_IT_RELOAD_LEGACY=1
 
+source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
+source bashenv
+source $HOME/.aliases
+
+alias bashconfig="sudo vim ~/.bashrc"
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
