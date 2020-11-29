@@ -1,0 +1,54 @@
+# ls
+if ls --color -d . &> /dev/null
+then
+    alias ls="ls --color=auto"
+  elif ls -G -d . &> /dev/null
+  then
+      alias ls='ls -G'        # Compact view, show colors
+fi
+alias ll="ls -alht"
+alias lac="ls -aC"
+
+# grep
+alias grep='grep --color=auto'
+
+# cd
+alias ..="cd .."
+alias cd2="cd ../.."
+alias cd3="cd ../../.."
+alias cd4="cd ../../../.."
+alias cd5="cd ../../../../.."
+
+# git
+alias g="g"
+alias ga="git add"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gcv="git commit -v -m"
+alias gm="git merge"
+alias gst="git status"
+alias gsts="git status -s"
+alias gpl="git pull"
+alias gp="git push"
+alias gpom="git push origin master"
+alias gb="git branch"
+alias gba="git branch -a"
+alias gbd="gt branc -d"
+alias gr="git remote"
+alias grv="git remote -v"
+alias gra="git remote add"
+alias gcp="git cherry-pick"
+alias gco="git checkout"
+alias gcom="git checkout master"
+alias gcob="git checkout -b"
+alias glo="git log"
+alias gt="git tag"
+
+# docker
+alias dk="sudo docker"
+alias dkc="sudo docker-compose"
+
+# safe files operations
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
