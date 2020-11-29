@@ -21,11 +21,12 @@ alias cd4="cd ../../../.."
 alias cd5="cd ../../../../.."
 
 # git
-alias g="g"
+alias g="git"
 alias ga="git add"
 alias gc="git commit"
 alias gcm="git commit -m"
 alias gcv="git commit -v -m"
+alias gd="git diff"
 alias gm="git merge"
 alias gst="git status"
 alias gsts="git status -s"
