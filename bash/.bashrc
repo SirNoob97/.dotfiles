@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+EDITOR=vim
 HISTCONTROL=ignoreboth
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
