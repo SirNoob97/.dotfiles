@@ -5,13 +5,13 @@ then
     alias ls="ls --color=auto"
   elif ls -G -d . &> /dev/null
   then
-      alias ls='ls -G'        # Compact view, show colors
+      alias ls="ls -G"        # Compact view, show colors
 fi
 alias ll="ls -alht"
 alias lac="ls -aC"
 
 # grep
-alias grep='grep --color=auto'
+alias grep="grep --color=auto"
 
 # cd
 alias ..="cd .."
@@ -32,6 +32,7 @@ alias gst="git status"
 alias gsts="git status -s"
 alias gpl="git pull"
 alias gp="git push"
+alias gpo="git push origin"
 alias gpom="git push origin master"
 alias gb="git branch"
 alias gba="git branch -a"
@@ -44,6 +45,7 @@ alias gco="git checkout"
 alias gcom="git checkout master"
 alias gcob="git checkout -b"
 alias glo="git log"
+alias gloog="git log --oneline --graph"
 alias gt="git tag"
 
 # docker
