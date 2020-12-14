@@ -182,7 +182,7 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f <Plug>(coc-format-selected)
 "nmap <leader>f ggVG<Plug>(coc-format-selected)
 
-nmap <silent> <leader>a :<C-u>CocList actions<CR>
+nmap <silent> <leader>a :<C-u>CocAction<CR>
 
 nmap <leader>gf <Plug>(coc-fix-current)
 
