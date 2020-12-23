@@ -49,8 +49,8 @@ alias gloog="git log --oneline --graph"
 alias gt="git tag"
 
 # docker
-alias dk="sudo docker"
-alias dkc="sudo docker-compose"
+alias dk="docker"
+alias dkc="docker-compose"
 
 # safe files operations
 alias rm="rm -i"
