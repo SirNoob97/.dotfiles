@@ -113,7 +113,8 @@ let &t_EI.="\<Esc>[1 q"
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ycm-core/YouCompleteMe'
 Plug 'uiiaoo/java-syntax.vim'
 
 Plug 'vim-airline/vim-airline'
@@ -123,8 +124,6 @@ Plug 'preservim/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'mbbill/undotree'
-
-Plug 'kien/ctrlp.vim'
 
 Plug 'morhetz/gruvbox'
 
@@ -136,9 +135,6 @@ let g:gruvbox_hls_cursor = 'fg0'
 let g:gruvbox_contrast_dark = 'medium'
 let g:gruvbox_contrast_light = 'hard'
 colorscheme gruvbox
-
-" CtrlP
-let g:ctrlp_working_path_mode = 'ra'
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -157,12 +153,24 @@ nnoremap <leader>u :UndotreeToggle<CR>
 vmap \\ <plug>NERDCommenterToggle
 nmap \\ <plug>NERDCommenterToggle
 
-" COC
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? coc#_select_confirm() :
-  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump', ''])\<CR>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
+" YCM
+let g:ycm_filetype_whitelist = {
+  \ '*': 1,
+  \ 'ymc_nofiletype': 1
+  \ }
+
+let g:ycm_error_symbol = ''
+let g:ycm_warning_symbol = ''
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_key_list_stop_completion = ['<CR>']
+let g:ycm_semantic_triggers = { 'java' : ['.', '::', '@'] }
+let g:ycm_goto_buffer_command = 'split-or-existing-window'
+"inoremap <silent><expr> <TAB>
+  "\ pumvisible() ? coc#_select_confirm() :
+  "\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump', ''])\<CR>" :
+  "\ <SID>check_back_space() ? "\<TAB>" :
+  "\ coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -171,10 +179,11 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gt :YcmCompleter GoTo<CR>
+nmap <silent> gd :YcmCompleter GoToDefinition<CR>
+nmap <silent> gy :YcmCompleter GoToType<CR>
+nmap <silent> gi :YcmCompleter GoToImplementation<CR>
+nmap <silent> gr :YcmCompleter GoToReferences<CR>
 
 nmap <leader>rf <Plug>(coc-refactor)
 nmap <leader>rn <Plug>(coc-rename)
@@ -194,17 +203,18 @@ nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
 vmap <leader>ca  <Plug>(coc-codeaction-selected)
 noremap <leader>cd  <Plug>(coc-codeaction-selected)
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+let g:ycm_auto_hover = ''
+nmap <silent>K <plug>(YCMHover)
 
-function! s:show_documentation()
-  if (index(['vim', 'help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+augroup MyYCMCustom
+  autocmd!
+  autocmd FileType java let b:ycm_hover = {
+    \ 'command': 'GetDoc',
+    \ 'syntax': &filetype
+    \ }
+augroup END
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+"autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Mark in red the spaces at the end of the line
 if &t_Co > 2
