@@ -1,3 +1,9 @@
 [submodule "coc.nvim"]
 	path = coc.nvim
 	url = https://github.com/neoclide/coc.nvim
+[submodule "vim/.vim/plugged/gruvbox"]
+	url = https://github.com/morhetz/gruvbox
+[submodule "vim/.vim/plugged/java-syntax.vim"]
+	url = https://github.com/uiiaoo/java-syntax.vim
+[submodule "vim/.vim/plugged/nerdtree"]
+	url = https://github.com/preservim/nerdtree
