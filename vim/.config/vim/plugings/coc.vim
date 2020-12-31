@@ -78,4 +78,4 @@ nnoremap <silent><leader>CD :CocDisable<CR>
 nnoremap <silent><leader>CE :CocEnable<CR>
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
