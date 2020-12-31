@@ -3,8 +3,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'uiiaoo/java-syntax.vim'
 
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-fugitive'
 

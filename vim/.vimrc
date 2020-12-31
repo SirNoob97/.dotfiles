@@ -12,7 +12,4 @@ source ~/.config/vim/plugings/nerdtree.vim
 source ~/.config/vim/plugings/undotree.vim
 source ~/.config/vim/plugings/nerdcommenter.vim
 
-source ~/.config/vim/plugings/vim-go.vim
 source ~/.config/vim/plugings/coc.vim
-
-
