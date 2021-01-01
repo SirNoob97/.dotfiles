@@ -1,120 +1,274 @@
-" Vim syntaxtax file
-" Language:     Go
-" Maintainer:   David Daub <david.daub@googlemail.com>
-" Last Change:  2009 Nov 15
-" Version:      0.1
-"
-" Early version. Took some (ok, most) stuff from existing syntaxtax files like
-" c.vim or d.vim.
-"
-"
-" Todo:
-" - very much
-
-" Quit when a (custom) syntaxtax file was already loaded
-if version < 600
-	syntax clear
-elseif exists("b:current_syntax")
-	finish
+if exists("b:current_syntax")
+  finish
 endif
 
+syn case match
 
-syn keyword         goPackage       package
-syn keyword         goImport        import
-hi def link         goPackage       Statement
-hi def link         goImport        Statement
+syn keyword     goPackage           package
+syn keyword     goImport            import    contained
+syn keyword     goVar               var       contained
+syn keyword     goConst             const     contained
 
-" A bunch of useful Go keywords
-syn keyword  goStatement select
-syn keyword  goStatement defer
-syn keyword  goStatement fallthrough range type
-syn keyword  goStatement return
-hi def link goStatement     Statement
+hi def link     goPackage           Statement
+hi def link     goImport            Statement
+hi def link     goVar               Keyword
+hi def link     goConst             Keyword
+hi def link     goDeclaration       Keyword
+
+" Keywords within functions
+syn keyword     goStatement         defer go goto return break continue fallthrough
+syn keyword     goConditional       if else switch select
+syn keyword     goLabel             case default
+syn keyword     goRepeat            for range
+
+hi def link     goStatement         Statement
+hi def link     goConditional       Conditional
+hi def link     goLabel             Label
+hi def link     goRepeat            Repeat
+
+" Predefined types
+syn keyword     goType              chan map bool string error
+syn keyword     goSignedInts        int int8 int16 int32 int64 rune
+syn keyword     goUnsignedInts      byte uint uint8 uint16 uint32 uint64 uintptr
+syn keyword     goFloats            float32 float64
+syn keyword     goComplexes         complex64 complex128
+
+hi def link     goType              Type
+hi def link     goSignedInts        Type
+hi def link     goUnsignedInts      Type
+hi def link     goFloats            Type
+hi def link     goComplexes         Type
+
+" Predefined functions and values
+syn keyword     goBuiltins                 append cap close complex copy delete imag len
+syn keyword     goBuiltins                 make new panic print println real recover
+syn keyword     goBoolean                  true false
+syn keyword     goPredefinedIdentifiers    nil iota
+
+hi def link     goBuiltins                 Identifier
+hi def link     goBoolean                  Boolean
+hi def link     goPredefinedIdentifiers    goBoolean
+
+" Comments; their contents
+syn keyword     goTodo              contained TODO FIXME XXX BUG
+syn cluster     goCommentGroup      contains=goTodo
+
+syn region      goComment           start="//" end="$" contains=goGenerate,@goCommentGroup,@Spell
+syn region      goComment           start="/\*" end="\*/" contains=@goCommentGroup,@Spell fold
+syn match       goComment           "\v(^\s*//.*\n)+" contains=goGenerate,@goCommentGroup,@Spell fold
+
+hi def link     goComment           Comment
+hi def link     goTodo              Todo
+
+syn match       goGenerateVariables contained /\%(\$GOARCH\|\$GOOS\|\$GOFILE\|\$GOLINE\|\$GOPACKAGE\|\$DOLLAR\)\>/
+syn region      goGenerate          start="^\s*//go:generate" end="$" contains=goGenerateVariables
+hi def link     goGenerate          PreProc
+hi def link     goGenerateVariables Special
+
+" Go escapes
+syn match       goEscapeOctal       display contained "\\[0-7]\{3}"
+syn match       goEscapeC           display contained +\\[abfnrtv\\'"]+
+syn match       goEscapeX           display contained "\\x\x\{2}"
+syn match       goEscapeU           display contained "\\u\x\{4}"
+syn match       goEscapeBigU        display contained "\\U\x\{8}"
+syn match       goEscapeError       display contained +\\[^0-7xuUabfnrtv\\'"]+
+
+hi def link     goEscapeOctal       goSpecialString
+hi def link     goEscapeC           goSpecialString
+hi def link     goEscapeX           goSpecialString
+hi def link     goEscapeU           goSpecialString
+hi def link     goEscapeBigU        goSpecialString
+hi def link     goSpecialString     Special
+hi def link     goEscapeError       Error
+
+" Strings and their contents
+syn cluster     goStringGroup contains=goEscapeOctal,goEscapeC,goEscapeX,goEscapeU,goEscapeBigU,goEscapeError
+syn region      goString            start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@goStringGroup,@Spell
+syn region      goRawString         start=+`+ end=+`+ contains=@Spell
+
+syn match       goFormatSpecifier   /\
+                \%([^%]\%(%%\)*\)\
+                \@<=%[-#0 +]*\
+                \%(\%(\%(\[\d\+\]\)\=\*\)\|\d\+\)\=\
+                \%(\.\%(\%(\%(\[\d\+\]\)\=\*\)\|\d\+\)\=\)\=\
+                \%(\[\d\+\]\)\=[vTtbcdoqxXUeEfFgGspw]/ contained containedin=goString,goRawString
+hi def link     goFormatSpecifier   goSpecialString
+                                  
+
+hi def link     goString            String
+hi def link     goRawString         String
+
+" Characters; their contents
+syn cluster     goCharacterGroup    contains=goEscapeOctal,goEscapeC,goEscapeX,goEscapeU,goEscapeBigU
+syn region      goCharacter         start=+'+ skip=+\\\\\|\\'+ end=+'+ contains=@goCharacterGroup
+
+hi def link     goCharacter         Character
+
+" Regions
+syn region      goParen             start='(' end=')' transparent
+syn region      goBlock             start="{" end="}" transparent fold
 
 
-syn keyword     goConditional    if else switch
-hi def link goConditional   Conditional
+" Import
+syn region      goImport            start='import (' end=')' transparent fold contains=goImport,goString,goComment
 
-syn keyword     goBranch         goto break continue
-hi def link goBranch        Conditional
+" var, const
+syn region      goVar               start='var (' end='^\s*)$' transparent fold
+                                    \ contains=ALLBUT,goParen,goBlock,goFunction,goTypeName,goReceiverType,goReceiverVar,goParamName,goParamType,goSimpleParams,goPointerOperator
+syn region      goConst             start='const (' end='^\s*)$' transparent fold
+                                    \ contains=ALLBUT,goParen,goBlock,goFunction,goTypeName,goReceiverType,goReceiverVar,goParamName,goParamType,goSimpleParams,goPointerOperator
 
-syn keyword     goLabel          case default
-hi def link goLabel         Label
+" Single-line var, const and import.
+syn match       goSingleDecl        /\%(import\|var\|const\) [^(]\@=/ contains=goImport,goVar,goConst
 
-syn keyword     goRepeat         for
-hi def link goRepeat        Repeat
+" Integers
+syn match       goDecimalInt        "\<-\=\(0\|[1-9]_\?\(\d\|\d\+_\?\d\+\)*\)\%([Ee][-+]\=\d\+\)\=\>"
+syn match       goDecimalError      "\<-\=\(_\(\d\+_*\)\+\|\([1-9]\d*_*\)\+__\(\d\+_*\)\+\|\([1-9]\d*_*\)\+_\+\)\%([Ee][-+]\=\d\+\)\=\>"
+syn match       goHexadecimalInt    "\<-\=0[xX]_\?\(\x\+_\?\)\+\>"
+syn match       goHexadecimalError  "\<-\=0[xX]_\?\(\x\+_\?\)*\(\([^\t0-9A-Fa-f_]\|__\)\S*\|_\)\>"
+syn match       goOctalInt          "\<-\=0[oO]\?_\?\(\o\+_\?\)\+\>"
+syn match       goOctalError        "\<-\=0[0-7oO_]*\(\([^\t0-7oOxX_/)\]\}\:]\|[oO]\{2,\}\|__\)\S*\|_\|[oOxX]\)\>"
+syn match       goBinaryInt         "\<-\=0[bB]_\?\([01]\+_\?\)\+\>"
+syn match       goBinaryError       "\<-\=0[bB]_\?[01_]*\([^\t01_]\S*\|__\S*\|_\)\>"
 
-syn keyword     goType           struct const interface func
-syn keyword     goType           var map
-syn keyword     goType           uint8 uint16 uint32 uint64
-syn keyword     goType           int8 int16 int32 int64
-syn keyword     goType           float32 float64
-syn keyword     goType           float32 float64
-syn keyword     goType           byte
-syn keyword     goType           uint int float uintptr string
-hi def link goType          Type
+hi def link     goDecimalInt        Integer
+hi def link     goDecimalError      Error
+hi def link     goHexadecimalInt    Integer
+hi def link     goHexadecimalError  Error
+hi def link     goOctalInt          Integer
+hi def link     goOctalError        Error
+hi def link     goBinaryInt         Integer
+hi def link     goBinaryError       Error
+hi def link     Integer             Number
 
-syn keyword     goConcurrent     chan go
-hi def link goConcurrent    Statement
+" Floating point
+syn match       goFloat             "\<-\=\d\+\.\d*\%([Ee][-+]\=\d\+\)\=\>"
+syn match       goFloat             "\<-\=\.\d\+\%([Ee][-+]\=\d\+\)\=\>"
 
-syn keyword     goValue          nil
-hi def link goValue         Constant
+hi def link     goFloat             Float
 
-syn keyword     goBoolean        true false
-hi def link goBoolean       Boolean
+" Imaginary literals
+syn match       goImaginary         "\<-\=\d\+i\>"
+syn match       goImaginary         "\<-\=\d\+[Ee][-+]\=\d\+i\>"
+syn match       goImaginaryFloat    "\<-\=\d\+\.\d*\%([Ee][-+]\=\d\+\)\=i\>"
+syn match       goImaginaryFloat    "\<-\=\.\d\+\%([Ee][-+]\=\d\+\)\=i\>"
 
-syn keyword     goConstant       iota
-hi def link goConstant      Constant
+hi def link     goImaginary         Number
+hi def link     goImaginaryFloat    Float
 
-" Builtin functions
-syn keyword     goBif            len make new close closed cap map
-" According to the language specification it is not garanteed to stay in the
-" language. See http://golang.org/doc/go_spec.html#Bootstrapping
-syn keyword     goBif            print println panic panicln
-hi def link goBif           Function
+" Spaces after "[]"
+syn match       goSpaceError        display "\%(\[\]\)\@<=\s\+"
 
-" Commants
-syn keyword     goTodo           contained TODO FIXME XXX
-syn match       goLineComment    "\/\/.*" contains=@Spell,goTodo
-syn match       goCommentSkip    "^[ \t]*\*\($\|[ \t]\+\)"
-syn region      goComment        start="/\*"  end="\*/" contains=@Spell,goTodo
-hi def link goTodo          Todo
-hi def link goLineComment   goComment
-hi def link goComment       Comment
+" Spacing errors around the 'chan' keyword
+syn match       goSpaceError        display "\%(\%(\<chan\>\)\@<!<-\)\@<=\s\+\%(\<chan\>\)\@="
+syn match       goSpaceError        display "\%(\%(<-\)\@<!\<chan\>\)\@<=\s\+\%(<-\)\@="
 
-" Numerals
-syn case ignore
-"integer number, or floating point number without a dot and with "f".
-syn match       goNumbers        display transparent "\<\d\|\.\d" contains=goNumber,goFloat,goOctError,goOct
-syn match       goNumbersCom     display contained transparent "\<\d\|\.\d" contains=goNumber,goFloat,goOct
-syn match       goNumber         display contained "\d\+\(u\=l\{0,2}\|ll\=u\)\>"
-hi def link goNumbers       Number
-hi def link goNumbersCom    Number
+syn match       goSpaceError        display "\%(\%(^\|[={(,;]\)\s*<-\)\@<=\s\+"
 
-" hex number
-syn match       goNumber         display contained "0x\x\+\(u\=l\{0,2}\|ll\=u\)\>"
-hi def link goNumber        Number
+" Extra types commonly seen
+syn match       goExtraType         /\<bytes\.\%(Buffer\)\>/
+syn match       goExtraType         /\<context\.\%(Context\)\>/
+syn match       goExtraType         /\<io\.\%(Reader\|ReadSeeker\|ReadWriter\|ReadCloser\|ReadWriteCloser\|Writer\|WriteCloser\|Seeker\)\>/
+syn match       goExtraType         /\<reflect\.\%(Kind\|Type\|Value\)\>/
+syn match       goExtraType         /\<unsafe\.Pointer\>/
 
-" oct number
-syn match       goOct            display contained "0\o\+\(u\=l\{0,2}\|ll\=u\)\>" contains=goOctZero
-syn match       goOctZero        display contained "\<0"
-hi def link goOct           Number
-hi def link goOctZero       Number
+" Space-tab error
+syn match       goSpaceError        display " \+\t"me=e-1
 
-syn match       goFloat          display contained "\d\+\.\d*\(e[-+]\=\d\+\)\="
-syn match       goFloat          display contained "\d\+e[-+]\=\d\=\>"
-syn match       goFloat          display "\(\.[0-9_]\+\)\(e[-+]\=[0-9_]\+\)\=[fl]\=i\=\>"
-hi def link goFloat         Float
+" Trailing white space error
+syn match       goSpaceError        display excludenl "\s\+$"
 
-" Literals
-syn region      goString         start=+L\="+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
-hi def link goString        String
+hi def link     goExtraType         Type
+hi def link     goSpaceError        Error
 
-syn match       goSpecial        display contained "\\\(x\x\+\|\o\{1,3}\|.\|$\)"
-syn match       goCharacter      "L\='[^\\]'"
-syn match       goCharacter      "L'[^']*'" contains=goSpecial
-hi def link goSpecial       Special
-hi def link goCharacter     Character
+" Comments; their contents
+syn keyword     goTodo              contained NOTE
+hi def link     goTodo              Todo
 
+syn match       goVarArgs           /\.\.\./
+
+" Operators
+syn match       goOperator          /[-+%<>!&|^*=]=\?/
+syn match       goOperator          /\/\%(=\|\ze[^/*]\)/
+syn match       goOperator          /\%(<<\|>>\|&^\)=\?/
+syn match       goOperator          /:=\|||\|<-\|++\|--/
+hi def link     goPointerOperator   goOperator
+hi def link     goVarArgs           goOperator
+hi def link     goOperator          Operator
+
+" Functions
+syn match       goDeclaration       /\<func\>/ nextgroup=goReceiver,goFunction,goSimpleParams skipwhite skipnl
+syn match       goReceiverVar       /\w\+\ze\s\+\%(\w\|\*\)/ nextgroup=goPointerOperator,goReceiverType skipwhite skipnl contained
+syn match       goPointerOperator   /\*/ nextgroup=goReceiverType contained skipwhite skipnl
+syn match       goFunction          /\w\+/ nextgroup=goSimpleParams contained skipwhite skipnl
+syn match       goReceiverType      /\w\+/ contained
+syn match       goSimpleParams      /(\%(\w\|\_s\|[*\.\[\],\{\}<>-]\)*)/ contained contains=goParamName,goType nextgroup=goFunctionReturn skipwhite skipnl
+syn match       goFunctionReturn    /(\%(\w\|\_s\|[*\.\[\],\{\}<>-]\)*)/ contained contains=goParamName,goType skipwhite skipnl
+syn match       goParamName         /\w\+\%(\s*,\s*\w\+\)*\ze\s\+\%(\w\|\.\|\*\|\[\)/ contained nextgroup=goParamType skipwhite skipnl
+syn match       goParamType         /\%([^,)]\|\_s\)\+,\?/ contained nextgroup=goParamName skipwhite skipnl
+                                    \ contains=goVarArgs,goType,goSignedInts,goUnsignedInts,goFloats,goComplexes,goDeclType,goBlock
+hi def link     goReceiverVar       goParamName
+hi def link     goParamName         Identifier
+
+syn match       goReceiver          /(\s*\w\+\%(\s\+\*\?\s*\w\+\)\?\s*)\ze\s*\w/ contained nextgroup=goFunction contains=goReceiverVar skipwhite skipnl
+
+hi def link     goFunction          Function
+
+" Function calls
+syn match       goFunctionCall      /\w\+\ze(/ contains=goBuiltins,goDeclaration
+hi def link     goFunctionCall      Type
+
+" Fields
+syn match       goField             /\.\w\+\
+                                    \%(\%([\/\-\+*%]\)\|\
+                                    \%([\[\]{}<\>\)]\)\|\
+                                    \%([\!=\^|&]\)\|\
+                                    \%([\n\r\]\)\|\
+                                    \%([,\:.]\)\)\@=/hs=s+1
+hi def link     goField             Identifier
+
+" Structs & Interfaces
+syn match       goTypeConstructor   /\<\w\+{\@=/
+syn match       goTypeDecl          /\<type\>/ nextgroup=goTypeName skipwhite skipnl
+syn match       goTypeName          /\w\+/ contained nextgroup=goDeclType skipwhite skipnl
+syn match       goDeclType          /\<\%(interface\|struct\)\>/ skipwhite skipnl
+hi def link     goReceiverType      Type
+hi def link     goTypeConstructor   Type
+hi def link     goTypeName          Type
+hi def link     goTypeDecl          Keyword
+hi def link     goDeclType          Keyword
+
+" Variable Assignments
+syn match       goVarAssign         /\v[_.[:alnum:]]+(,\s*[_.[:alnum:]]+)*\ze(\s*([-^+|^\/%&]|\*|\<\<|\>\>|\&\^)?\=[^=])/
+hi def link     goVarAssign         Special
+
+" Variable Declarations
+syn match       goVarDefs           /\v\w+(,\s*\w+)*\ze(\s*:\=)/
+hi def link     goVarDefs           Special
+
+" Build Constraints
+syn match       goBuildKeyword      display contained "+build"
+syn keyword     goBuildDirectives   contained
+                                    \ android darwin dragonfly freebsd linux nacl netbsd openbsd plan9
+                                    \ solaris windows 386 amd64 amd64p32 arm armbe arm64 arm64be ppc64 
+                                    \ ppc64le mips mipsle mips64 mips64le mips64p32 mips64p32le ppc 
+                                    \ s390 s390x sparc sparc64 cgo ignore race 
+syn region      goBuildComment      matchgroup=goBuildCommentStart
+                                    \ start="//\s*+build\s"rs=s+2 end="$"
+                                    \ contains=goBuildKeyword,goBuildDirectives
+hi def link     goBuildCommentStart Comment
+hi def link     goBuildDirectives         Type
+hi def link     goBuildKeyword        PreProc
+
+exe 'syn region goPackageComment start=/\v(\/\/.*\n)+\s*package/'
+    \ . ' end=/\v\n\s*package/he=e-7,me=e-7,re=e-7'
+    \ . ' contains=@goCommentGroup,@Spell fold'
+exe 'syn region goPackageComment start=/\v^\s*\/\*.*\n(.*\n)*\s*\*\/\npackage/'
+    \ . ' end=/\v\*\/\n\s*package/he=e-7,me=e-7,re=e-7'
+    \ . ' contains=@goCommentGroup,@Spell fold'
+
+hi def link     goPackageComment        Comment
+
+syn sync minlines=500
 
 let b:current_syntax = "go"
