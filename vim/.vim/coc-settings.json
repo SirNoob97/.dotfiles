@@ -1,14 +1,13 @@
 {
   "suggest.noselect": false,
-
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": " ",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
-
   "coc.preferences.hoverTarget": "float",
   "java.home": "/usr/lib/jvm/java-11-openjdk-amd64/",
   "java.completion.enabled": true,
   "java.jdt.ls.vmargs": "-javaagent:/home/martin/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar",
-  "java.trace.server": "verbose"
+  "java.trace.server": "verbose",
+  "go.trace.server": "verbose"
 }
