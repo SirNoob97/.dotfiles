@@ -26,7 +26,7 @@ background_opacity: 1.0
 #Font Configuration.
 font:
   normal:
-    family: Hack
+    family: Hack Nerd Font
     style: Regular
   size: 10.0
   offset:
