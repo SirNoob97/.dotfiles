@@ -175,7 +175,9 @@ smart_borders on
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec_always feh --bg-fill /home/martin/Pictures/0*wGvcy48A6bfnv1-C.png
+exec_always picom
+
+exec_always nitrogen --set-scaled --random $HOME/Pictures/wallpapers/
 
 set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
