@@ -63,7 +63,7 @@ function getNickname() {
     fi
 
     if [ "$ACTIVESINK" == "analog-output-speaker" ]; then
-      SINK_NICKNAME=""
+      SINK_NICKNAME="ﰝ"
     fi
 
     #old script
