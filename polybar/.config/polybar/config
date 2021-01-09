@@ -51,9 +51,9 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Hack Nerd Font:style=Regular:pixelsize=10;1
-font-1 = Hack Nerd Font:style=Regular:fontformat=truetype:size=8:antialias=false;0
-font-2 = Hack Nerd Font:style=Regular:antialias=false:pixelsize=10;1
+font-0 = Hack Nerd Font:style=Regular:pixelsize=11;1
+font-1 = Hack Nerd Font:style=Regular:fontformat=truetype:size=10:antialias=false;0
+font-2 = Hack Nerd Font:style=Regular:antialias=false:pixelsize=11;1
 
 modules-left = i3
 modules-center = date
@@ -147,27 +147,33 @@ card = intel_backlight
 label =  %percentage%%
 
 [module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 98
+type = custom/script
+tail = true
+format-underline = #4bffdc
+interval = 25
 
-format-charging = <ramp-capacity> ﮣ <label-charging>
-format-charging-underline = #ffb52a
+exec = /home/martin/.config/polybar/modules/battery
+;type = internal/battery
+;battery = BAT0
+;adapter = AC
+;full-at = 98
 
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+;format-charging = <ramp-capacity> ﮣ <label-charging>
+;format-charging-underline = #ffb52a
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = #4bffdc
+;format-discharging = <ramp-capacity> <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = " "
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
-ramp-capacity-3 = " "
-ramp-capacity-foreground = ${colors.foreground-alt}
-ramp-full-underline = ${self.format-charging-underline}
+;format-full-prefix = " "
+;format-full-prefix-foreground = ${colors.foreground-alt}
+;format-full-underline = #4bffdc
+
+;ramp-capacity-0 = " "
+;ramp-capacity-1 = " "
+;ramp-capacity-2 = " "
+;ramp-capacity-3 = " "
+;ramp-capacity-foreground = ${colors.foreground-alt}
+;ramp-full-underline = ${self.format-charging-underline}
 
 [module/powermenulauncher]
 type = custom/text
