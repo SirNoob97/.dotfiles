@@ -175,7 +175,7 @@ smart_borders on
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec_always picom
+#exec_always picom
 
 exec_always nitrogen --set-scaled --random $HOME/Pictures/wallpapers/
 
