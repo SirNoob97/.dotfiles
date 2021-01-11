@@ -175,6 +175,8 @@ smart_borders on
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+
 #exec_always picom
 
 exec_always nitrogen --set-scaled --random $HOME/Pictures/wallpapers/
