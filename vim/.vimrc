@@ -13,3 +13,6 @@ source ~/.config/vim/plugings/undotree.vim
 source ~/.config/vim/plugings/nerdcommenter.vim
 
 source ~/.config/vim/plugings/coc.vim
+source ~/.config/vim/plugings/go.vim
+source ~/.config/vim/plugings/ale.vim
+
