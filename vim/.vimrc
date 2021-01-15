@@ -12,7 +12,8 @@ source ~/.config/vim/plugings/nerdtree.vim
 source ~/.config/vim/plugings/undotree.vim
 source ~/.config/vim/plugings/nerdcommenter.vim
 
-source ~/.config/vim/plugings/coc.vim
-source ~/.config/vim/plugings/go.vim
 source ~/.config/vim/plugings/ale.vim
 
+autocmd BufRead,BufNewFile *.java, *.json, *.yaml, *.yml source ~/.config/vim/plugings/coc.vim
+
+autocmd FileType go source ~/.config/vim/plugings/go.vim
