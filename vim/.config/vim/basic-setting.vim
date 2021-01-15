@@ -55,12 +55,3 @@ filetype indent plugin on
 let &t_SI.="\<Esc>[5 q"
 let &t_SR.="\<Esc>[2 q"
 let &t_EI.="\<Esc>[1 q"
-
-" Mark in red the spaces at the end of the line
-if &t_Co > 2
-  highlight ExtraWhitespace ctermbg = 1
-  match ExtraWhitespace /\s\+$/
-else
-  set listchars=trail:~
-  set list
-endif

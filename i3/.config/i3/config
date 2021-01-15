@@ -43,6 +43,8 @@ bindsym $mod+Return exec alacritty
 # firefox
 bindsym $mod+b exec firefox-dev
 
+bindsym $mod+q exec qutebrowser
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -163,6 +165,7 @@ focus_follows_mouse no
 
 for_window [class=".*"] border pixel 3
 for_window [class="GParted"] floating enable border normal
+for_window [class="THDWB"] floating enable border normal
 
 gaps inner $inner_gaps
 gaps outer $outer_gaps
@@ -307,7 +310,7 @@ mode "$mode_gaps_left" {
 #bar {
 #    position top
 #    status_command i3blocks -c /home/martin/.config/i3/i3blocks/i3blocks.conf
-#    colors { 
+#    colors {
 #      background #222222
 #    }
 #}
