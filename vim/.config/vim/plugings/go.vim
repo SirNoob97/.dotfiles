@@ -18,6 +18,7 @@ nnoremap <silent> gy :GoDefType<cr>
 nnoremap <silent> gr :GoDecls<cr>
 nnoremap <silent> dr :GoDeclsDir<cr>
 
+nnoremap <silent><leader>a :GoImports<cr>
 nnoremap <silent><leader>i :GoInfo<cr>
 nnoremap <silent><leader>f :GoFmt<cr>
 nnoremap <silent><leader>ml :GoMetaLinter<cr>
