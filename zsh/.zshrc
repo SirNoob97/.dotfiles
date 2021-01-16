@@ -100,3 +100,6 @@ alias zshconfig="sudo vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias docker="sudo docker"
 alias dockercompose="sudo docker-compose"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/martin/bin/gocomplete go
