@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'uiiaoo/java-syntax.vim'
