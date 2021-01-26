@@ -47,6 +47,8 @@ set showcmd
 
 set backspace=indent,eol,start
 
+set scrolloff=5
+
 set spelllang=en_gb
 
 filetype indent plugin on
