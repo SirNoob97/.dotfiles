@@ -32,6 +32,8 @@ set ignorecase
 set incsearch
 
 set omnifunc=syntaxcomplete#Complete
+set completeopt=menuone,noinsert
+set shortmess+=c
 set suffixesadd=.java
 
 set autoindent
