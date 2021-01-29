@@ -29,3 +29,5 @@ alias bashconfig="sudo vim ~/.bashrc"
 source "$BASH_IT"/bash_it.sh
 
 complete -C /home/martin/bin/gocomplete go
+
+source $HOME/.fzf.bash
