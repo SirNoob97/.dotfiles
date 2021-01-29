@@ -9,6 +9,8 @@ let g:go_fmt_command="goimports"
 let g:go_addtags_transform="camelcase"
 let g:go_fmt_fail_silently=1
 let g:go_fmt_autosave=0
+let g:go_doc_popup_window = 1
+let g:go_gopls_use_placeholders = "gpls"
 
 inoremap <buffer> <NUL> <C-x><C-o>
 inoremap <buffer> . .<C-x><C-o>
