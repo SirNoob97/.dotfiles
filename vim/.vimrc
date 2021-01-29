@@ -14,6 +14,5 @@ source ~/.config/vim/plugings/nerdcommenter.vim
 
 source ~/.config/vim/plugings/ale.vim
 source ~/.config/vim/plugings/coc.vim
-"autocmd BufRead,BufNewFile *.java, *.json, *.yaml, *.yml source ~/.config/vim/plugings/coc.vim
 
-"autocmd FileType go source ~/.config/vim/plugings/go.vim
+autocmd FileType go source ~/.config/vim/plugings/vim-go.vim
