@@ -7,7 +7,7 @@ map <silent><F5> :setlocal spell!<CR>
 nnoremap <silent><silent> <CR> :nohlsearch<CR><CR>
 
 " copy, paste
-inoremap <silent><C-v> <Esc> "+pa
+inoremap <silent><C-V> <Esc> "*p
 vnoremap <silent><C-c> "+y
 vnoremap <silent><C-d> "+d
 
