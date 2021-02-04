@@ -12,24 +12,26 @@ let g:go_fmt_autosave=0
 let g:go_doc_popup_window = 1
 let g:go_gopls_use_placeholders = "gpls"
 
-inoremap <buffer> <NUL> <C-x><C-o>
-inoremap <buffer> . .<C-x><C-o>
+function VimGo()
+  inoremap <buffer> <NUL> <C-x><C-o>
+  inoremap <buffer> . .<C-x><C-o>
 
-nnoremap <silent> gd :GoDef<cr>
-nnoremap <silent> gy :GoDefType<cr>
-nnoremap <silent> gr :GoDecls<cr>
-nnoremap <silent> dr :GoDeclsDir<cr>
+  nnoremap <buffer> <silent> gd :GoDef<cr>
+  nnoremap <buffer> <silent> gy :GoDefType<cr>
+  nnoremap <buffer> <silent> gr :GoDecls<cr>
+  nnoremap <buffer> <silent> dr :GoDeclsDir<cr>
 
-nnoremap <silent><leader>a :GoImports<cr>
-nnoremap <silent><leader>i :GoInfo<cr>
-nnoremap <silent><leader>f :GoFmt<cr>
-nnoremap <silent><leader>ml :GoMetaLinter<cr>
-nnoremap <silent><leader>A :GoAlternate<cr>
-nnoremap <silent><leader>rn :GoRename<cr>
-vnoremap <silent><leader>ef :GoFreevars<cr>
-nnoremap <silent><leader>n :cnext<CR>
-nnoremap <silent><leader>p :cprevious<CR>
-"au FileType go nnoremap  :cclose<CR>
+  nnoremap <buffer> <silent><leader>a :GoImports<cr>
+  nnoremap <buffer> <silent><leader>i :GoInfo<cr>
+  nnoremap <buffer> <silent><leader>f :GoFmt<cr>
+  nnoremap <buffer> <silent><leader>ml :GoMetaLinter<cr>
+  nnoremap <buffer> <silent><leader>A :GoAlternate<cr>
+  nnoremap <buffer> <silent><leader>rn :GoRename<cr>
+  vnoremap <buffer> <silent><leader>ef :GoFreevars<cr>
+  nnoremap <buffer> <silent><leader>n :cnext<CR>
+  nnoremap <buffer> <silent><leader>p :cprevious<CR>
+  "au FileType go nnoremap  :cclose<CR>
+endfunction
 
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif

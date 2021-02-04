@@ -5,7 +5,7 @@ source ~/.config/vim/plugins.vim
 
 source ~/.config/vim/plugings/gruvbox.vim
 
-source ~/.config/vim/background-color-scheme.vim
+source ~/.config/vim/theme.vim
 
 source ~/.config/vim/plugings/airline.vim
 source ~/.config/vim/plugings/nerdtree.vim
@@ -15,4 +15,7 @@ source ~/.config/vim/plugings/nerdcommenter.vim
 source ~/.config/vim/plugings/ale.vim
 source ~/.config/vim/plugings/coc.vim
 
-autocmd FileType go source ~/.config/vim/plugings/vim-go.vim
+source ~/.config/vim/plugings/vim-go.vim
+
+autocmd FileType go :call VimGo()
+autocmd FileType java,json,yaml :call Coc()
