@@ -10,7 +10,6 @@ let g:go_fmt_command="goimports"
 let g:go_fmt_fail_silently=1
 let g:go_fmt_autosave=0
 let g:go_doc_popup_window = 1
-let g:go_gopls_use_placeholders = "gpls"
 
 function VimGo()
   inoremap <buffer> <NUL> <C-x><C-o>
@@ -18,7 +17,8 @@ function VimGo()
 
   nnoremap <buffer> <silent> gd :GoDef<cr>
   nnoremap <buffer> <silent> gy :GoDefType<cr>
-  nnoremap <buffer> <silent> gr :GoDecls<cr>
+  nnoremap <buffer> <silent> gr :GoReferrers<cr>
+  nnoremap <buffer> <silent> gi :GoDecls<cr>
   nnoremap <buffer> <silent> dr :GoDeclsDir<cr>
 
   nnoremap <buffer> <silent><leader>a :GoImports<cr>
@@ -30,7 +30,7 @@ function VimGo()
   vnoremap <buffer> <silent><leader>ef :GoFreevars<cr>
   nnoremap <buffer> <silent><leader>n :cnext<CR>
   nnoremap <buffer> <silent><leader>p :cprevious<CR>
-  "au FileType go nnoremap  :cclose<CR>
+  nnoremap <buffer> <silent><leader>q :cclose<CR>
 endfunction
 
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
