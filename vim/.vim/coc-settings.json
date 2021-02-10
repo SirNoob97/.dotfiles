@@ -1,10 +1,10 @@
 {
   "suggest.noselect": false,
+  "suggest.autoTrigger": "trigger",
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": " ",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
-  "diagnostic.displayByAle": true,
   "coc.preferences.hoverTarget": "float",
   "java.home": "/usr/lib/jvm/java-11-openjdk-amd64/",
   "java.completion.enabled": true,
