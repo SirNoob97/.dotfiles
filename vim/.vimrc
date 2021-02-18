@@ -18,4 +18,4 @@ source ~/.config/vim/plugings/coc.vim
 source ~/.config/vim/plugings/vim-go.vim
 
 autocmd FileType go :call VimGo()
-autocmd FileType java,json,yaml :call Coc()
+autocmd FileType java,json,yaml,html,javascript,css :call Coc()
