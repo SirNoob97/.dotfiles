@@ -159,7 +159,7 @@ exec_always nitrogen --set-scaled --random $HOME/Pictures/wallpapers/
 client.focused          #271f17   #271f17     #ffffff  #FF6F54   #AAAA55
 client.unfocused        #333333   #1d2121     #fffff1  #292d2e   #222255
 client.focused_inactive #21211d   #222222     #888888  #484e50   #ffff15
-client.urgent           #4a4b4c   #4a4b4c     #fffffF  #AAAAAA   #4a4b4c
+client.urgent           #FF6F54   #FF6F54     #fffffF  #AAAAAA   #FF6F54
 client.placeholder      #000000   #0c0c0c     #fffffF  #000000   #0c0c0c
 client.background       #111111
 
