@@ -24,7 +24,7 @@ source $HOME/.config/bashconfig/alias-compleion.bash
 
 alias bashconfig="sudo vim ~/.bashrc"
 
-complete -C /home/martin/bin/gocomplete go
+complete -C /home/martin/.local/bin/gocomplete go
 
 source $HOME/.fzf.bash
 
