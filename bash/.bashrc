@@ -29,3 +29,7 @@ complete -C /home/martin/.local/bin/gocomplete go
 source $HOME/.fzf.bash
 
 eval "$(gh completion -s bash)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/martin/.sdkman"
+[[ -s "/home/martin/.sdkman/bin/sdkman-init.sh" ]] && source "/home/martin/.sdkman/bin/sdkman-init.sh"
