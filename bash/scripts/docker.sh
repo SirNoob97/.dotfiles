@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dkrminone() {
-  sudo docker rmi $(dk images -a | grep '<none>' | awk --field-separator=' ' '{ print $3 }')
+  sudo docker rmi $(dk images -a | grep '^<none>' | awk --field-separator=' ' '{ print $3 }')
 }
 
 dkrmimavenlatest() {
