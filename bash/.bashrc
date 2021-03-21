@@ -21,7 +21,8 @@ source $HOME/.env
 source $HOME/.aliases
 source $HOME/.config/bashconfig/completion.bash
 source $HOME/.config/bashconfig/alias-compleion.bash
-source $HOME/scripts/docker.bash
+source $HOME/scripts/maven.sh
+source $HOME/scripts/docker.sh
 
 alias bashconfig="sudo vim ~/.bashrc"
 
