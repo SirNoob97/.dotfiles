@@ -5,10 +5,10 @@ case $- in
     *) return;;
 esac
 
-source $HOME/.config/bashconfig/colors.bash
-source $HOME/.config/bashconfig/git.bash
-source $HOME/.config/bashconfig/base.bash
-source $HOME/.config/bashconfig/theme.bash
+source $HOME/.config/bashconfig/colors.sh
+source $HOME/.config/bashconfig/git.sh
+source $HOME/.config/bashconfig/base.sh
+source $HOME/.config/bashconfig/theme.sh
 
 EDITOR=vim
 HISTCONTROL=ignoreboth
@@ -19,8 +19,8 @@ HISTFILESIZE=2000
 source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
 source $HOME/.env
 source $HOME/.aliases
-source $HOME/.config/bashconfig/completion.bash
-source $HOME/.config/bashconfig/alias-compleion.bash
+source $HOME/.config/bashconfig/completion.sh
+source $HOME/.config/bashconfig/alias-compleion.sh
 source $HOME/scripts/maven.sh
 source $HOME/scripts/docker.sh
 
