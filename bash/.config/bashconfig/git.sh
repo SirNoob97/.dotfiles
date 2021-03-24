@@ -78,14 +78,6 @@ function _git-upstream-behind-ahead {
   git rev-list --left-right --count "$(_git-upstream)...HEAD" 2> /dev/null
 }
 
-function _git-upstream-branch-gone {
-  [[ "$(git status -s -b | sed -e 's/.* //')" == "[gone]" ]]
-}
-
-function _git-hide-status {
-  [[ "$(git config --get bash-it.hide-status)" == "1" ]]
-}
-
 function _git-status {
   local git_status_flags=
   [[ "${SCM_GIT_IGNORE_UNTRACKED}" = "true" ]] && git_status_flags='-uno' || true
@@ -114,55 +106,4 @@ function _git-status-counts {
   END {
     print untracked "\t" unstaged "\t" staged
   }'
-}
-
-function _git-remote-info {
-
-  # prompt handling only, reimplement because patching the routine below gets ugly
-  if [[ "${SCM_GIT_GITSTATUS_RAN}" == "true" ]]; then
-    [[ "${VCS_STATUS_REMOTE_NAME}" == "" ]] && return
-    [[ "${VCS_STATUS_LOCAL_BRANCH}" == "${VCS_STATUS_REMOTE_BRANCH}" ]] && local same_branch_name=true
-    local same_branch_name=
-    [[ "${VCS_STATUS_LOCAL_BRANCH}" == "${VCS_STATUS_REMOTE_BRANCH}" ]] && same_branch_name=true
-    # no multiple remote support in gitstatusd
-    if [[ "${SCM_GIT_SHOW_REMOTE_INFO}" = "true" || "${SCM_GIT_SHOW_REMOTE_INFO}" = "auto" ]]; then
-      if [[ "${same_branch_name}" != "true" ]]; then
-        remote_info="${VCS_STATUS_REMOTE_NAME}/${VCS_STATUS_REMOTE_BRANCH}"
-      else
-        remote_info="${VCS_STATUS_REMOTE_NAME}"
-      fi
-    elif [[ ${same_branch_name} != "true" ]]; then
-      remote_info="${VCS_STATUS_REMOTE_BRANCH}"
-    fi
-    if [[ -n "${remote_info}" ]];then
-      # no support for gone remote branches in gitstatusd
-      local branch_prefix="${SCM_THEME_BRANCH_TRACK_PREFIX}"
-      echo "${branch_prefix}${remote_info}"
-    fi
-  else
-    [[ "$(_git-upstream)" == "" ]] && return
-
-    [[ "$(_git-branch)" == "$(_git-upstream-branch)" ]] && local same_branch_name=true
-    local same_branch_name=
-    [[ "$(_git-branch)" == "$(_git-upstream-branch)" ]] && same_branch_name=true
-    if [[ ("${SCM_GIT_SHOW_REMOTE_INFO}" = "auto" && "$(_git-num-remotes)" -ge 2) ||
-           "${SCM_GIT_SHOW_REMOTE_INFO}" = "true" ]]; then
-      if [[ "${same_branch_name}" != "true" ]]; then
-        remote_info="\$(_git-upstream)"
-      else
-        remote_info="$(_git-upstream-remote)"
-      fi
-    elif [[ ${same_branch_name} != "true" ]]; then
-      remote_info="\$(_git-upstream-branch)"
-    fi
-    if [[ -n "${remote_info}" ]];then
-      local branch_prefix
-      if _git-upstream-branch-gone; then
-        branch_prefix="${SCM_THEME_BRANCH_GONE_PREFIX}"
-      else
-        branch_prefix="${SCM_THEME_BRANCH_TRACK_PREFIX}"
-      fi
-      echo "${branch_prefix}${remote_info}"
-    fi
-  fi
 }

@@ -10,9 +10,6 @@ GIT_THEME_PROMPT_CLEAN=" ${bold_green}✓"
 GIT_THEME_PROMPT_PREFIX=" ${bold_blue}git:("
 GIT_THEME_PROMPT_SUFFIX="${bold_blue})"
 
-RVM_THEME_PROMPT_PREFIX="|"
-RVM_THEME_PROMPT_SUFFIX="|"
-
 function git_prompt_info() {
   git_prompt_vars
   echo -e "$SCM_PREFIX${bold_red}$SCM_BRANCH$SCM_STATE$SCM_SUFFIX"
