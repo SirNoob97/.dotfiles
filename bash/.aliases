@@ -1,4 +1,7 @@
 #!/bin/bash
+
+alias sbrc="source ~/.bashrc"
+
 # ls
 if ls --color -d . &> /dev/null
 then
@@ -42,8 +45,6 @@ alias gra="git remote add"
 alias gcp="git cherry-pick"
 alias gco="git checkout"
 alias gcom="git checkout master"
-alias gcob="git checkout -b"
-alias glo="git log"
 alias gloog="git log --oneline --graph"
 alias gt="git tag"
 
