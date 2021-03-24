@@ -103,3 +103,7 @@ alias dockercompose="sudo docker-compose"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /home/martin/bin/gocomplete go
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/martin/.sdkman"
+[[ -s "/home/martin/.sdkman/bin/sdkman-init.sh" ]] && source "/home/martin/.sdkman/bin/sdkman-init.sh"
