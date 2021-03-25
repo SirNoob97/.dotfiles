@@ -7,12 +7,13 @@ function output {
   if (($battery_level < 99 && $battery_level >= 80)); then echo "  $1 $battery_level%"; fi
 }
 
-battery_level=$(acpi --battery | awk --field-separator=', ' '{ print $2 }' | tr --delete '%')
-battery_status=$(acpi --battery | awk --field-separator=' ' '{ print $3 }' | tr --delete ',')
+battery_level=$(acpi --battery | grep -o -P '.{0,3}%' | sed 's/.$//')
+battery_status=$(acpi --battery | grep -o -P '\s\w{4,},' | sed 's/.$//' | tr --delete ' ')
 
 case "$battery_status" in
   "Charging") output "ﮣ";;
   "Discharging") output;;
   "Full") echo "  100%";;
   "Unknow") echo " Unknown Status";;
+  *) echo "Info Not Available";;
 esac
