@@ -150,7 +150,7 @@ label =  %percentage%%
 type = custom/script
 tail = true
 format-underline = #4bffdc
-interval = 25
+interval = 20
 
 exec = /home/martin/scripts/battery-status.sh
 
