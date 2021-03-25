@@ -1,7 +1,8 @@
-#!/bin/bash - 
+#!/bin/bash
 
 # To avoid parent projects, more friendly with my computer.
-mvnMultiCompile() {
+
+function mvnMultiCompile {
   local projects=$(find . -type f -name 'pom.xml')
   
   for i in $projects; do
