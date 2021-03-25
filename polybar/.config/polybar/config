@@ -152,28 +152,7 @@ tail = true
 format-underline = #4bffdc
 interval = 25
 
-exec = /home/martin/.config/polybar/modules/battery
-;type = internal/battery
-;battery = BAT0
-;adapter = AC
-;full-at = 98
-
-;format-charging = <ramp-capacity> ﮣ <label-charging>
-;format-charging-underline = #ffb52a
-
-;format-discharging = <ramp-capacity> <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
-
-;format-full-prefix = " "
-;format-full-prefix-foreground = ${colors.foreground-alt}
-;format-full-underline = #4bffdc
-
-;ramp-capacity-0 = " "
-;ramp-capacity-1 = " "
-;ramp-capacity-2 = " "
-;ramp-capacity-3 = " "
-;ramp-capacity-foreground = ${colors.foreground-alt}
-;ramp-full-underline = ${self.format-charging-underline}
+exec = /home/martin/scripts/battery-status.sh
 
 [module/powermenulauncher]
 type = custom/text
