@@ -1,10 +1,10 @@
 #!/bin/bash
 
 function output {
-  if (($battery_level < 20)); then echo "  $1 $battery_level%"; fi
-  if (($battery_level < 50 && $battery_level >= 20)); then echo "  $1 $battery_level%"; fi
-  if (($battery_level < 80 && $battery_level >= 50)); then echo "  $1 $battery_level%"; fi
-  if (($battery_level < 99 && $battery_level >= 80)); then echo "  $1 $battery_level%"; fi
+  if (($battery_level < 20)); then echo "  $1$battery_level%"; fi
+  if (($battery_level < 50 && $battery_level >= 20)); then echo "  $1$battery_level%"; fi
+  if (($battery_level < 80 && $battery_level >= 50)); then echo "  $1$battery_level%"; fi
+  if (($battery_level < 99 && $battery_level >= 80)); then echo "  $1$battery_level%"; fi
 }
 
 battery_level=$(acpi --battery | grep -o -P '.{0,3}%' | sed 's/.$//')
