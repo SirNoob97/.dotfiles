@@ -1,7 +1,10 @@
 #!/bin/bash
 
 function output {
-  if (($battery_level < 20)); then echo "  $1$battery_level%"; fi
+  if (($battery_level < 20)); then
+    echo "  $1$battery_level%"
+    dunstify --appname="battery" --urgency="critical" "Low Battery" "Battery below to 20%"
+  fi
   if (($battery_level < 50 && $battery_level >= 20)); then echo "  $1$battery_level%"; fi
   if (($battery_level < 80 && $battery_level >= 50)); then echo "  $1$battery_level%"; fi
   if (($battery_level < 99 && $battery_level >= 80)); then echo "  $1$battery_level%"; fi
