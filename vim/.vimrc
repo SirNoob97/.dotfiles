@@ -12,10 +12,6 @@ source ~/.config/vim/plugings/nerdtree.vim
 source ~/.config/vim/plugings/undotree.vim
 source ~/.config/vim/plugings/nerdcommenter.vim
 
-source ~/.config/vim/plugings/ale.vim
-source ~/.config/vim/plugings/coc.vim
+autocmd FileType go :source ~/.config/vim/plugings/vim-go.vim | :source ~/.config/vim/plugings/ale.vim | :call VimGo()
 
-source ~/.config/vim/plugings/vim-go.vim
-
-autocmd FileType go :call VimGo()
-autocmd FileType java,json,yaml,html,javascript,css :call Coc()
+autocmd FileType java,yaml,yml,javascript,typescript,vim :source ~/.config/vim/plugings/coc.vim | :call Coc()
