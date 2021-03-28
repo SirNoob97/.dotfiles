@@ -14,4 +14,4 @@ source ~/.config/vim/plugings/nerdcommenter.vim
 
 autocmd FileType go :source ~/.config/vim/plugings/vim-go.vim | :source ~/.config/vim/plugings/ale.vim | :call VimGo()
 
-autocmd FileType java,yaml,yml,javascript,typescript,vim :source ~/.config/vim/plugings/coc.vim | :call Coc()
+autocmd FileType java,javascript,typescript,vim :source ~/.config/vim/plugings/coc.vim | :call Coc()

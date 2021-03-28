@@ -1,8 +1,6 @@
 " COC
 let g:coc_global_extensions = [ 'coc-marketplace',
   \ 'coc-java',
-  \ 'coc-json',
-  \ 'coc-yaml',
   \ 'coc-vimlsp' ]
 
 function! s:check_back_space() abort
