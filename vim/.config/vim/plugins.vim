@@ -4,6 +4,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'uiiaoo/java-syntax.vim'
 
+  Plug 'puremourning/vimspector'
+
   Plug 'dense-analysis/ale'
 
   Plug 'vim-airline/vim-airline'
