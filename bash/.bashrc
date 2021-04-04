@@ -16,7 +16,6 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-source $HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh
 source $HOME/.env
 source $HOME/.aliases
 source $HOME/.config/bashconfig/completion.sh
