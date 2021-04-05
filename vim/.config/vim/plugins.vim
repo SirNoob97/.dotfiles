@@ -14,12 +14,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
 
   Plug 'preservim/nerdtree'
-  Plug 'scrooloose/nerdcommenter'
 
-  Plug 'mbbill/undotree'
-
-  Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'gruvbox-community/gruvbox'
-  "Plug 'morhetz/gruvbox'
-
 call plug#end()

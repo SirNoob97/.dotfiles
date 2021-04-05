@@ -9,8 +9,6 @@ source ~/.config/vim/plugins/gruvbox.vim
 
 source ~/.config/vim/plugins/airline.vim
 source ~/.config/vim/plugins/nerdtree.vim
-source ~/.config/vim/plugins/undotree.vim
-source ~/.config/vim/plugins/nerdcommenter.vim
 
 autocmd FileType go :source ~/.config/vim/plugins/vim-go.vim | :source ~/.config/vim/plugins/ale.vim | :call VimGo()
 
