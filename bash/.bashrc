@@ -23,7 +23,7 @@ source $HOME/.config/bashconfig/alias-compleion.sh
 source $HOME/scripts/maven.sh
 source $HOME/scripts/docker.sh
 
-alias bashconfig="sudo vim ~/.bashrc"
+alias bashconfig="vim ~/.bashrc"
 
 source $HOME/.fzf.bash
 
