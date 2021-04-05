@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mbbill/undotree'
 
   Plug 'dracula/vim', { 'as': 'dracula' }
-  Plug 'morhetz/gruvbox'
+  Plug 'gruvbox-community/gruvbox'
+  "Plug 'morhetz/gruvbox'
 
 call plug#end()
