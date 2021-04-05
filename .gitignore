@@ -4,3 +4,4 @@ alacritty/.config/alacritty/go-themes/theme.yml
 vim/.vim/undodir/**
 vim/.vim/sessions/**
 vim/.config/vim/theme.vim
+vim/.vim/plugged/**
