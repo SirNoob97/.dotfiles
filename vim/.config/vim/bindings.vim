@@ -1,7 +1,7 @@
 let mapleader=" "
 
 " toggle spell checker
-map <silent><F5> :setlocal spell!<CR>
+map <silent>` :setlocal spell!<CR>
 
 " disable highlighting search result on Enter key
 nnoremap <silent><silent> <CR> :nohlsearch<CR><CR>
