@@ -3,9 +3,9 @@ source ~/.config/vim/basic-setting.vim
 source ~/.config/vim/bindings.vim
 source ~/.config/vim/plugins.vim
 
-source ~/.config/vim/theme.vim
+"source ~/.config/vim/theme.vim
 
-source ~/.config/vim/plugins/gruvbox.vim
+"source ~/.config/vim/plugins/gruvbox.vim
 
 source ~/.config/vim/plugins/airline.vim
 source ~/.config/vim/plugins/nerdtree.vim

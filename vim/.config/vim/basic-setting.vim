@@ -53,6 +53,9 @@ set scrolloff=5
 
 set spelllang=en_gb
 
+set fillchars+=vert:\┊
+hi VertSplit term=none cterm=none gui=none
+
 filetype indent plugin on
 
 " This is to change the cursor according to the mode
