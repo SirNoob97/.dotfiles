@@ -55,7 +55,7 @@ set spelllang=en_gb
 
 set fillchars+=vert:\┊
 hi VertSplit term=none cterm=none gui=none
-hi MatchParen ctermbg=black ctermfg=white
+hi MatchParen ctermbg=DarkGray ctermfg=white
 
 filetype indent plugin on
 
