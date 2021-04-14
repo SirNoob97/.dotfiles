@@ -10,8 +10,8 @@ elif ls -G -d . &> /dev/null
 then
     alias ls="ls -G"        # Compact view, show colors
 fi
-alias ll="ls -alh"
-alias lac="ls -aC"
+alias ll="ls -alhF"
+alias lac="ls -aCF"
 
 # grep
 alias grep="grep --color=auto"
