@@ -4,6 +4,11 @@ case $- in
     *) return;;
 esac
 
+#source $HOME/.config/bashconfig/colors.sh
+#source $HOME/.config/bashconfig/git.sh
+#source $HOME/.config/bashconfig/git-prompt.sh
+#source $HOME/.config/bashconfig/theme.sh
+
 EDITOR=vim
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
@@ -31,9 +36,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[31;01m\]\u\[\033[33;01m\]@\[\033[32;01m\]\h\[\033[00m\]:\[\033[34;01m\]\w\[\033[0m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w'
 fi
 unset color_prompt force_color_prompt
 
@@ -49,14 +54,11 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 source $HOME/.env
 source $HOME/.aliases
 source $HOME/.config/bashconfig/completion.sh
-source $HOME/.config/bashconfig/alias-compleion.sh
+source $HOME/.config/bashconfig/alias-completion.sh
 source $HOME/scripts/maven.sh
 source $HOME/scripts/docker.sh
 
