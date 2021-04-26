@@ -1,7 +1,4 @@
 #!/bin/bash
-
-alias sbrc="source ~/.bashrc"
-
 # ls
 if ls --color -d . &> /dev/null
 then
@@ -13,8 +10,10 @@ fi
 alias ll="ls -alhF"
 alias lac="ls -aCF"
 
-# grep
+# greps
 alias grep="grep --color=auto"
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # cd
 alias ..="cd .."
