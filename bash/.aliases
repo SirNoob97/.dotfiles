@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# ssh
-alias ssheval='eval $(ssh-agent) && ssh-add'
-
 # ls
 if ls --color -d . &> /dev/null
 then
