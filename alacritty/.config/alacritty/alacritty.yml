@@ -23,41 +23,8 @@ scrolling:
 
 draw_bold_text_with_bright_colors: true
 
-#background_opacity: 1.0
-
-##Font Configuration.
-#font:
-  #normal:
-    #family: Hack Nerd Font
-    #style: Regular
-  #size: 8
-
-
-## Colors (Gruvbox dark)
-#colors:
-   #primary:
-     #background: '#282828'
-     #foreground: '#ebdbb2'
-   #normal:
-     #black:   '#282828'
-     #red:     '#cc241d'
-     #green:   '#98971a'
-     #yellow:  '#d79921'
-     #blue:    '#458588'
-     #magenta: '#b16286'
-     #cyan:    '#689d6a'
-     #white:   '#a89984'
-   #bright:
-     #black:   '#928374'
-     #red:     '#fb4934'
-     #green:   '#b8bb26'
-     #yellow:  '#fabd2f'
-     #blue:    '#83a598'
-     #magenta: '#d3869b'
-     #cyan:    '#8ec07c'
-     #white:   '#ebdbb2'
 import:
-- /home/martin/.config/alacritty/go-themes/theme.yml
-- /home/martin/.config/alacritty/go-themes/font.yml
-- /home/martin/.config/alacritty/go-themes/font-size.yml
-- /home/martin/.config/alacritty/go-themes/opacity.yml
+- /home/martin/.config/alacritty/themes/dracula.yml
+- /home/martin/.config/alacritty/font.yml
+- /home/martin/.config/alacritty/font-size.yml
+- /home/martin/.config/alacritty/opacity.yml
