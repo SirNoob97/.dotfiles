@@ -61,6 +61,7 @@ source $HOME/.config/bashconfig/completion.sh
 source $HOME/.config/bashconfig/alias-completion.sh
 source $HOME/scripts/maven.sh
 source $HOME/scripts/docker.sh
+source $HOME/scripts/ssh.sh
 
 alias sbrc="source ~/.bashrc"
 alias vbrc="vim ~/.bashrc"
