@@ -24,7 +24,6 @@ scrolling:
 draw_bold_text_with_bright_colors: true
 
 import:
-- /home/martin/.config/alacritty/themes/centos-default.yml
+- /home/martin/.config/alacritty/theme.yml
 - /home/martin/.config/alacritty/font.yml
-- /home/martin/.config/alacritty/font-size.yml
 - /home/martin/.config/alacritty/opacity.yml
