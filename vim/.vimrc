@@ -141,4 +141,4 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['node_modules$']
 
 "autocmd FileType go :source ~/.config/vim/plugins/vim-go.vim | :source ~/.config/vim/plugins/ale.vim | :call VimGo()
-autocmd FileType c,java,javascript,typescript,vim,php :source ~/.config/vim/plugins/coc.vim | :source ~/.config/vim/plugins/vimspector.vim | :call Coc() "| :ALEDisable
+autocmd FileType c,java,javascript,typescript,vim,php,python :source ~/.config/vim/plugins/coc.vim | :source ~/.config/vim/plugins/vimspector.vim | :call Coc() "| :ALEDisable
