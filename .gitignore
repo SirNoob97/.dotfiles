@@ -1,5 +1,6 @@
-alacritty/.config/alacritty/go-themes/theme.yml
-
+alacritty/.config/alacritty/theme.yml
+alacritty/.config/alacritty/font.yml
+alacritty/.config/alacritty/opacity.yml
 
 vim/.vim/undodir/**
 vim/.vim/sessions/**
