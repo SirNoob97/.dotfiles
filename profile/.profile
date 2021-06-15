@@ -29,3 +29,6 @@ fi
 # Enable tapping and normal scrolling with touchpad, aw does not support these options
 xinput set-prop "DLLC6B2:00 06CB:75BF Touchpad" "libinput Tapping Enabled" 1
 xinput set-prop "DLLC6B2:00 06CB:75BF Touchpad" "libinput Natural Scrolling Enabled" 1
+
+# Disable touch screen
+xinput disable "G2Touch Multi-Touch by G2TSP"
