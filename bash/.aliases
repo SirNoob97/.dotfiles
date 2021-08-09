@@ -51,3 +51,6 @@ alias dkc="docker-compose"
 alias rm="rm -I"
 alias cp="cp -i"
 alias mv="mv -i"
+
+# copy to clipboard
+alias clipboard="xclip -selection clipboard"
