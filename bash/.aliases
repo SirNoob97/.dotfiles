@@ -54,3 +54,6 @@ alias mv="mv -i"
 
 # copy to clipboard
 alias clipboard="xclip -selection clipboard"
+
+# free ram cache
+alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
