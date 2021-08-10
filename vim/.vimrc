@@ -66,8 +66,6 @@ hi MatchParen ctermbg=DarkGray ctermfg=white
 hi ExtraWhitSpace ctermbg=red
 match ExtraWhitSpace /\s\+$/
 
-filetype indent plugin on
-
 " This is to change the cursor according to the mode
 let &t_SI.="\<Esc>[6 q"
 let &t_SR.="\<Esc>[2 q"
@@ -114,7 +112,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'uiiaoo/java-syntax.vim'
 
-  Plug 'puremourning/vimspector'
+ " Plug 'puremourning/vimspector'
 
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-fugitive'
@@ -123,7 +121,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'preservim/nerdtree'
 
-  Plug 'gruvbox-community/gruvbox'
+ " Plug 'gruvbox-community/gruvbox'
 call plug#end()
 
 " Gruvbox
@@ -141,4 +139,5 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['node_modules$']
 
 "autocmd FileType go :source ~/.config/vim/plugins/vim-go.vim | :source ~/.config/vim/plugins/ale.vim | :call VimGo()
-autocmd FileType c,java,javascript,typescript,vim,php,python :source ~/.config/vim/plugins/coc.vim | :source ~/.config/vim/plugins/vimspector.vim | :call Coc() "| :ALEDisable
+autocmd FileType java :source ~/.config/vim/plugins/vimspector.vim "| :ALEDisable
+autocmd FileType c,java,javascript,typescript,html,vim,php,python,sql,yml,yaml :source ~/.config/vim/plugins/coc.vim | :call Coc() "| :ALEDisable
