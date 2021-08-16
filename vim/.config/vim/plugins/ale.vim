@@ -1,8 +1,8 @@
 let g:ale_disable_lsp = 1
+let g:ale_linters_explicit = 1
 let g:ale_linters = {
       \"go": ['golint', 'go vet'],
       \}
-
 
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
