@@ -106,28 +106,28 @@ nnoremap <silent><leader><left> :vertical resize +5<CR>
 
 " Plugins
 call plug#begin('~/.vim/plugged')
- " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-  "Plug 'dense-analysis/ale'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'on': [] }
+  Plug 'dense-analysis/ale', {'on': []}
 
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'uiiaoo/java-syntax.vim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release', 'on': []}
+  Plug 'uiiaoo/java-syntax.vim' , {'on': []}
 
- " Plug 'puremourning/vimspector'
+  Plug 'puremourning/vimspector', {'on': []}
 
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-fugitive'
 
-  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'ctrlpvim/ctrlp.vim', {'on': []}
 
-  Plug 'preservim/nerdtree'
+  Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
 
- " Plug 'gruvbox-community/gruvbox'
+  Plug 'gruvbox-community/gruvbox'
 call plug#end()
 
 " Gruvbox
-"colorscheme gruvbox
-"let g:gruvbox_termcolors = 256
-"let g:gruvbox_contrast_light = 'medium'
+colorscheme gruvbox
+let g:gruvbox_termcolors = 256
+let g:gruvbox_contrast_light = 'medium'
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -138,6 +138,20 @@ map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['node_modules$']
 
-"autocmd FileType go :source ~/.config/vim/plugins/vim-go.vim | :source ~/.config/vim/plugins/ale.vim | :call VimGo()
-autocmd FileType java :source ~/.config/vim/plugins/vimspector.vim "| :ALEDisable
-autocmd FileType c,java,javascript,typescript,html,vim,php,python,sql,yml,yaml :source ~/.config/vim/plugins/coc.vim | :call Coc() "| :ALEDisable
+augroup load_go_environment
+  autocmd!
+  autocmd FileType go call plug#load('vim-go', 'ctrlp.vim', 'ale')
+        \| :source ~/.config/vim/plugins/vim-go.vim
+        \| :source ~/.config/vim/plugins/ale.vim
+        \| :call VimGo()
+        \| autocmd! load_go_environment
+augroup END
+
+augroup load_java_environment
+  autocmd!
+  autocmd FileType c,java,javascript,typescript,html,vim,php,python,sql,json,yml,yaml call plug#load('java-syntax.vim', 'coc.nvim', 'vimspector')
+        \| :source ~/.config/vim/plugins/coc.vim
+        \| :call Coc()
+        \| :source ~/.config/vim/plugins/vimspector.vim
+        \| autocmd! load_java_environment
+augroup END
