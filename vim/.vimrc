@@ -5,14 +5,16 @@ let g:loaded_netrwSettings = 1
 let g:loaded_netrwPlugin = 1
 
 " Basics
+filetype plugin indent on
+syntax on
+
 set nocompatible
 set encoding=UTF-8
 set mouse=a
 set t_Co=256
-
-filetype plugin indent on
-
-syntax on
+set spelllang=en_gb
+set backspace=indent,eol,start
+set scrolloff=5
 
 set hidden
 set timeout timeoutlen=1500 ttimeoutlen=150
@@ -53,12 +55,6 @@ set nowrap
 
 set showmatch
 set showcmd
-
-set backspace=indent,eol,start
-
-set scrolloff=5
-
-set spelllang=en_gb
 
 set fillchars+=vert:\┊
 hi VertSplit term=none cterm=none gui=none
