@@ -5,13 +5,14 @@ let g:loaded_netrwSettings = 1
 let g:loaded_netrwPlugin = 1
 
 " Basics
-filetype plugin indent on
-syntax on
-
 set nocompatible
 set encoding=UTF-8
 set mouse=a
 set t_Co=256
+
+filetype plugin indent on
+syntax on
+
 set spelllang=en_gb
 set backspace=indent,eol,start
 set scrolloff=5
@@ -104,16 +105,14 @@ nnoremap <silent><leader><left> :vertical resize +5<CR>
 call plug#begin('~/.vim/plugged')
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'on': [] }
   Plug 'dense-analysis/ale', {'on': []}
+  Plug 'ctrlpvim/ctrlp.vim', {'on': []}
 
   Plug 'neoclide/coc.nvim', {'branch': 'release', 'on': []}
-  Plug 'uiiaoo/java-syntax.vim' , {'on': []}
-
+  Plug 'uiiaoo/java-syntax.vim', {'on': []}
   Plug 'puremourning/vimspector', {'on': []}
 
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-fugitive'
-
-  Plug 'ctrlpvim/ctrlp.vim', {'on': []}
 
   Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -134,20 +133,25 @@ map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['node_modules$']
 
-augroup load_go_environment
-  autocmd!
-  autocmd FileType go call plug#load('vim-go', 'ctrlp.vim', 'ale')
-        \| :source ~/.config/vim/plugins/vim-go.vim
-        \| :source ~/.config/vim/plugins/ale.vim
-        \| :call VimGo()
-        \| autocmd! load_go_environment
+augroup go_environment
+  autocmd FileType go call plug#load('vim-go')
+      \| :source ~/.config/vim/plugins/vim-go.vim
+
+  autocmd FileType go call plug#load('ale')
+      \| :source ~/.config/vim/plugins/ale.vim
+
+  autocmd FileType go call plug#load('ctrlp.vim')
+  autocmd FileType go :echo 'Press Space + rg to load the Go autocmd' | nmap <silent><leader>rg :edit<cr>
 augroup END
 
-augroup load_java_environment
-  autocmd!
-  autocmd FileType c,java,javascript,typescript,html,vim,php,python,sql,json,yml,yaml call plug#load('java-syntax.vim', 'coc.nvim', 'vimspector')
-        \| :source ~/.config/vim/plugins/coc.vim
-        \| :call Coc()
-        \| :source ~/.config/vim/plugins/vimspector.vim
-        \| autocmd! load_java_environment
+augroup coc_environment
+  autocmd FileType java call plug#load('vimspector') | :source ~/.config/vim/plugins/vimspector.vim
+  autocmd FileType java call plug#load('java-syntax.vim')
+
+  autocmd FileType c,java,javascript,typescript,html,vim,php,python,sql,json,yml,yaml call plug#load('coc.nvim')
+      \| :source ~/.config/vim/plugins/coc.vim
+
+  autocmd FileType c,java,javascript,typescript,html,vim,php,python,sql,json,yml,yaml 
+        \ :echo 'Press Space + rc to load the Coc autocmd'
+        \ | nmap <silent><leader>rc :edit<cr>
 augroup END
