@@ -6,4 +6,3 @@ vim/.vim/undodir/**
 vim/.vim/sessions/**
 vim/.vim/bash-support/**
 vim/.vim/plugged/**
-vim/.config/vim/theme.vim
