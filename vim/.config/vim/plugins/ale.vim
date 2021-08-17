@@ -2,6 +2,7 @@ let g:ale_disable_lsp = 1
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
       \"go": ['golint', 'go vet'],
+      \"java": ['checkstyle', 'google-java-format']
       \}
 
 let g:ale_sign_error = ''

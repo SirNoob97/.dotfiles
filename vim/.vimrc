@@ -108,7 +108,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'ctrlpvim/ctrlp.vim', {'on': []}
 
   Plug 'neoclide/coc.nvim', {'branch': 'release', 'on': []}
-  Plug 'uiiaoo/java-syntax.vim', {'on': []}
   Plug 'puremourning/vimspector', {'on': []}
 
   Plug 'vim-airline/vim-airline'
@@ -134,24 +133,47 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['node_modules$']
 
 augroup go_environment
-  autocmd FileType go call plug#load('vim-go')
-      \| :source ~/.config/vim/plugins/vim-go.vim
-
-  autocmd FileType go call plug#load('ale')
-      \| :source ~/.config/vim/plugins/ale.vim
+  autocmd FileType go :source ~/.config/vim/plugins/vim-go.vim
+      \| call plug#load('vim-go')
 
   autocmd FileType go call plug#load('ctrlp.vim')
-  autocmd FileType go :echo 'Press Space + rg to load the Go autocmd' | nmap <silent><leader>rg :edit<cr>
 augroup END
 
-augroup coc_environment
-  autocmd FileType java call plug#load('vimspector') | :source ~/.config/vim/plugins/vimspector.vim
-  autocmd FileType java call plug#load('java-syntax.vim')
+let g:vimspector_filetypes = [ 'java' ]
+let g:ale_filetypes = [ 'go', 'java', 'javascript', 'json', 'typescript' ]
+let g:coc_filetypes = [ 'bash', 'c', 'java', 'javascript', 'json', 'html', 'help', 'php', 'python', 'sh', 'sql', 'typescript', 'vim',  'yml', 'yaml' ] 
 
-  autocmd FileType c,java,javascript,typescript,html,vim,php,python,sql,json,yml,yaml call plug#load('coc.nvim')
-      \| :source ~/.config/vim/plugins/coc.vim
+function! s:disable_ale_for_type()
+  if index(g:ale_filetypes, &filetype) == -1
+    :silent! ALEDisable
+  else
+    :source ~/.config/vim/plugins/ale.vim
+    call plug#load('ale')
+    :silent! ALEEnable
+  endif
+endfunction
+    
 
-  autocmd FileType c,java,javascript,typescript,html,vim,php,python,sql,json,yml,yaml 
-        \ :echo 'Press Space + rc to load the Coc autocmd'
-        \ | nmap <silent><leader>rc :edit<cr>
-augroup END
+function! s:disable_coc_for_type()
+  if index(g:coc_filetypes, &filetype) == -1
+    :silent! CocDisable
+  else
+    call plug#load('coc.nvim')
+    :source ~/.config/vim/plugins/coc.vim
+    :silent! CocEnable
+  endif
+endfunction
+
+function! s:disable_vimspector_for_type()
+  if index(g:vimspector_filetypes, &filetype) > -1
+    :source ~/.config/vim/plugins/vimspector.vim
+    call plug#load('vimspector')
+  endif
+endfunction
+
+augroup CocGroup
+  autocmd!
+  autocmd BufNew,BufEnter,BufAdd,BufCreate * call s:disable_vimspector_for_type()
+  autocmd BufNew,BufEnter,BufAdd,BufCreate * call s:disable_coc_for_type()
+  autocmd BufNew,BufEnter,BufAdd,BufCreate * call s:disable_ale_for_type()
+augroup end
