@@ -1,5 +1,6 @@
 require('disable_ntrw')
 require('keymappings')
+require('settings')
+require('plugins')
 require('config.lualine')
 require('config.nv_tree')
-require('settings')
