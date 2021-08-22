@@ -1,0 +1,5 @@
+require('disable_ntrw')
+require('keymappings')
+require('config.lualine')
+require('config.nv_tree')
+require('settings')
