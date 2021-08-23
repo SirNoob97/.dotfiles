@@ -68,3 +68,5 @@ source $HOME/.fzf.bash
 complete -C /home/martin/.local/bin/gocomplete go
 eval "$(gh completion -s bash)"
 . "/home/martin/.cargo/bin/env"
+
+alias luamake=/home/martin/.dotfiles/nvim/.config/nvim/language_servers/lua-language-server/3rd/luamake/luamake
