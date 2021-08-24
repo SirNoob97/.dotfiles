@@ -2,6 +2,8 @@ vim.o.compatible = false
 vim.o.encoding = 'UTF-8'
 vim.o.mouse = 'a'
 
+vim.o.clipboard= vim.o.clipboard..'unnamedplus'
+
 vim.o.spelllang = 'en_gb'
 vim.o.backspace = 'indent,eol,start'
 vim.o.scrolloff = 5
@@ -20,8 +22,8 @@ vim.o.backup = false
 vim.o.swapfile = false
 vim.o.writebackup = false
 
---vim.o.undofile = true
---vim.o.undodir = '~/.vim/undodir'
+vim.o.undofile = true
+vim.o.undodir = '/home/martin/.cache/nvim_undodir'
 
 vim.o.showmode = false
 vim.o.number = true
@@ -48,3 +50,7 @@ vim.o.wrap = false
 
 vim.o.showmatch = true
 vim.o.showcmd = true
+
+vim.o.background = 'dark'
+vim.o.lazyredraw = true
+vim.cmd 'colorscheme gruvbox8'
