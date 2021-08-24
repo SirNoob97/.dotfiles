@@ -2,7 +2,8 @@ alacritty/.config/alacritty/theme.yml
 alacritty/.config/alacritty/font.yml
 alacritty/.config/alacritty/opacity.yml
 
-**/undodir/**
 vim/.vim/sessions/**
 vim/.vim/bash-support/**
 vim/.vim/plugged/**
+
+undodir/
