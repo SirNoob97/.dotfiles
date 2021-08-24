@@ -70,3 +70,7 @@ eval "$(gh completion -s bash)"
 . "/home/martin/.cargo/bin/env"
 
 alias luamake=/home/martin/.dotfiles/nvim/.config/nvim/language_servers/lua-language-server/3rd/luamake/luamake
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
