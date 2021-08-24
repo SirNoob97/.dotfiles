@@ -69,13 +69,25 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
+  },
+  ["completion-nvim"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/completion-nvim"
+  },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/formatter.nvim"
+  },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/lualine.nvim"
-  },
-  ["nvim-compe"] = {
-    loaded = true,
-    path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -84,6 +96,14 @@ _G.packer_plugins = {
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+  },
+  ["packer.nvim"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  },
+  ["vim-gruvbox8"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/vim-gruvbox8"
   }
 }
 
