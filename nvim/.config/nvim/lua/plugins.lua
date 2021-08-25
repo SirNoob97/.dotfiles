@@ -1,5 +1,4 @@
 vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(
   function()
     use 'wbthomason/packer.nvim'
@@ -12,6 +11,7 @@ return require('packer').startup(
 
     use 'folke/lsp-colors.nvim'
     use 'neovim/nvim-lspconfig'
+    use 'glepnir/lspsaga.nvim'
     use 'mhartington/formatter.nvim'
     use 'nvim-lua/completion-nvim'
   end
