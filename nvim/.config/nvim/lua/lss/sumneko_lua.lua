@@ -1,5 +1,5 @@
 local USER = vim.fn.expand('$USER')
-local lspConfig = require('config.lsp_config')
+local lspConfig = require('lsp_config')
 
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 local sumneko_root_path = '/home/'..USER..'/.config/nvim/language_servers/lua-language-server'
@@ -11,11 +11,12 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 require'lspconfig'.sumneko_lua.setup {
   on_attach = lspConfig.on_attach,
+  flags = lspConfig.flags,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
       runtime = {
-        version = 'Lua 5.4.3',
+        version = 'LuaJIT',
         path = {
           '?.lua',
           '?/init.lua',
@@ -43,5 +44,5 @@ require'lspconfig'.sumneko_lua.setup {
         enable = false,
       },
     },
-  },
+  }
 }
