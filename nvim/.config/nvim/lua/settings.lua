@@ -1,6 +1,8 @@
 vim.o.compatible = false
 vim.o.encoding = 'UTF-8'
 vim.o.mouse = 'a'
+vim.o.lazyredraw = true
+vim.o.wildignore = vim.o.wildignore..'*/node_modules/*'
 
 vim.o.clipboard= vim.o.clipboard..'unnamedplus'
 
@@ -37,7 +39,7 @@ vim.o.incsearch = true
 vim.o.omnifunc = 'syntaxcomplete#Complete'
 vim.o.completeopt = 'menuone,noinsert,noselect'
 vim.o.shortmess = vim.o.shortmess .. 'c'
-vim.o.suffixesadd = '.java'
+vim.o.suffixesadd = '.java,.js,.es,.jsx,.json,.py'
 
 vim.o.autoindent = true
 vim.o.shiftwidth = 2
@@ -52,5 +54,8 @@ vim.o.showmatch = true
 vim.o.showcmd = true
 
 vim.o.background = 'dark'
-vim.o.lazyredraw = true
-vim.cmd 'colorscheme gruvbox8'
+vim.cmd('colorscheme gruvbox8')
+
+
+vim.o.exrc = true
+vim.o.secure = true
