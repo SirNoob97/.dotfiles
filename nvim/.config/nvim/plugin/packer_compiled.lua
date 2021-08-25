@@ -70,20 +70,27 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["bufferline.nvim"] = {
-    loaded = true,
-    path = "/home/martin/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/opt/bufferline.nvim"
   },
   ["completion-nvim"] = {
-    loaded = true,
-    path = "/home/martin/.local/share/nvim/site/pack/packer/start/completion-nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/opt/completion-nvim"
   },
   ["formatter.nvim"] = {
-    loaded = true,
-    path = "/home/martin/.local/share/nvim/site/pack/packer/start/formatter.nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/opt/formatter.nvim"
   },
   ["lsp-colors.nvim"] = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -94,8 +101,10 @@ _G.packer_plugins = {
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    commands = { "NvimTreeOpen", "NvimTreeToggle" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -108,6 +117,29 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command! -nargs=* -range -bang -complete=file NvimTreeToggle lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command! -nargs=* -range -bang -complete=file NvimTreeOpen lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeOpen", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType typescriptreact ++once lua require("packer.load")({'completion-nvim', 'formatter.nvim'}, { ft = "typescriptreact" }, _G.packer_plugins)]]
+vim.cmd [[au FileType javascript ++once lua require("packer.load")({'completion-nvim', 'formatter.nvim'}, { ft = "javascript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType java ++once lua require("packer.load")({'completion-nvim', 'formatter.nvim'}, { ft = "java" }, _G.packer_plugins)]]
+vim.cmd [[au FileType lua ++once lua require("packer.load")({'completion-nvim', 'formatter.nvim'}, { ft = "lua" }, _G.packer_plugins)]]
+vim.cmd [[au FileType javascriptreact ++once lua require("packer.load")({'completion-nvim', 'formatter.nvim'}, { ft = "javascriptreact" }, _G.packer_plugins)]]
+vim.cmd [[au FileType typescript ++once lua require("packer.load")({'completion-nvim', 'formatter.nvim'}, { ft = "typescript" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufEnter * ++once lua require("packer.load")({'bufferline.nvim'}, { event = "BufEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
