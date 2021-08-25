@@ -22,10 +22,5 @@ vim.g.completion_chain_complete_list = {
     {mode = '<c-p>'},
     {mode = '<c-n>'}
   },
-  string = {
-    {complete_items = {'path'}, triggered_only = '/'},
-    {mode = '<c-p>'},
-    {mode = '<c-n>'}
-  },
   comment = {}
 }
