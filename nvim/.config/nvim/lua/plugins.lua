@@ -9,10 +9,10 @@ return packer.startup(
     use "akinsho/bufferline.nvim"
     use "kyazdani42/nvim-tree.lua"
 
+    use "nvim-lua/completion-nvim"
     use "neovim/nvim-lspconfig"
     use "folke/lsp-colors.nvim"
     use "glepnir/lspsaga.nvim"
     use "mhartington/formatter.nvim"
-    use "nvim-lua/completion-nvim"
   end
 )

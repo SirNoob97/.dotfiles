@@ -36,8 +36,8 @@ local function on_attach(client, bufnr)
 
 --  buf_set_keymap('n', '<leader>rn', '<CMD>lua vim.lsp.buf.rename()<CR>', opts)
 
-	require('config.lsp_saga').mappings(bufnr)
   require'completion'.on_attach(client, bufnr)
+	require('config.lsp_saga').mappings(bufnr)
 end
 
 local flags = {
