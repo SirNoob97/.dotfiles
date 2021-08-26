@@ -1,8 +1,13 @@
 vim.g.completion_timer_cycle = 200
 vim.g.completion_enable_auto_popup = 0
-vim.g.completion_trigger_character = {'::'}
 
+local characters = { '.', '/', '@', '::' }
 local remap = vim.api.nvim_set_keymap
+
+for _, value in pairs(characters) do
+  remap('i', value, value.."<Plug>(completion_trigger)", {silent = true})
+end
+
 
 -- Use C-Space to manually triger completion
 remap("i", "<C-Space>", "<Plug>(completion_trigger)", {silent = true})
@@ -22,22 +27,12 @@ remap(
 )
 
 vim.g.completion_chain_complete_list = {
-  lua = {
+  default = {
     default = {
-      {complete_items = {"lsp", "snippet"}},
-      {complete_items = {"path"}, triggered_only = {"/"}},
-      {complete_items = {"buffers"}}
-    },
-    string = {
-      {complete_items = {"path"}, triggered_only = {"/"}}
+      {complete_items = {"lsp", "snippet", "path"}},
+      {mode = "<c-p>"},
+      {mode = "<c-n>"}
     },
     comment = {}
-  },
-  default = {
-    {complete_items = {"lsp", "snippet"}},
-    {complete_items = {"path"}, triggered_only = "/"},
-    {mode = "<c-p>"},
-    {mode = "<c-n>"}
-  },
-  comment = {'completion'}
+  }
 }
