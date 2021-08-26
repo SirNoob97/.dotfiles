@@ -60,9 +60,6 @@ source $HOME/.aliases
 source $HOME/.config/bashconfig/completion.sh
 source $HOME/.config/bashconfig/alias-completion.sh
 
-alias sbrc="source ~/.bashrc"
-alias vbrc="vim ~/.bashrc"
-
 source $HOME/.fzf.bash
 
 complete -C /home/martin/.local/bin/gocomplete go

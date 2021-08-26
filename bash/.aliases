@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# bash
+alias sbrc="source ~/.bashrc"
+alias vbrc="vim ~/.bashrc"
+
+# copy to clipboard
+alias clipboard="xclip -selection clipboard"
+
+# free ram cache
+alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
+
 # ls
 if ls --color -d . &> /dev/null
 then
@@ -51,9 +61,3 @@ alias dkc="docker-compose"
 alias rm="rm -I"
 alias cp="cp -i"
 alias mv="mv -i"
-
-# copy to clipboard
-alias clipboard="xclip -selection clipboard"
-
-# free ram cache
-alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
