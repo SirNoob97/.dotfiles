@@ -1,3 +1,13 @@
+local google_java_fmt = {
+  function()
+    return {
+      exe = "google-java-format",
+      args = {vim.api.nvim_buf_get_name(0)},
+      stdin = true
+    }
+  end
+}
+
 local eslintD = {
   function()
     return {
@@ -23,7 +33,8 @@ require("formatter").setup(
     filetype = {
       javascript = eslintD,
       typescript = eslintD,
-      lua = luafmt
+      lua = luafmt,
+      java = google_java_fmt
     }
   }
 )
