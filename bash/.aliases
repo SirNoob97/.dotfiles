@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # bash
-alias sbrc="source ~/.bashrc"
-alias vbrc="vim ~/.bashrc"
+alias sbrc='source ~/.bashrc'
+alias vbrc='vim ~/.bashrc'
 
 # copy to clipboard
-alias clipboard="xclip -selection clipboard"
+alias clipboard='xclip -selection clipboard'
 
 # free ram cache
 alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
@@ -13,51 +13,51 @@ alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
 # ls
 if ls --color -d . &> /dev/null
 then
-    alias ls="ls --color=auto"
+    alias ls='ls --color=auto'
 elif ls -G -d . &> /dev/null
 then
-    alias ls="ls -G"        # Compact view, show colors
+    alias ls='ls -G'        # Compact view, show colors
 fi
-alias ll="ls -alhF"
-alias lac="ls -aCF"
+alias ll='ls -alhF'
+alias lac='ls -aCF'
 
 # greps
-alias grep="grep --color=auto"
+alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # cd
-alias ..="cd .."
-alias cd2="cd ../.."
-alias cd3="cd ../../.."
-alias cd4="cd ../../../.."
-alias cd5="cd ../../../../.."
+alias ..='cd ..'
+alias cd2='cd ../..'
+alias cd3='cd ../../..'
+alias cd4='cd ../../../..'
+alias cd5='cd ../../../../..'
 
 # git
-alias g="git"
-alias ga="git add"
-alias gc="git commit"
-alias gcm="git commit -m"
-alias gd="git diff"
-alias gm="git merge"
-alias gst="git status"
-alias gsts="git status -s"
-alias gpl="git pull"
-alias gp="git push"
-alias gpo="git push origin"
-alias gb="git branch"
-alias gba="git branch -a"
-alias gr="git remote"
-alias gcp="git cherry-pick"
-alias gco="git checkout"
-alias gloog="git log --oneline --graph"
-alias gt="git tag"
+alias g='git'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gd='git diff'
+alias gm='git merge'
+alias gst='git status'
+alias gsts='git status -s'
+alias gpl='git pull'
+alias gp='git push'
+alias gpo='git push origin'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gr='git remote'
+alias gcp='git cherry-pick'
+alias gco='git checkout'
+alias gloog='git log --oneline --graph'
+alias gt='git tag'
 
 # docker
-alias dk="docker"
-alias dkc="docker-compose"
+alias dk='docker'
+alias dkc='docker-compose'
 
 # safe files operations
-alias rm="rm -I"
-alias cp="cp -i"
-alias mv="mv -i"
+alias rm='rm -I'
+alias cp='cp -i'
+alias mv='mv -i'
