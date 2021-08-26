@@ -37,7 +37,7 @@ vim.o.ignorecase = true
 vim.o.incsearch = true
 
 vim.o.omnifunc = 'syntaxcomplete#Complete'
-vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.completeopt = 'menuone,noinsert'
 vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.suffixesadd = '.java,.js,.es,.jsx,.json,.py'
 
