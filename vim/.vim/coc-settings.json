@@ -13,7 +13,5 @@
   "java.import.maven.enabled": true,
   "java.jdt.ls.vmargs": "-javaagent:/home/martin/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar",
   "java.progressReports.enabled": false,
-  "java.trace.server": "verbose",
-  "clangd.path": "/home/martin/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd",
-  "sql.database": "postgresql"
+  "java.trace.server": "verbose"
 }

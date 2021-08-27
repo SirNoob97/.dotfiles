@@ -103,12 +103,9 @@ nnoremap <silent><leader><left> :vertical resize +5<CR>
 
 " Plugins
 call plug#begin('~/.vim/plugged')
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'on': [] }
   Plug 'dense-analysis/ale', {'on': []}
-  Plug 'ctrlpvim/ctrlp.vim', {'on': []}
 
   Plug 'neoclide/coc.nvim', {'branch': 'release', 'on': []}
-  Plug 'puremourning/vimspector', {'on': []}
 
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-fugitive'
@@ -132,16 +129,8 @@ map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['node_modules$']
 
-augroup go_environment
-  autocmd FileType go :source ~/.config/vim/plugins/vim-go.vim
-      \| call plug#load('vim-go')
-
-  autocmd FileType go call plug#load('ctrlp.vim')
-augroup END
-
-let g:vimspector_filetypes = [ 'java' ]
-let g:ale_filetypes = [ 'go', 'java', 'javascript', 'json', 'typescript' ]
-let g:coc_filetypes = [ 'bash', 'c', 'java', 'javascript', 'json', 'html', 'help', 'php', 'python', 'sh', 'sql', 'typescript', 'vim',  'yml', 'yaml' ] 
+let g:ale_filetypes = [ 'java', 'vim' ]
+let g:coc_filetypes = [ 'java', 'help', 'vim' ]
 
 function! s:disable_ale_for_type()
   if index(g:ale_filetypes, &filetype) == -1
@@ -153,7 +142,6 @@ function! s:disable_ale_for_type()
   endif
 endfunction
     
-
 function! s:disable_coc_for_type()
   if index(g:coc_filetypes, &filetype) == -1
     :silent! CocDisable
@@ -164,16 +152,8 @@ function! s:disable_coc_for_type()
   endif
 endfunction
 
-function! s:disable_vimspector_for_type()
-  if index(g:vimspector_filetypes, &filetype) > -1
-    :source ~/.config/vim/plugins/vimspector.vim
-    call plug#load('vimspector')
-  endif
-endfunction
-
 augroup CocGroup
   autocmd!
-  autocmd BufNew,BufEnter,BufAdd,BufCreate * call s:disable_vimspector_for_type()
   autocmd BufNew,BufEnter,BufAdd,BufCreate * call s:disable_coc_for_type()
   autocmd BufNew,BufEnter,BufAdd,BufCreate * call s:disable_ale_for_type()
 augroup end
