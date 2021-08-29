@@ -33,6 +33,8 @@ require("formatter").setup(
     filetype = {
       javascript = eslintD,
       typescript = eslintD,
+      javascriptreact = eslintD,
+      typescriptreact = eslintD,
       lua = luafmt,
       java = google_java_fmt
     }
