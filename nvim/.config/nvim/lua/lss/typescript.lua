@@ -1,7 +1,7 @@
-local lspConfig = require('lsp_config')
+local lspConfig = require("lsp_config")
 
-require'lspconfig'.tsserver.setup {
+require "lspconfig".tsserver.setup {
   on_attach = lspConfig.on_attach,
-  filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
+  filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
   flags = lspConfig.flags
 }
