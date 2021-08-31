@@ -8,11 +8,11 @@ local google_java_fmt = {
   end
 }
 
-local eslintD = {
+local prettier = {
   function()
     return {
-      exe = "eslint_d",
-      args = {"--stdin", "--stdin-filename", "%filename", "--fix-to-stdout"},
+      exe = "prettier",
+      args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote"},
       stdin = true
     }
   end
@@ -31,10 +31,10 @@ require("formatter").setup(
   {
     logging = false,
     filetype = {
-      javascript = eslintD,
-      typescript = eslintD,
-      javascriptreact = eslintD,
-      typescriptreact = eslintD,
+      javascript = prettier,
+      typescript = prettier,
+      javascriptreact = prettier,
+      typescriptreact = prettier,
       lua = luafmt,
       java = google_java_fmt
     }
