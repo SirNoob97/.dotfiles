@@ -1,6 +1,7 @@
 -- vim.lsp.set_log_level("debug")
 
 local function on_attach(client, bufnr)
+  client.resolved_capabilities.document_formatting = false
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   local opts = { noremap=true, silent=true }
