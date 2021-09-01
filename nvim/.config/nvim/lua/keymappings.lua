@@ -7,9 +7,6 @@ vim.api.nvim_set_keymap('', '<C-j>', '<C-w>j', { silent = true })
 vim.api.nvim_set_keymap('', '<C-k>', '<C-w>k', { silent = true })
 vim.api.nvim_set_keymap('', '<C-l>', '<C-w>l', { silent = true })
 
-vim.api.nvim_set_keymap('v', '<C-c>', '"+y', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<C-d>', '"+d', { noremap = true, silent = true })
-
 vim.api.nvim_set_keymap('v', '++', ':m <-2<CR>v', { noremap = true })
 vim.api.nvim_set_keymap('v', '--', ':m >-1<CR>v', { noremap = true })
 
