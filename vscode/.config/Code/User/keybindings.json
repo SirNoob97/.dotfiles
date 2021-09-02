@@ -1,0 +1,197 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "ctrl+h",
+    "command": "workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "space f",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "-editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  },
+  {
+    "key": "space f",
+    "command": "editor.action.formatDocument.none",
+    "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "-editor.action.formatDocument.none",
+    "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+  },
+  {
+    "key": "space f",
+    "command": "editor.action.formatSelection",
+    "when": "editorHasDocumentSelectionFormattingProvider && editorTextFocus && !editorReadonly && vim.active && vim.mode == 'VisualLine'  || vim.mode == 'VisualBlock'"
+  },
+  {
+    "key": "ctrl+k ctrl+f",
+    "command": "-editor.action.formatSelection",
+    "when": "editorHasDocumentSelectionFormattingProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "-workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "m a",
+    "command": "explorer.newFile",
+    "when": "explorerResourceIsFolder && explorerViewletFocus && explorerViewletVisible && filesExplorerFocus"
+  },
+  {
+    "key": "ctrl+alt+meta+n",
+    "command": "-welcome.showNewFileEntries"
+  },
+  {
+    "key": "m f",
+    "command": "explorer.newFolder",
+    "when": "explorerResourceIsFolder && explorerViewletFocus && explorerViewletVisible && filesExplorerFocus"
+  },
+  {
+    "key": "tab",
+    "command": "workbench.action.nextEditor",
+    "when": "editorTextFocus && editorFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+pagedown",
+    "command": "-workbench.action.nextEditor"
+  },
+  {
+    "key": "shift+tab",
+    "command": "workbench.action.previousEditor",
+    "when": "editorFocus && editorTextFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+pageup",
+    "command": "-workbench.action.previousEditor"
+  },
+  {
+    "key": "g d",
+    "command": "editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "f12",
+    "command": "-editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+  },
+  {
+    "key": "g i",
+    "command": "editor.action.goToImplementation",
+    "when": "editorHasImplementationProvider && editorTextFocus && vim.active && !isInEmbeddedEditor && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+f12",
+    "command": "-editor.action.goToImplementation",
+    "when": "editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor"
+  },
+  {
+    "key": "g r",
+    "command": "editor.action.goToReferences",
+    "when": "editorHasReferenceProvider && editorTextFocus && vim.active && !inReferenceSearchEditor && !isInEmbeddedEditor && vim.mode != 'Insert'"
+  },
+  {
+    "key": "shift+f12",
+    "command": "-editor.action.goToReferences",
+    "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+  },
+  {
+    "key": "] ]",
+    "command": "editor.action.marker.nextInFiles",
+    "when": "editorFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "f8",
+    "command": "-editor.action.marker.nextInFiles",
+    "when": "editorFocus"
+  },
+  {
+    "key": "[ [",
+    "command": "editor.action.marker.prevInFiles",
+    "when": "editorFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "shift+f8",
+    "command": "-editor.action.marker.prevInFiles",
+    "when": "editorFocus"
+  },
+  {
+    "key": "g shift+d",
+    "command": "editor.action.revealDeclaration",
+    "when": "editorHasDefinitionProvider && editorTextFocus && vim.active && !isInEmbeddedEditor && vim.mode != 'Insert'"
+  },
+  {
+    "key": "g t",
+    "command": "editor.action.goToTypeDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus && vim.active && !isInEmbeddedEditor && vim.mode != 'Insert'"
+  },
+  {
+    "key": "shift+k",
+    "command": "editor.action.showDefinitionPreviewHover",
+    "when": "editorFocus && editorTextFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "space o",
+    "command": "editor.action.organizeImports",
+    "when": "editorTextFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)source\\.organizeImports\\b/ && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "shift+alt+o",
+    "command": "-editor.action.organizeImports",
+    "when": "editorTextFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)source\\.organizeImports\\b/"
+  },
+  {
+    "key": "c a",
+    "command": "editor.action.sourceAction",
+    "when": "editorFocus && editorTextFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "c d",
+    "command": "workbench.action.problems.focus",
+    "when": "editorFocus && editorTextFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "g g",
+    "command": "-list.focusFirst",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "g g",
+    "command": "cursorTop",
+    "when": "textInputFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+home",
+    "command": "-cursorTop",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "space d",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "editorFocus&&editorTextFocus&&vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.closeActiveEditor"
+  }
+]
