@@ -10,13 +10,13 @@ require("config.nv_tree")
 
 require("config.nv_completion")
 require("lss.sumneko_lua")
-require("lss.typescript")
+require("lss.tsserver")
 
 vim.cmd(
   [[
 augroup jdtls_lsp
     autocmd!
-    autocmd FileType java lua require'lss.java'.setup()
+    autocmd FileType java lua require'lss.jdtls'.setup()
 augroup end
 ]]
 )
