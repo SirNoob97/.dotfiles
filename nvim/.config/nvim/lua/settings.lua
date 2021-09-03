@@ -1,61 +1,63 @@
-vim.o.compatible = false
-vim.o.encoding = 'UTF-8'
-vim.o.mouse = 'a'
-vim.o.lazyredraw = true
-vim.o.wildignore = vim.o.wildignore..'*/node_modules/*'
+local vset = vim.o
 
-vim.o.clipboard= vim.o.clipboard..'unnamedplus'
+vset.compatible = false
+vset.encoding = "UTF-8"
+vset.mouse = "a"
+vset.lazyredraw = true
+vset.wildignore = vset.wildignore .. "*/node_modules/*"
 
-vim.o.spelllang = 'en_gb'
-vim.o.backspace = 'indent,eol,start'
-vim.o.scrolloff = 5
+vset.clipboard = vset.clipboard .. "unnamedplus"
 
-vim.o.hidden = true
-vim.o.timeout = true
-vim.o.timeoutlen = 1500
-vim.o.ttimeoutlen = 150
-vim.o.updatetime = 300
+vset.spelllang = "en_gb"
+vset.backspace = "indent,eol,start"
+vset.scrolloff = 5
 
-vim.o.splitbelow = true
-vim.o.splitright = true
+vset.hidden = true
+vset.timeout = true
+vset.timeoutlen = 1500
+vset.ttimeoutlen = 150
+vset.updatetime = 300
 
-vim.o.history=1000
-vim.o.backup = false
-vim.o.swapfile = false
-vim.o.writebackup = false
+vset.splitbelow = true
+vset.splitright = true
 
-vim.o.undofile = true
-vim.o.undodir = '/home/martin/.cache/nvim_undodir'
+vset.history = 1000
+vset.backup = false
+vset.swapfile = false
+vset.writebackup = false
 
-vim.o.showmode = false
-vim.o.number = true
-vim.o.relativenumber = true
+vset.undofile = true
+vset.undodir = "/home/martin/.cache/nvim_undodir"
 
-vim.o.hlsearch = true
-vim.o.smartcase = true
-vim.o.ignorecase = true
-vim.o.incsearch = true
+vset.showmode = false
+vset.number = true
+vset.relativenumber = true
+vset.signcolumn = "number"
 
-vim.o.omnifunc = 'syntaxcomplete#Complete'
-vim.o.completeopt = 'menuone,noinsert'
-vim.o.shortmess = vim.o.shortmess .. 'c'
-vim.o.suffixesadd = '.java,.js,.es,.jsx,.json,.py'
+vset.hlsearch = true
+vset.smartcase = true
+vset.ignorecase = true
+vset.incsearch = true
 
-vim.o.autoindent = true
-vim.o.shiftwidth = 2
-vim.o.cindent = true
-vim.o.smarttab = true
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.expandtab = true
-vim.o.wrap = false
+vset.omnifunc = "syntaxcomplete#Complete"
+vset.completeopt = "menuone,noinsert"
+vset.shortmess = vset.shortmess .. "c"
+vset.suffixesadd = ".java,.js,.es,.jsx,.json,.py"
 
-vim.o.showmatch = true
-vim.o.showcmd = true
+vset.autoindent = true
+vset.shiftwidth = 2
+vset.cindent = true
+vset.smarttab = true
+vset.tabstop = 2
+vset.softtabstop = 2
+vset.expandtab = true
+vset.wrap = false
 
-vim.o.background = 'dark'
-vim.cmd('colorscheme gruvbox8')
+vset.showmatch = true
+vset.showcmd = true
 
+vset.background = "dark"
+vim.cmd("colorscheme gruvbox8")
 
-vim.o.exrc = true
-vim.o.secure = true
+vset.exrc = true
+vset.secure = true
