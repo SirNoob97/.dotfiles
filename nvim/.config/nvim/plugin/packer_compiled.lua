@@ -85,13 +85,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
   },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/home/martin/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
+  ["nvim-jdtls"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-jdtls"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

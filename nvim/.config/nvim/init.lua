@@ -11,6 +11,16 @@ require("config.nv_tree")
 require("config.nv_completion")
 require("lss.sumneko_lua")
 require("lss.typescript")
+
+vim.cmd(
+  [[
+augroup jdtls_lsp
+    autocmd!
+    autocmd FileType java lua require'lss.java'.setup()
+augroup end
+]]
+)
+
 require("lsp_config")
 require("config.lspcolors")
 require("config.formatter_conf")
