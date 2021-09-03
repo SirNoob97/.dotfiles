@@ -7,3 +7,4 @@ vim/.vim/bash-support/**
 vim/.vim/plugged/**
 
 undodir/
+language_servers/
