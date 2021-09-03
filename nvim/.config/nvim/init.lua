@@ -11,6 +11,7 @@ require("config.nv_tree")
 require("config.nv_completion")
 require("lss.sumneko_lua")
 require("lss.tsserver")
+require("lss.gopls")
 
 vim.cmd(
   [[
