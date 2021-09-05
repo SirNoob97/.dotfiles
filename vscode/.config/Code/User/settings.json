@@ -1,7 +1,11 @@
 {
     "workbench.colorTheme": "Default Dark+",
-    "editor.fontSize": 12,
-    "editor.tabSize": 2,
+    "workbench.enableExperiments": false,
+    "workbench.editor.enablePreview": false,
+    "[java]": {
+        "editor.defaultFormatter": "mwpb.java-prettier-formatter",
+        "editor.suggest.snippetsPreventQuickSuggestions": false
+    },
     "files.exclude": {
         "**/.classpath": true,
         "**/.factorypath": true,
@@ -9,6 +13,8 @@
         "**/.settings": true,
         "**/node_modules": true
     },
+    "editor.tabSize": 2,
+    "editor.fontSize": 12,
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingDelete": "never",
     "editor.autoClosingOvertype": "never",
@@ -17,7 +23,9 @@
     "editor.fontLigatures": true,
     "editor.minimap.enabled": false,
     "editor.quickSuggestions": false,
-    "workbench.enableExperiments": false,
+    "editor.wordWrap": "off",
+    "editor.rename.enablePreview": false,
+    "editor.inlineSuggest.enabled": false,
     "window.autoDetectHighContrast": false,
     "window.menuBarVisibility": "toggle",
     "extensions.autoCheckUpdates": false,
@@ -29,25 +37,116 @@
     "notebook.compactView": false,
     "notebook.diff.enablePreview": false,
     "notebook.dragAndDropEnabled": false,
+    "notebook.breadcrumbs.showCodeCells": false,
     "update.mode": "none",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/martin/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+    "advancedNewFile.exclude": {
+        "node_modules": true,
+        "node_modules_electron": true,
+        "dev": true,
+        "dist": true
+    },
+    "advancedNewFile.showInformationMessages": true,
+    "advancedNewFile.convenienceOptions": [
+        "last",
+        "current",
+        "root"
+    ],
     "telemetry.enableCrashReporter": false,
+    "git.autoRepositoryDetection": "openEditors",
+    "git.decorations.enabled": false,
+    "git.autorefresh": false,
+    "scm.diffDecorations": "none",
+    "breadcrumbs.enabled": false,
     "vim.cursorStylePerMode.insert": "line",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.replace": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
     "vim.cursorStylePerMode.visualline": "block",
-    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/martin/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
-    "editor.rename.enablePreview": false,
-    "workbench.editor.enablePreview": false,
-    "[java]": {
-        "editor.defaultFormatter": "mwpb.java-prettier-formatter",
-        "editor.suggest.snippetsPreventQuickSuggestions": false
-    },
-    "git.autoRepositoryDetection": "openEditors",
-    "git.decorations.enabled": false,
-    "git.autorefresh": false,
-    "scm.diffDecorations": "none",
-    "notebook.breadcrumbs.showCodeCells": false,
-    "breadcrumbs.enabled": false
+    "vim.incsearch": true,
+    "vim.hlsearch": true,
+    "vim.leader": "<Space>",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<TAB>"
+            ],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
+        },
+        {
+            "before": [
+                "<S-TAB>"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
+        },
+        {
+            "before": [
+                "//"
+            ],
+            "commands": [
+                "editor.action.addCommentLine"
+            ]
+        },
+        {
+            "before": [
+                "\\"
+            ],
+            "commands": [
+                "editor.action.blockComment"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+        {
+            "before": [
+                "<C-h>"
+            ],
+            "commands": [
+                "workbench.action.focusSideBar"
+            ]
+        },
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "after": [
+                ">",
+                "g",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "after": [
+                "<",
+                "g",
+                "v"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<CR>"
+            ],
+            "commands": [
+                ":nohl<CR><CR>"
+            ]
+        }
+    ]
 }
