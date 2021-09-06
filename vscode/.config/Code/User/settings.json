@@ -70,6 +70,114 @@
     "vim.normalModeKeyBindings": [
         {
             "before": [
+                "g",
+                "d"
+            ],
+            "commands": [
+                "editor.action.revealDefinition"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "D"
+            ],
+            "commands": [
+                "editor.action.revealDeclaration"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "i"
+            ],
+            "commands": [
+                "editor.action.goToImplementation"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.goToReferences"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "t"
+            ],
+            "commands": [
+                "editor.action.goToTypeDefinition"
+            ]
+        },
+        {
+            "before": [
+                "c",
+                "a"
+            ],
+            "commands": [
+                "editor.action.sourceAction"
+            ]
+        },
+        {
+            "before": [
+                "c",
+                "d"
+            ],
+            "commands": [
+                "workbench.action.problems.focus"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "]"
+            ],
+            "commands": [
+                "editor.action.marker.nextInFiles"
+            ]
+        },
+        {
+            "before": [
+                "[",
+                "["
+            ],
+            "commands": [
+                "editor.action.marker.prevInFiles"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "o"
+            ],
+            "commands": [
+                "editor.action.organizeImports"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ]
+        },
+        {
+            "before": [
                 "<TAB>"
             ],
             "commands": [
@@ -86,7 +194,16 @@
         },
         {
             "before": [
-                "//"
+                "<S-k>"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
+        },
+        {
+            "before": [
+                "/",
+                "/"
             ],
             "commands": [
                 "editor.action.addCommentLine"
@@ -94,6 +211,7 @@
         },
         {
             "before": [
+                "\\",
                 "\\"
             ],
             "commands": [
@@ -116,6 +234,32 @@
                 "workbench.action.focusSideBar"
             ]
         },
+        {
+            "before": [
+                "<C-l>"
+            ],
+            "commands": [
+                "workbench.files.action.focusOpenEditorsView"
+            ]
+        },
+        {
+            "before": [
+                "+",
+                "+"
+            ],
+            "commands": [
+                "editor.action.moveLinesUpAction"
+            ]
+        },
+        {
+            "before": [
+                "-",
+                "-"
+            ],
+            "commands": [
+                "editor.action.moveLinesDownAction"
+            ]
+        }
     ],
     "vim.visualModeKeyBindings": [
         {
@@ -136,6 +280,33 @@
                 "<",
                 "g",
                 "v"
+            ]
+        },
+        {
+            "before": [
+                "+",
+                "+"
+            ],
+            "commands": [
+                "editor.action.moveLinesUpAction"
+            ]
+        },
+        {
+            "before": [
+                "-",
+                "-"
+            ],
+            "commands": [
+                "editor.action.moveLinesDownAction"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "commands": [
+                "editor.action.formatSelection"
             ]
         }
     ],
