@@ -15,6 +15,7 @@
     },
     "editor.tabSize": 2,
     "editor.fontSize": 12,
+    "editor.fontFamily": "'FiraCode Nerd Font Mono'",
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingDelete": "never",
     "editor.autoClosingOvertype": "never",
@@ -25,7 +26,6 @@
     "editor.quickSuggestions": false,
     "editor.wordWrap": "off",
     "editor.rename.enablePreview": false,
-    "editor.inlineSuggest.enabled": false,
     "window.autoDetectHighContrast": false,
     "window.menuBarVisibility": "toggle",
     "extensions.autoCheckUpdates": false,
@@ -259,6 +259,14 @@
             "commands": [
                 "editor.action.moveLinesDownAction"
             ]
+        },
+        {
+            "before": [
+                "<CR>"
+            ],
+            "commands": [
+                ":nohl<CR><CR>"
+            ]
         }
     ],
     "vim.visualModeKeyBindings": [
@@ -310,14 +318,26 @@
             ]
         }
     ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<CR>"
-            ],
-            "commands": [
-                ":nohl<CR><CR>"
-            ]
-        }
-    ]
+    "editor.codeLens": false,
+    "editor.detectIndentation": false,
+    "editor.hover.enabled": false,
+    "editor.lineNumbers": "relative",
+    "editor.renderIndentGuides": false,
+    "editor.cursorBlinking": "solid",
+    "editor.inlineSuggest.enabled": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "workbench.list.automaticKeyboardNavigation": false,
+    "workbench.tips.enabled": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "search.showLineNumbers": true,
+    "terminal.integrated.customGlyphs": false,
+    "task.autoDetect": "off",
+    "update.showReleaseNotes": false,
+    "telemetry.enableTelemetry": false,
+    "java.autobuild.enabled": false,
+    "github.gitAuthentication": false,
+    "workbench.editor.restoreViewState": false,
+    "files.restoreUndoStack": false,
+    "workbench.startupEditor": "none",
+    "editor.accessibilitySupport": "on",
 }
