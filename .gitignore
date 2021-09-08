@@ -8,3 +8,13 @@ vim/.vim/plugged/**
 
 undodir/
 language_servers/
+
+auto-save-list/
+.cache/
+eclipse*/
+elpa/
+url/
+workspace/
+.lsp**
+#*#
+**~
