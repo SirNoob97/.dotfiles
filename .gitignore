@@ -16,5 +16,6 @@ elpa/
 url/
 workspace/
 .lsp**
-#*#
+.dap**
+**#
 **~
