@@ -1,13 +1,12 @@
 (setq inhibit-startup-message t)
-
-(scroll-bar-mode 0)        ; Disable visible scrollbar
-(tool-bar-mode 0)          ; Disable the toolbar
-(tooltip-mode 0)           ; Disable tooltips
-(set-fringe-mode 0)        ; Give some breathing room
-(menu-bar-mode 0)            ; Disable the menu bar
+(scroll-bar-mode 0)
+(tool-bar-mode 0)
+(tooltip-mode 0)
+(set-fringe-mode 0)
+(menu-bar-mode 0)
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
-(show-paren-mode 1) 
+(show-paren-mode 1)
 (column-number-mode)
 (global-display-line-numbers-mode t)
 ;; Disable line numbers for some modes
@@ -17,6 +16,8 @@
                 treemacs-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+(add-to-list 'default-frame-alist '(font . "FiraCode Nerd Font Mono-11"))
 
 (load-theme 'wombat t)
 
@@ -76,11 +77,6 @@
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
 
-;(use-package evil-collection
-;  :after evil
-;  :config
-;  (evil-collection-init))
-;
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -118,8 +114,7 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-(use-package doom-modeline
-  :hook (after-init . doom-modeline-mode))
+(use-package doom-modeline :config (doom-modeline-mode))
 
 ;----------------------
 (use-package company
@@ -164,38 +159,41 @@
   :after (lsp-mode))
 
 (use-package lsp-ui
-:ensure t
-:after (lsp-mode)
-:bind (:map lsp-ui-mode-map
+  :ensure t
+  :after (lsp-mode)
+  :bind (:map lsp-ui-mode-map
          ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
          ([remap xref-find-references] . lsp-ui-peek-find-references))
-:init (setq lsp-ui-doc-delay 1.5
-      lsp-ui-doc-position 'bottom
-	  lsp-ui-doc-max-width 100
-))
+  :init (setq lsp-ui-doc-delay 1.5
+	      lsp-ui-doc-show-with-cursor nil
+	      lsp-ui-doc-position 'bottom
+	      lsp-ui-doc-max-width 100)
+  :config
+  (define-key lsp-ui-mode-map (kbd "C-c l k") #'lsp-ui-doc-show)
+  (define-key lsp-ui-mode-map (kbd "C-c l s") #'lsp-ui-doc-hide))
 
 (use-package lsp-mode
-:ensure t
-:hook (
+  :ensure t
+  :hook (
    (lsp-mode . lsp-enable-which-key-integration)
-   (java-mode . #'lsp-deferred)
-)
-:init (setq 
+   (java-mode . #'lsp-deferred))
+  :init (setq
     lsp-keymap-prefix "C-c l"              ; this is for which-key integration documentation, need to use lsp-mode-map
-    lsp-headerline-breadcrumb-segments '(file symbols)
+    lsp-headerline-breadcrumb-segments nil
     lsp-enable-file-watchers nil
     read-process-output-max (* 1024 1024)  ; 1 mb
     lsp-completion-provider :capf
-    lsp-idle-delay 0.500
-)
-:config 
+    lsp-prefer-flymake nil
+    lsp-idle-delay 0.500)
+  :config
     (setq lsp-intelephense-multi-root nil) ; don't scan unnecessary projects
+    (setq gc-cons-threshold 100000000)
+    (setq lsp-diagnostics-provider 'flycheck)
     (with-eval-after-load 'lsp-intelephense
     (setf (lsp--client-multi-root (gethash 'iph lsp-clients)) nil))
-	(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
-)
+    (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
 
-(use-package lsp-java 
+(use-package lsp-java
 :ensure t
 :config (add-hook 'java-mode-hook 'lsp))
 
@@ -219,12 +217,6 @@
 ;        lsp-highlight-symbol-at-point nil
 ;        lsp-modeline-code-actions-enable nil
 ;        lsp-modeline-diagnostics-enable nil)
-;
-;  ;; Performance tweaks, see
-;  ;; https://github.com/emacs-lsp/lsp-mode#performance
-;  (setq gc-cons-threshold 100000000)
-;  (setq read-process-output-max (* 1024 1024)) ;; 1mb
-;  (setq lsp-idle-delay 0.500))
 
 ;(use-package lsp-ui
 ;  :bind (:map lsp-ui-mode-map
@@ -343,5 +335,4 @@
 ;----------------------
 
 (use-package xclip
-  :config
-  (xclip-mode 1))
+  :config (xclip-mode 1))
