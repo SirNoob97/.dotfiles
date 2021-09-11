@@ -1,3 +1,10 @@
+;;; init.el --- init setup
+
+;;; Commentary:
+;;; Init config
+
+;;; Code:
+
 (setq inhibit-startup-message t)
 (scroll-bar-mode 0)
 (tool-bar-mode 0)
@@ -17,7 +24,7 @@
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-(add-to-list 'default-frame-alist '(font . "FiraCode Nerd Font Mono-11"))
+(add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font Mono-11"))
 
 (load-theme 'wombat t)
 
@@ -36,7 +43,7 @@
  ;; If there is more than one, they won't work right.
  '(lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java")
  '(package-selected-packages
-   '(company-lsp xclip lsp-ui company evil-collection flycheck lsp-treemacs lsp-ivy which-key helpful ivy-rich doom-modeline counsel dap-mode lsp-java lsp-mode use-package cl-libify undo-tree s)))
+   '(dash doom-modeline company-lsp xclip lsp-ui company evil-collection flycheck lsp-treemacs lsp-ivy which-key helpful ivy-rich counsel dap-mode lsp-java lsp-mode use-package cl-libify undo-tree s)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -114,7 +121,17 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-(use-package doom-modeline :config (doom-modeline-mode))
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode)
+  :config
+  ;(setq find-file-visit-truename t) ; to short symlinks
+  (setq inhibit-compacting-font-caches t)
+  (setq doom-modeline-buffer-file-name-style 'file-name)
+  (setq doom-modeline-unicode-fallback nil)
+  (setq doom-modeline-gnus nil)
+  (setq doom-modeline-irc nil)
+  (setq doom-modeline-icon nil))
 
 ;----------------------
 (use-package company
@@ -160,14 +177,20 @@
 
 (use-package lsp-ui
   :ensure t
-  :after (lsp-mode)
+  :requires lsp-mode flycheck
   :bind (:map lsp-ui-mode-map
          ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
          ([remap xref-find-references] . lsp-ui-peek-find-references))
-  :init (setq lsp-ui-doc-delay 1.5
-	      lsp-ui-doc-show-with-cursor nil
-	      lsp-ui-doc-position 'bottom
-	      lsp-ui-doc-max-width 100)
+  :init
+  (setq lsp-ui-peek-always-show t)
+  (setq lsp-ui-doc-delay 1.5
+	lsp-ui-doc-show-with-cursor nil
+	lsp-ui-doc-show-with-mouse nil
+	lsp-ui-doc-include-signature t
+	lsp-ui-doc-position 'bottom
+	lsp-ui-doc-max-width 100)
+  (setq lsp-ui-sideline-ignore-duplicate t
+	lsp-ui-sideline-show-diagnostics t)
   :config
   (define-key lsp-ui-mode-map (kbd "C-c l k") #'lsp-ui-doc-show)
   (define-key lsp-ui-mode-map (kbd "C-c l s") #'lsp-ui-doc-hide))
@@ -177,25 +200,36 @@
   :hook (
    (lsp-mode . lsp-enable-which-key-integration)
    (java-mode . #'lsp-deferred))
-  :init (setq
-    lsp-keymap-prefix "C-c l"              ; this is for which-key integration documentation, need to use lsp-mode-map
-    lsp-headerline-breadcrumb-segments nil
+  :init
+  (setq
+    lsp-keymap-prefix "C-c l" ; this is for which-key integration documentation, need to use lsp-mode-map
     lsp-enable-file-watchers nil
     read-process-output-max (* 1024 1024)  ; 1 mb
-    lsp-completion-provider :capf
-    lsp-prefer-flymake nil
     lsp-idle-delay 0.500)
+  (setq lsp-headerline-breadcrumb-enable nil)
   :config
-    (setq lsp-intelephense-multi-root nil) ; don't scan unnecessary projects
-    (setq gc-cons-threshold 100000000)
-    (setq lsp-diagnostics-provider 'flycheck)
-    (with-eval-after-load 'lsp-intelephense
-    (setf (lsp--client-multi-root (gethash 'iph lsp-clients)) nil))
-    (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
+  (setq lsp-enable-on-type-formatting nil)
+  (setq gc-cons-threshold 100000000)
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
 
 (use-package lsp-java
-:ensure t
-:config (add-hook 'java-mode-hook 'lsp))
+  :ensure t
+  :init
+  (setq lsp-java-vmargs
+        (list
+         "-noverify"
+         "-Xmx2G"
+         "-XX:+UseG1GC"
+         "-XX:+UseStringDeduplication"
+         "-javaagent:/home/martin/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"))
+  :config
+  (add-hook 'java-mode-hook 'lsp)
+  (add-hook 'java-mode-hook 'flycheck-mode)
+  (add-hook 'java-mode-hook 'company-mode)
+  (add-hook 'java-mode-hook (lambda ()
+                            (setq c-basic-offset 2
+                                  tab-width 2
+                                  indent-tabs-mode t))))
 
 
 ;(use-package lsp-mode
@@ -336,3 +370,5 @@
 
 (use-package xclip
   :config (xclip-mode 1))
+
+;;; init.el ends here
