@@ -23,8 +23,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+from __future__ import annotations
 
+import importlib
 import os
+import sys
 from typing import List  # noqa: F401
 
 from libqtile import bar, layout, widget
@@ -32,6 +35,10 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.widget.battery import Battery, BatteryState
+
+def reload(module):
+    if module in sys.modules:
+        importlib.reload(sys.modules[module])
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -214,6 +221,32 @@ screens = [
         ),
     ),
 ]
+# Notification server
+#if True:
+#    reload("notification")
+#    import notification
+#
+## Remove defunct callbacks left when reloading the config
+#    import libqtile.notify
+#    libqtile.notify.notifier.callbacks.clear()
+#    libqtile.notify.notifier.close_callbacks.clear()
+#
+#    notifier = notification.Server(
+#        background=colours[12],
+#        foreground=background,
+#        x=50,
+#        y=50,
+#        width=320,
+#        height=100,
+#        font_size=18,
+#        font='TamzenForPowerline Bold',
+#    )
+#
+#    my_keys.extend([
+#        ([mod], '<', notifier.lazy_prev, "Previous notification"),
+#        ([mod], '>', notifier.lazy_next, "Next notification"),
+#        ([mod, 'control'], 'space', notifier.lazy_close, "Close notification"),
+#    ])
 
 # Drag floating layouts.
 mouse = [
