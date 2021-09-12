@@ -109,23 +109,29 @@ for i in groups:
     ])
 
 layouts = [
+    #layout.Columns(border_focus_stack='#d75f5f'),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-     layout.MonadTall(
+    # layout.MonadTall(),
+    # layout.MonadWide(),
+    # layout.RatioTile(),
+     layout.Tile(
          border_normal="#222222",
          border_focus="#ff4400",
          border_width=3,
-         single_border_width=0,
-         single_margin=0,
+         margin=5,
+         add_after_last=True
      ),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
     # layout.TreeTab(),
-    # layout.VerticalTile(),
+     layout.VerticalTile(
+         border_normal="#222222",
+         border_focus="#ff4400",
+         border_width=3,
+         margin=5,
+     ),
     # layout.Zoomy(),
 ]
 
