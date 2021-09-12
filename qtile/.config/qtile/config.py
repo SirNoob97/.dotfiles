@@ -24,12 +24,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
 from typing import List  # noqa: F401
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile.widget.battery import Battery, BatteryState
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -137,10 +139,42 @@ layouts = [
 
 widget_defaults = dict(
     font='JetBrainsMono Nerd Font Mono',
-    fontsize=12,
+    fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
+
+class MyBattery(Battery):
+    def build_string(self, status):
+        if self.layout is not None:
+            if status.state == BatteryState.DISCHARGING and status.percent < self.low_percentage:
+                self.layout.colour = self.low_foreground
+            else:
+                self.layout.colour = self.foreground
+        if status.state == BatteryState.DISCHARGING:
+            if status.percent > 0.75:
+                char = ''
+            elif status.percent > 0.45:
+                char = ''
+            else:
+                char = ''
+        elif status.percent >= 1 or status.state == BatteryState.FULL:
+            char = ''
+        elif status.state == BatteryState.EMPTY or \
+                (status.state == BatteryState.UNKNOWN and status.percent == 0):
+            char = ''
+        else:
+            char = ''
+        return self.format.format(char=char, percent=status.percent)
+
+
+battery = MyBattery(
+    format='{percent:2.0%} {char}',
+    low_foreground='#8742a5',
+    show_short_text=False,
+    low_percentage=0.12,
+    notify_below=12,
+)
 
 screens = [
     Screen(
@@ -149,27 +183,31 @@ screens = [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
-                widget.WindowName(),
-                widget.Wlan(
-                    interface='wlp2s0',
-                    format='{essid} {percent:2.0%}',
-                ),
+                widget.Spacer(),
+                widget.Clock(format='%Y-%m-%d %I:%M %p'),
+                widget.Spacer(),
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(),
-                widget.Battery(
-                    discharge_char='↓',
-                    charge_char='↑',
-                    format='{char} {hour:d}:{min:02d}',
+                widget.PulseVolume(
+                    emoji=True
                 ),
-                widget.BatteryIcon(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+                widget.Backlight(
+                    backlight_name=os.listdir('/sys/class/backlight')[0],
+                    step=1,
+                    update_interval=None,
+                    format="",
+                    change_command=None,
+                ),
+                battery,
+                widget.Wlan(
+                    interface='wlp2s0',
+ #                   format='{essid} {percent:2.0%}',
+                    format='',
+                ),
                 widget.QuickExit(),
             ],
             24,
