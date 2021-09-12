@@ -31,7 +31,11 @@
 (global-set-key (kbd "<escape>") 'keyboard-scape-quit)
 
 (require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")
+			  ("org" . "https://orgmode.org/elpa/")
+))
+
 (package-initialize)
 (unless package-archive-contents (package-refresh-contents))
 (unless (package-installed-p 'use-package) (package-install 'use-package))
@@ -43,7 +47,7 @@
  ;; If there is more than one, they won't work right.
  '(lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java")
  '(package-selected-packages
-   '(dash doom-modeline company-lsp xclip lsp-ui company evil-collection flycheck lsp-treemacs lsp-ivy which-key helpful ivy-rich counsel dap-mode lsp-java lsp-mode use-package cl-libify undo-tree s)))
+   '(exec-path-from-shell all-the-icons dash doom-modeline company-lsp xclip lsp-ui company evil-collection flycheck lsp-treemacs lsp-ivy which-key helpful ivy-rich counsel dap-mode lsp-java lsp-mode use-package cl-libify undo-tree s)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -59,6 +63,9 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package exec-path-from-shell :ensure t)
+(exec-path-from-shell-initialize)
 
 (use-package which-key
   :defer 0
@@ -110,17 +117,18 @@
   :config
   (counsel-mode 1))
 
-(use-package helpful
-  :commands (helpful-callable helpful-variable helpful-command helpful-key)
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
+;(use-package helpful
+;  :commands (helpful-callable helpful-variable helpful-command helpful-key)
+;  :custom
+;  (counsel-describe-function-function #'helpful-callable)
+;  (counsel-describe-variable-function #'helpful-variable)
+;  :bind
+;  ([remap describe-function] . counsel-describe-function)
+;  ([remap describe-command] . helpful-command)
+;  ([remap describe-variable] . counsel-describe-variable)
+;  ([remap describe-key] . helpful-key))
 
+(use-package all-the-icons)
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode)
@@ -132,6 +140,17 @@
   (setq doom-modeline-gnus nil)
   (setq doom-modeline-irc nil)
   (setq doom-modeline-icon nil))
+
+
+(defun ansi-colorize-buffer ()
+  "This will help eliminate weird escape sequences during compilation of projects."
+  (let ((buffer-read-only nil))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
+(use-package ansi-color
+  :ensure t
+  :config
+  (add-hook 'compilation-filter-hook 'ansi-colorize-buffer))
 
 ;----------------------
 (use-package company
@@ -150,18 +169,39 @@
 (use-package flycheck :ensure t :init (global-flycheck-mode))
 
 (use-package dap-mode
-  :ensure t
-  :after (lsp-mode)
-  :functions dap-hydra/nil
-  :config
-  (require 'dap-java)
+  :after lsp-mode
   :bind (:map lsp-mode-map
-         ("<f5>" . dap-debug)
-         ("M-<f5>" . dap-hydra))
-  :hook ((dap-mode . dap-ui-mode)
-    (dap-session-created . (lambda (&_rest) (dap-hydra)))
-    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
-(use-package dap-java :ensure nil)
+            ("<f5>" . dap-debug)
+            ("M-<f5>" . dap-hydra))
+  :config
+  (dap-mode t)
+  (dap-ui-mode t)
+  (dap-tooltip-mode 1)
+  (tooltip-mode 1)
+  (dap-register-debug-template
+   "localhost:5005"
+   (list :type "java"
+         :request "attach"
+         :hostName "localhost"
+         :port 5005))
+  )
+(use-package dap-java
+  :ensure nil
+  :after (lsp-java))
+
+
+;(use-package dap-mode
+;  :ensure t
+;  :after (lsp-mode)
+;  :functions dap-hydra/nil
+;  :config
+;  (require 'dap-java)
+;  :bind (:map lsp-mode-map
+;         ("<f5>" . dap-debug)
+;         ("M-<f5>" . dap-hydra))
+;  :hook ((dap-mode . dap-ui-mode)
+;    (dap-session-created . (lambda (&_rest) (dap-hydra)))
+;    (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
 
 (use-package lsp-treemacs
   :after (lsp-mode treemacs)
@@ -215,6 +255,7 @@
 (use-package lsp-java
   :ensure t
   :init
+  (setq lsp-java-java-path "/home/martin/.sdkman/candidates/java/current/bin/java")
   (setq lsp-java-vmargs
         (list
          "-noverify"
