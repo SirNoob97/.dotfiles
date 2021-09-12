@@ -82,6 +82,7 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 ]
 
+
 groups = [Group(i) for i in "123456789"]
 
 for i in groups:
@@ -100,7 +101,6 @@ for i in groups:
     ])
 
 layouts = [
-    layout.Columns(border_focus_stack='#d75f5f'),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -111,7 +111,6 @@ layouts = [
          border_focus="#ff4400",
          border_width=3,
          single_border_width=0,
-         margin=6,
          single_margin=0,
      ),
     # layout.MonadWide(),
@@ -140,7 +139,7 @@ screens = [
                 widget.Wlan(
                     interface='wlp2s0',
                     format='{essid} {percent:2.0%}',
-                )
+                ),
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
