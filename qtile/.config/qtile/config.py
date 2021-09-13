@@ -87,8 +87,10 @@ keys = [
 
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"),
+
+    Key([mod, "control"], "v", lazy.validate_config(), desc="Restart Qtile"),
+    Key([mod, "shift"], "f", lazy.window.toggle_floating()),
+    Key([], "Print", lazy.spawn("gnome-screenshot -i")),
 
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"), desc="Increase volume"),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"), desc="Decrease volume"),
@@ -97,6 +99,10 @@ keys = [
 
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%"), desc="Decrease Backlight"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-"), desc="Decrease Backlight"),
+
+
+    Key([mod], "r", lazy.spawn("rofi -show run"), desc="Launch Rofi"),
+    Key([mod], "b", lazy.spawn("firefox"), desc="Launch Browser"),
 ]
 
 
@@ -180,7 +186,6 @@ battery = MyBattery(
     low_foreground='#8742a5',
     show_short_text=False,
     low_percentage=0.12,
-    notify_below=12,
 )
 
 screens = [
@@ -189,9 +194,7 @@ screens = [
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
-                widget.Prompt(),
                 widget.Spacer(),
-                widget.Clock(format='%Y-%m-%d %I:%M %p'),
                 widget.Spacer(),
                 widget.Chord(
                     chords_colors={
@@ -200,7 +203,6 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.PulseVolume(
-                    emoji=True
                 ),
                 widget.Backlight(
                     backlight_name=os.listdir('/sys/class/backlight')[0],
@@ -224,7 +226,6 @@ screens = [
 # Notification server
 #if True:
 #    reload("notification")
-#    import notification
 #
 ## Remove defunct callbacks left when reloading the config
 #    import libqtile.notify
@@ -274,6 +275,7 @@ floating_layout = layout.Floating(float_rules=[
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+follow_mouse_focus=False
 reconfigure_screens = True
 
 # If things like steam games want to auto-minimize themselves when losing
