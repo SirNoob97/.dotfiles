@@ -27,13 +27,24 @@ from __future__ import annotations
 
 import os
 import sys
+import subprocess
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+from libqtile import hook
 from libqtile.utils import guess_terminal
 from libqtile.widget.battery import Battery, BatteryState
 
+@hook.subscribe.restart
+def restart():
+    home = os.path.expanduser('~')
+    subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~')
+    subprocess.Popen([home + '/.config/qtile/autostart.sh'])
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -147,6 +158,7 @@ layouts = [
 
 widget_defaults = dict(
     font='JetBrainsMono Nerd Font Mono',
+    fontsize=16,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -180,17 +192,32 @@ battery = MyBattery(
     low_foreground='#8742a5',
     show_short_text=False,
     low_percentage=0.12,
+    notify_below=92,
 )
+def get_volume():
+    script_path=os.path.expanduser('~/.config/qtile/modules/volume.bash')
+    out=subprocess.check_output(script_path + ' --icons-volume " , " --icon-muted " " output', shell=True).decode()
+    return out.rstrip()
 
 screens = [
     Screen(
         top=bar.Bar(
             [
                 widget.CurrentLayout(),
+                widget.Sep(),
                 widget.GroupBox(),
-                widget.Spacer(),
-                widget.Spacer(),
+                widget.Prompt(
+                    cursorblink=0,
+                    ignore_dups_history=True
                 ),
+                widget.Spacer(),
+                widget.Clock(format='%Y-%m-%d %H:%M'),
+                widget.Spacer(),
+                widget.GenPollText(
+                    update_interval=1,
+                    func=get_volume
+                ),
+                widget.Sep(),
                 widget.Backlight(
                     backlight_name=os.listdir('/sys/class/backlight')[0],
                     step=1,
@@ -198,12 +225,15 @@ screens = [
                     format="",
                     change_command=None,
                 ),
+                widget.Sep(),
                 battery,
+                widget.Sep(),
                 widget.Wlan(
                     interface='wlp2s0',
  #                   format='{essid} {percent:2.0%}',
                     format='',
                 ),
+                widget.Sep(),
                 widget.QuickExit(),
             ],
             24,
@@ -228,6 +258,7 @@ cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
+    Match(wm_type='notification'),
     Match(wm_class='confirmreset'),  # gitk
     Match(wm_class='makebranch'),  # gitk
     Match(wm_class='maketag'),  # gitk
