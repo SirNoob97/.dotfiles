@@ -163,37 +163,11 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-class MyBattery(Battery):
-    def build_string(self, status):
-        if self.layout is not None:
-            if status.state == BatteryState.DISCHARGING and status.percent < self.low_percentage:
-                self.layout.colour = self.low_foreground
-            else:
-                self.layout.colour = self.foreground
-        if status.state == BatteryState.DISCHARGING:
-            if status.percent > 0.75:
-                char = ''
-            elif status.percent > 0.45:
-                char = ''
-            else:
-                char = ''
-        elif status.percent >= 1 or status.state == BatteryState.FULL:
-            char = ''
-        elif status.state == BatteryState.EMPTY or \
-                (status.state == BatteryState.UNKNOWN and status.percent == 0):
-            char = ''
-        else:
-            char = ''
-        return self.format.format(char=char, percent=status.percent)
+def get_battery():
+    script_path=os.path.expanduser('~/.config/qtile/modules/battery.sh')
+    out=subprocess.check_output(script_path, shell=True).decode()
+    return out.rstrip()
 
-
-battery = MyBattery(
-    format='{percent:2.0%} {char}',
-    low_foreground='#8742a5',
-    show_short_text=False,
-    low_percentage=0.12,
-    notify_below=92,
-)
 def get_volume():
     script_path=os.path.expanduser('~/.config/qtile/modules/volume.bash')
     out=subprocess.check_output(script_path + ' --icons-volume " , " --icon-muted " " output', shell=True).decode()
@@ -226,7 +200,10 @@ screens = [
                     change_command=None,
                 ),
                 widget.Sep(),
-                battery,
+                widget.GenPollText(
+                    update_interval=10,
+                    func=get_battery
+                ),
                 widget.Sep(),
                 widget.Wlan(
                     interface='wlp2s0',
