@@ -31,8 +31,8 @@ function __output {
 	    [ $percentage -gt 75 ] && [ $percentage -lt 97 ] && battery_icon=""
 	    [ $percentage -gt 45 ] && [ $percentage -lt 75 ] && battery_icon=""
 	    [ $percentage -gt 15 ] && [ $percentage -lt 45 ] && battery_icon=""
-	    [ $percentage -lt 12 ] && dunstify -a "$0" -u "CRIT" -b "Low Battery" "Battery level below 12%" 
-	    [ $percentage -lt 5 ] && battery_icon=""
+	    [ $percentage -lt 12 ] && battery_icon="" \
+		&& dunstify -a "$0" -u "CRIT" -t "10000" "Low Battery" "Battery level below 12%"
 	fi
     fi 
 
