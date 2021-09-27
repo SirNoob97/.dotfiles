@@ -92,7 +92,7 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    #Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     Key([mod, "control"], "v", lazy.validate_config(), desc="Restart Qtile"),
     Key([mod, "shift"], "f", lazy.window.toggle_floating()),
@@ -108,7 +108,6 @@ keys = [
 
 
     Key([mod], "r", lazy.spawn("rofi -show run"), desc="Launch Rofi"),
-    Key([mod], "b", lazy.spawn("firefox"), desc="Launch Browser"),
 ]
 
 
