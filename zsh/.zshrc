@@ -107,3 +107,8 @@ complete -o nospace -C /home/martin/bin/gocomplete go
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# >>>> Vagrant command completion (start)
+fpath=(/opt/vagrant/embedded/gems/2.2.18/gems/vagrant-2.2.18/contrib/zsh $fpath)
+compinit
+# <<<<  Vagrant command completion (end)
