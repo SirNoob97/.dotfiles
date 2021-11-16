@@ -77,5 +77,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # >>>> Vagrant command completion (start)
-. /opt/vagrant/embedded/gems/2.2.18/gems/vagrant-2.2.18/contrib/bash/completion.sh
+. /opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/bash/completion.sh
 # <<<<  Vagrant command completion (end)
