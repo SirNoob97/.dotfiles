@@ -103,10 +103,6 @@ nnoremap <silent><leader><left> :vertical resize +5<CR>
 
 " Plugins
 call plug#begin('~/.vim/plugged')
-  Plug 'dense-analysis/ale', {'on': []}
-
-  Plug 'neoclide/coc.nvim', {'branch': 'release', 'on': []}
-
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-fugitive'
 
@@ -128,32 +124,3 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['node_modules$']
-
-let g:ale_filetypes = [ 'java', 'vim' ]
-let g:coc_filetypes = [ 'java', 'help', 'vim' ]
-
-function! s:disable_ale_for_type()
-  if index(g:ale_filetypes, &filetype) == -1
-    :silent! ALEDisable
-  else
-    :source ~/.config/vim/plugins/ale.vim
-    call plug#load('ale')
-    :silent! ALEEnable
-  endif
-endfunction
-    
-function! s:disable_coc_for_type()
-  if index(g:coc_filetypes, &filetype) == -1
-    :silent! CocDisable
-  else
-    call plug#load('coc.nvim')
-    :source ~/.config/vim/plugins/coc.vim
-    :silent! CocEnable
-  endif
-endfunction
-
-augroup CocGroup
-  autocmd!
-  autocmd BufNew,BufEnter,BufAdd,BufCreate * call s:disable_coc_for_type()
-  autocmd BufNew,BufEnter,BufAdd,BufCreate * call s:disable_ale_for_type()
-augroup end
