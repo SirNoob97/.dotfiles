@@ -5,6 +5,7 @@ alacritty/.config/alacritty/opacity.yml
 vim/.vim/sessions/**
 vim/.vim/bash-support/**
 vim/.vim/plugged/**
+*.old
 
 undodir/
 language_servers/
