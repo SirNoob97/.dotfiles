@@ -2,7 +2,7 @@
 
 # bash
 alias sbrc='source ~/.bashrc'
-alias nbrc='nvim ~/.bashrc'
+alias vbrc='vim ~/.bashrc'
 
 # copy to clipboard
 alias clipboard='xclip -selection clipboard'
