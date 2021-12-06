@@ -1,14 +1,17 @@
 #!/bin/bash
 
 # bash
+alias exbash='exec bash'
 alias sbrc='source ~/.bashrc'
 alias vbrc='vim ~/.bashrc'
 
 # copy to clipboard
 alias clipboard='xclip -selection clipboard'
 
-# free ram cache
+# memory management
+alias wide-free='free -whlt --si'
 alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
+alias meminfo='cat /proc/meminfo | sort'
 
 # ls
 if ls --color -d . &> /dev/null
