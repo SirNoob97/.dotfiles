@@ -36,15 +36,17 @@ from libqtile import hook
 from libqtile.utils import guess_terminal
 from libqtile.widget.battery import Battery, BatteryState
 
+def exec_autostart():
+    script_path = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen(script_path)
+
 @hook.subscribe.restart
 def restart():
-    home = os.path.expanduser('~')
-    subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+    exec_autostart()
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~')
-    subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+    exec_autostart()
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -149,15 +151,13 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-def get_battery():
-    script_path=os.path.expanduser('~/.config/qtile/modules/battery.sh')
-    out=subprocess.check_output(script_path, shell=True).decode()
-    return out.rstrip()
-
-def get_volume():
-    script_path=os.path.expanduser('~/.config/qtile/modules/volume.bash')
-    out=subprocess.check_output(script_path + ' --icons-volume " , " --icon-muted " " output', shell=True).decode()
-    return out.rstrip()
+def custom_widget(script_name, args):
+    def closure():
+        script_path = os.path.expanduser('~/.config/qtile/modules/' + script_name)
+        print(script_path + args)
+        output = subprocess.check_output(script_path + args, shell = True).decode()
+        return output.rstrip()
+    return closure
 
 screens = [
     Screen(
@@ -166,16 +166,12 @@ screens = [
                 widget.CurrentLayout(),
                 widget.Sep(),
                 widget.GroupBox(),
-                widget.Prompt(
-                    cursorblink=0,
-                    ignore_dups_history=True
-                ),
                 widget.Spacer(),
                 widget.Clock(format='%Y-%m-%d %H:%M'),
                 widget.Spacer(),
                 widget.GenPollText(
-                    update_interval=1,
-                    func=get_volume
+                    update_interval = 1,
+                    func=custom_widget('volume.bash', ' --icons-volume " , " --icon-muted " " output')
                 ),
                 widget.Sep(),
                 widget.Backlight(
@@ -187,14 +183,13 @@ screens = [
                 ),
                 widget.Sep(),
                 widget.GenPollText(
-                    update_interval=10,
-                    func=get_battery
+                    update_interval=1,
+                    func=custom_widget('battery.sh', '')
                 ),
                 widget.Sep(),
                 widget.Wlan(
                     interface='wlp2s0',
- #                   format='{essid} {percent:2.0%}',
-                    format='',
+                     format='',
                 ),
                 widget.Sep(),
                 widget.QuickExit(),
