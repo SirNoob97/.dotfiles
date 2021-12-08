@@ -50,7 +50,6 @@ mod = "mod4"
 terminal = guess_terminal()
 
 keys = [
-    # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
@@ -87,7 +86,6 @@ keys = [
         desc="Toggle between split and unsplit sides of stack"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
-    # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
@@ -115,14 +113,10 @@ keys = [
 
 
 groups = [Group(i) for i in "123456789"]
-
 for i in groups:
     keys.extend([
-        # mod1 + letter of group = switch to group
         Key([mod], i.name, lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.name)),
-
-        # mod1 + shift + letter of group = switch to & move focused window to group
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
             desc="Switch to & move focused window to group {}".format(i.name)),
         # Or, use below if you prefer not to switch to that group.
@@ -132,15 +126,7 @@ for i in groups:
     ])
 
 layouts = [
-    #layout.Columns(border_focus_stack='#d75f5f'),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
      layout.Tile(
          border_normal="#222222",
          border_focus="#ff4400",
@@ -148,14 +134,12 @@ layouts = [
          margin=5,
          add_after_last=True
      ),
-    # layout.TreeTab(),
      layout.VerticalTile(
          border_normal="#222222",
          border_focus="#ff4400",
          border_width=3,
          margin=5,
      ),
-    # layout.Zoomy(),
 ]
 
 widget_defaults = dict(
