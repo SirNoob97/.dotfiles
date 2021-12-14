@@ -8,6 +8,9 @@ alias vbrc='vim ~/.bashrc'
 # copy to clipboard
 alias clipboard='xclip -selection clipboard'
 
+# processes management
+alias myps='ps f -u $(whoami)'
+
 # memory management
 alias wide-free='free -whlt --si'
 alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
