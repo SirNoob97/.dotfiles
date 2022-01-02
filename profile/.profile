@@ -32,4 +32,3 @@ xinput set-prop "DLLC6B2:00 06CB:75BF Touchpad" "libinput Natural Scrolling Enab
 
 # Disable touch screen
 xinput disable "G2Touch Multi-Touch by G2TSP"
-. "/home/martin/.cargo/bin/env"
