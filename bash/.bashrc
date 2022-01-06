@@ -60,11 +60,6 @@ source $HOME/.aliases
 source $HOME/.config/bashconfig/completion.sh
 source $HOME/.config/bashconfig/alias-completion.sh
 
-source $HOME/.fzf.bash
-
-#complete -C /home/martin/.local/bin/gocomplete go
-eval "$(gh completion -s bash)"
-. "/home/martin/.cargo/bin/env"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
