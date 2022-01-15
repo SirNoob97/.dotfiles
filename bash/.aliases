@@ -1,22 +1,17 @@
 #!/bin/bash
 
-# bash
 alias exbash='exec bash'
 alias sbrc='source ~/.bashrc'
 alias vbrc='vim ~/.bashrc'
 
-# copy to clipboard
 alias clipboard='xclip -selection clipboard'
 
-# processes management
 alias myps='ps f -u $(whoami)'
 
-# memory management
 alias wide-free='free -whlt --si'
 alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
 alias meminfo='cat /proc/meminfo | sort'
 
-# ls
 if ls --color -d . &> /dev/null
 then
     alias ls='ls --color=auto'
@@ -27,19 +22,12 @@ fi
 alias ll='ls -alhF'
 alias lac='ls -aCF'
 
-# greps
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# cd
 alias ..='cd ..'
-alias cd2='cd ../..'
-alias cd3='cd ../../..'
-alias cd4='cd ../../../..'
-alias cd5='cd ../../../../..'
 
-# git
 alias g='git'
 alias ga='git add'
 alias gc='git commit'
@@ -59,11 +47,9 @@ alias gco='git checkout'
 alias gloog='git log --oneline --graph'
 alias gt='git tag'
 
-# docker
 alias dk='docker'
 alias dkc='docker-compose'
 
-# safe files operations
 alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
