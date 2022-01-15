@@ -1,1 +1,1 @@
-awk '{print $1" "$2" "$3}' /proc/loadavg
+cut -d ' ' -f 1-3 /proc/loadavg
