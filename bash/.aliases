@@ -12,13 +12,7 @@ alias wide-free='free -whlt --si'
 alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
 alias meminfo='cat /proc/meminfo | sort'
 
-if ls --color -d . &> /dev/null
-then
-    alias ls='ls --color=auto'
-elif ls -G -d . &> /dev/null
-then
-    alias ls='ls -G'        # Compact view, show colors
-fi
+alias ls='ls --color=auto'
 alias ll='ls -alhF'
 alias lac='ls -aCF'
 
@@ -33,19 +27,10 @@ alias ga='git add'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gd='git diff'
-alias gm='git merge'
 alias gst='git status'
-alias gsts='git status -s'
-alias gpl='git pull'
 alias gp='git push'
 alias gpo='git push origin'
-alias gb='git branch'
-alias gba='git branch -a'
-alias gr='git remote'
-alias gcp='git cherry-pick'
-alias gco='git checkout'
 alias gloog='git log --oneline --graph'
-alias gt='git tag'
 
 alias dk='docker'
 alias dkc='docker-compose'
