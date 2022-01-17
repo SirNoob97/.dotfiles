@@ -4,11 +4,6 @@ case $- in
     *) return;;
 esac
 
-#source $HOME/.config/bashconfig/colors.sh
-#source $HOME/.config/bashconfig/git.sh
-#source $HOME/.config/bashconfig/git-prompt.sh
-#source $HOME/.config/bashconfig/theme.sh
-
 EDITOR=vim
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
