@@ -26,6 +26,9 @@ function __set_notification {
       ;;
     notify-send)
       notification_bin="notify-send"
+
+      # this should be critical, but xfce4-notified can't stack notifications
+      # so this is a hacked way to keep a clean screen
       notification_level="normal"
       ;;
     *)
@@ -50,8 +53,11 @@ function __set_variables {
       ;;
   esac
 
-  [ -n "$battery_status" ] && [ "${battery_status,,}" = "$CHARGING" ] && battery_output="${battery_percentage} "
-  [ -n "$battery_status" ] && [ "${battery_status,,}" = "$FULL" ] && battery_output="${battery_percentage} "
+  [ -n "$battery_status" ] && [ "${battery_status,,}" = "$CHARGING" ] \
+    && battery_output="${battery_percentage} "
+
+  [ -n "$battery_status" ] && [ "${battery_status,,}" = "$FULL" ] \
+    && battery_output="${battery_percentage} "
 }
 
 function __output {
