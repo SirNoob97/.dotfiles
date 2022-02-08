@@ -8,23 +8,27 @@ __start() { sleep 1 && "$@" >/dev/null 2>&1 & }
 __running() { pidof "$1" >/dev/null 2>&1 ;}
 
 # Authentication dialog
-
 #if [ -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ]; then
 #    __kill polkit-gnome-authentication-agent-1
 #    __start /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #fi
 
+# Pulseaudio
+if cmd_exist pulseaudio; then
+  [ 0 -gt $(pidof 'pulseaudio') ] && __kill pulseaudio
+  __start pulseaudio
+fi
+
 # Wallpaper manager
 if cmd_exist feh ; then
-    __kill feh
-    __start feh --randomize --bg-fill --no-fehbg /home/martin/Pictures/Wallpaper &
-
+  __kill feh
+  __start feh --randomize --bg-fill --no-fehbg /home/martin/Pictures/Wallpaper &
 fi
 
 # Notification daemon
 if cmd_exist dunst ; then
-    __kill dunst
-    __start dunst
+  __kill dunst
+  __start dunst
 fi
 
 # Network manager
