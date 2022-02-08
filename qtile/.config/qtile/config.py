@@ -84,7 +84,7 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
-    #Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     Key([mod, "control"], "v", lazy.validate_config(), desc="Validate Qtile config"),
     Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc="Toggle floating windows"),
