@@ -10,9 +10,28 @@ battery_percentage=
 battery_icon="?"
 battery_output=
 
+notification_bin=
+notification_level=
+
 function __cmd_exist {
   unalias "$1" >/dev/null 2>&1
   command -v "$1" >/dev/null 2>&1
+}
+
+function __set_notification {
+  case "$1" in
+    dunstify)
+      notification_bin="dunstify"
+      notification_level="CRIT"
+      ;;
+    notify-send)
+      notification_bin="notify-send"
+      notification_level="normal"
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
 }
 
 function __set_variables {
@@ -44,19 +63,28 @@ function __output {
 	    [ $percentage -gt 45 ] && [ $percentage -lt 75 ] && battery_icon=""
 	    [ $percentage -gt 15 ] && [ $percentage -lt 45 ] && battery_icon=""
 	    [ $percentage -lt 12 ] && battery_icon="" \
-		  && dunstify -a "$0" -u "CRIT" -t "10000" "Low Battery" "Battery level below 12%"
+		  && $notification_bin -a "$0" -u $notification_level -t "10000" \
+      "Low Battery" "Battery level below 12%"
 	  fi
   fi
 
   [ -n "$battery_output" ] && echo $battery_output || echo "$battery_percentage $battery_icon"
 }
 
+if __cmd_exist dunstify; then
+  __set_notification dunstify
+fi
+
+if __cmd_exist notify-send; then
+  __set_notification notify-send
+fi
+
 if __cmd_exist acpi; then
   __set_variables acpi
-  __output
 fi
 
 if __cmd_exist upower; then
   __set_variables upower
-  __output
 fi
+
+__output
