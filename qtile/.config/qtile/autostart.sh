@@ -2,22 +2,25 @@
 
 # Sutostart script for Qtile
 
-cmd_exist() { unalias "$1" >/dev/null 2>&1 ; command -v "$1" >/dev/null 2>&1 ;}
-__kill() { kill -9 "$(pidof "$1")" >/dev/null 2>&1 ; }
-__start() { sleep 1 && "$@" >/dev/null 2>&1 & }
-__running() { pidof "$1" >/dev/null 2>&1 ;}
+cmd_exist() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+__kill() {
+  kill -9 "$(pidof "$1")" >/dev/null 2>&1
+}
+
+__start() {
+  sleep 1
+  "$@" >/dev/null 2>&1 &
+  sleep 1
+}
 
 # Authentication dialog
 #if [ -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ]; then
 #    __kill polkit-gnome-authentication-agent-1
 #    __start /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #fi
-
-# Pulseaudio
-if cmd_exist pulseaudio; then
-  [ 0 -gt $(pidof 'pulseaudio') ] && __kill pulseaudio
-  __start pulseaudio
-fi
 
 # Wallpaper manager
 if cmd_exist feh ; then
@@ -36,3 +39,10 @@ fi
     #__kill nm-applet
     #__start nm-applet
 #fi
+
+# Pulseaudio
+if cmd_exist pulseaudio; then
+  [ 0 -gt $(pidof 'pulseaudio') ] && __kill pulseaudio
+  __start pulseaudio
+fi
+
