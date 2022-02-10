@@ -48,6 +48,9 @@ def restart():
 def autostart():
     exec_autostart()
 
+def find_custom_module(module):
+    return os.path.expanduser('~/.config/qtile/modules/' + module)
+
 mod = "mod4"
 terminal = guess_terminal()
 
@@ -144,8 +147,7 @@ extension_defaults = widget_defaults.copy()
 
 def custom_widget(script_name, args):
     def closure():
-        script_path = os.path.expanduser('~/.config/qtile/modules/' + script_name)
-        print(script_path + args)
+        script_path = find_custom_module(script_name)
         output = subprocess.check_output(script_path + args, shell = True).decode()
         return output.rstrip()
     return closure
