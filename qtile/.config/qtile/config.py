@@ -180,9 +180,9 @@ screens = [
                     func=custom_widget('battery.sh', '')
                 ),
                 widget.Sep(),
-                widget.Wlan(
-                    interface='wlp2s0',
-                    format='',
+                widget.GenPollText(
+                    update_interval = 1,
+                    func=custom_widget('network.sh', '')
                 ),
                 widget.Sep(),
                 widget.QuickExit(),
