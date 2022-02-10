@@ -99,9 +99,11 @@ keys = [
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Mute Audio"),
     Key([], "XF86AudioMicMute", lazy.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle"), desc="Mute Audio"),
 
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%"), desc="Decrease Backlight"),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-"), desc="Decrease Backlight"),
-
+    # Centos 8 does not have a pre compiled package of brightnessctl so i decide to user my own script
+    #Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%"), desc="Increase Backlight"),
+    #Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-"), desc="Decrease Backlight"),
+    Key([], "XF86MonBrightnessUp", lazy.spawn(find_custom_module("brightness.sh") + " +10"), desc="Increase Backlight"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn(find_custom_module("brightness.sh") + " -10"), desc="Decrease Backlight"),
 
     Key([mod], "r", lazy.spawn("rofi -show run"), desc="Launch Rofi"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
