@@ -88,7 +88,8 @@ keys = [
 
     Key([mod, "control"], "v", lazy.validate_config(), desc="Validate Qtile config"),
     Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc="Toggle floating windows"),
-    Key([], "Print", lazy.spawn("gnome-screenshot -i"), desc="Launc gnome-screenshot"),
+    #Key([], "Print", lazy.spawn("gnome-screenshot -i"), desc="Launch gnome-screenshot"),
+    Key([], "Print", lazy.spawn("xfce4-screenshooter"), desc="Launch xfce4-screenshooter"),
 
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"), desc="Increase volume"),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"), desc="Decrease volume"),
