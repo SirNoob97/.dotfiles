@@ -164,7 +164,7 @@ screens = [
                 widget.Spacer(),
                 widget.GenPollText(
                     update_interval = 1,
-                    func=custom_widget('volume.bash', ' --icons-volume " , " --icon-muted " " output')
+                    func=custom_widget('volume.bash', ' --icons-volume "奔 ,墳 " --icon-muted "婢 " output')
                 ),
                 widget.Sep(),
                 widget.Backlight(

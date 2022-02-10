@@ -61,11 +61,11 @@ function getNickname() {
     ACTIVESINK=$(pacmd list-sinks | grep 'active port' | awk '{ print $3 }' | tr -d '><')
 
     if [ "$ACTIVESINK" == "analog-output-headphones" ]; then
-      SINK_NICKNAME=""
+      SINK_NICKNAME=""
     fi
 
     if [ "$ACTIVESINK" == "analog-output-speaker" ]; then
-      SINK_NICKNAME="ﰝ"
+      SINK_NICKNAME="蓼"
     fi
 
     #old script
