@@ -107,8 +107,6 @@ keys = [
 
     Key([mod], "r", lazy.spawn("rofi -show run"), desc="Launch Rofi"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
-    Key([mod], "e", lazy.spawn("emacs"), desc="Launch Emacs"),
-    Key([mod], "i", lazy.spawn("/home/martin/.local/opt/idea-IC-212.5080.55/bin/idea.sh"), desc="Launch Intellij Idea"),
 ]
 
 
