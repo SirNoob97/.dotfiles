@@ -55,10 +55,10 @@ function __set_variables {
   esac
 
   [ -n "$battery_status" ] && [ "${battery_status,,}" = "$CHARGING" ] \
-    && battery_output="${battery_percentage} "
+    && battery_output="${battery_percentage} ﮣ"
 
   [ -n "$battery_status" ] && [ "${battery_status,,}" = "$FULL" ] \
-    && battery_output="${battery_percentage} "
+    && battery_output="${battery_percentage} "
 }
 
 function __output {
@@ -66,10 +66,15 @@ function __output {
 	  percentage=${battery_percentage%%%}
 
 	  if [ "$battery_status" = "$DISCHARGING" ]; then
-	    [ $percentage -gt 75 ] && [ $percentage -lt 97 ] && battery_icon=""
-	    [ $percentage -gt 45 ] && [ $percentage -lt 75 ] && battery_icon=""
-	    [ $percentage -gt 15 ] && [ $percentage -lt 45 ] && battery_icon=""
-	    [ $percentage -lt 12 ] && battery_icon="" \
+	    [ $percentage -gt 89 ] && [ $percentage -lt 100 ] && battery_icon=""
+	    [ $percentage -gt 79 ] && [ $percentage -lt 90 ] && battery_icon=""
+	    [ $percentage -gt 69 ] && [ $percentage -lt 80 ] && battery_icon=""
+	    [ $percentage -gt 59 ] && [ $percentage -lt 70 ] && battery_icon=""
+	    [ $percentage -gt 49 ] && [ $percentage -lt 60 ] && battery_icon=""
+	    [ $percentage -gt 39 ] && [ $percentage -lt 50 ] && battery_icon=""
+	    [ $percentage -gt 29 ] && [ $percentage -lt 40 ] && battery_icon=""
+	    [ $percentage -gt 19 ] && [ $percentage -lt 30 ] && battery_icon=""
+	    [ $percentage -lt 12 ] && battery_icon="" \
 		  && $notification_bin -a "$0" -u $notification_level -t "10000" \
       "Low Battery" "Battery level below 12%"
 	  fi
