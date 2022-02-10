@@ -44,8 +44,9 @@ function __set_variables {
       battery_percentage=$(acpi | awk '{print $4}' | tr -d ',')
       ;;
     upower)
+      awk_pattern='{if($2 ~ /fully-charged/) print "full"; else print $2}'
       battery_device=$(upower -e | grep BAT0)
-      battery_status=$(upower -i "$battery_device" | grep 'state' | awk '{print $2}')
+      battery_status=$(upower -i "$battery_device" | grep 'state' | awk "$awk_pattern")
       battery_percentage=$(upower -i "$battery_device" | grep 'percentage' | awk '{print $2}')
       ;;
     *)
