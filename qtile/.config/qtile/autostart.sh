@@ -13,7 +13,6 @@ __kill() {
 __start() {
   sleep 1
   "$@" >/dev/null 2>&1 &
-  sleep 1
 }
 
 # Authentication dialog
@@ -43,6 +42,7 @@ fi
 # Pulseaudio
 if cmd_exist pulseaudio; then
   [ 0 -gt $(pidof 'pulseaudio') ] && __kill pulseaudio
-  __start pulseaudio
+  __start pulseaudio -D &
 fi
 
+exit 0
