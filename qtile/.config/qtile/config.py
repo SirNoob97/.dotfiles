@@ -153,7 +153,7 @@ screens = [
                 ),
                 widget.Sep(),
                 widget.GenPollText(
-                    update_interval = 1,
+                    update_interval = 20,
                     func=custom_widget('network.sh', '')
                 ),
                 widget.Sep(),
