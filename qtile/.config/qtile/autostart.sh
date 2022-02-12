@@ -39,10 +39,4 @@ fi
     #__start nm-applet
 #fi
 
-# Pulseaudio
-if cmd_exist pulseaudio; then
-  [ 0 -gt $(pidof 'pulseaudio') ] && __kill pulseaudio
-  __start pulseaudio -D &
-fi
-
 exit 0
