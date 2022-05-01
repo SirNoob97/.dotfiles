@@ -4,6 +4,7 @@ alias exbash='exec bash'
 alias sbrc='source ~/.bashrc'
 alias vbrc='vim ~/.bashrc'
 
+alias touch_screen='xinput enable "G2Touch Multi-Touch by G2TSP"'
 alias clipboard='xclip -selection clipboard'
 
 alias myps='ps f -u $(whoami)'
