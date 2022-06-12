@@ -103,6 +103,10 @@ nnoremap <silent><leader><left> :vertical resize +5<CR>
 
 " Plugins
 call plug#begin('~/.vim/plugged')
+  Plug 'mattn/emmet-vim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'preservim/nerdcommenter'
+
   Plug 'vim-airline/vim-airline'
   Plug 'tpope/vim-fugitive'
 
