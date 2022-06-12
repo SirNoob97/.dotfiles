@@ -124,6 +124,7 @@ let g:gruvbox_contrast_light = 'medium'
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_extensions = ['branch', 'coc']
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
