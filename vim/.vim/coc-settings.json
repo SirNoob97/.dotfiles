@@ -1,5 +1,6 @@
 {
   "suggest.autoTrigger": "trigger",
   "suggest.maxCompleteItemCount": 20,
-  "prettier.tabWidth": 2
+  "prettier.tabWidth": 2,
+  "snippets.ultisnips.enable": false
 }
