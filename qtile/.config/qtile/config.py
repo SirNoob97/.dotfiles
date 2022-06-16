@@ -84,7 +84,8 @@ keys = [
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl --quiet set +10%"), desc="Increase Backlight"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl --quiet set 10%-"), desc="Decrease Backlight"),
 
-    Key([mod], "r", lazy.spawn("rofi -show run"), desc="Launch Rofi"),
+    #  Key([mod], "r", lazy.spawn("rofi -show run"), desc="Launch Rofi"),
+    Key([mod], "v", lazy.spawn("code"), desc="Launch VS Code"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
 ]
 
@@ -139,23 +140,23 @@ screens = [
                     func=custom_widget('volume.bash', ' --icons-volume "奔 ,墳 " --icon-muted "婢 " output')
                 ),
                 widget.Sep(),
-                widget.Backlight(
-                    backlight_name=os.listdir('/sys/class/backlight')[0],
-                    step=1,
-                    update_interval=None,
-                    format="",
-                    change_command=None,
-                ),
-                widget.Sep(),
+                #  widget.Backlight(
+                #      backlight_name=os.listdir('/sys/class/backlight')[0],
+                #      step=1,
+                #      update_interval=None,
+                #      format="",
+                #      change_command=None,
+                #  ),
+                #  widget.Sep(),
                 widget.GenPollText(
                     update_interval=1,
                     func=custom_widget('battery.sh', '')
                 ),
-                widget.Sep(),
-                widget.GenPollText(
-                    update_interval = 20,
-                    func=custom_widget('network.sh', '')
-                ),
+                #  widget.Sep(),
+                #  widget.GenPollText(
+                #      update_interval = 20,
+                #      func=custom_widget('network.sh', '')
+                #  ),
                 widget.Sep(),
                 widget.QuickExit(),
             ],
