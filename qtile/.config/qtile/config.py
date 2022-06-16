@@ -158,7 +158,10 @@ screens = [
                 #      func=custom_widget('network.sh', '')
                 #  ),
                 widget.Sep(),
-                widget.QuickExit(),
+                widget.QuickExit(
+                    default_text = "  ",
+                    countdown_format = "[{}]",
+                    ),
             ],
             24,
         ),
