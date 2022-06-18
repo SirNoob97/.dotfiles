@@ -1,8 +1,12 @@
+local util = require("formatter.util")
+
 local google_java_fmt = {
   function()
     return {
       exe = "google-java-format",
-      args = {vim.api.nvim_buf_get_name(0)},
+      args = {
+        util.escape_path(util.get_current_buffer_file_path()),
+      },
       stdin = true
     }
   end
@@ -14,7 +18,7 @@ local prettier = {
       exe = "prettier",
       args = {
         "--stdin-filepath",
-        vim.api.nvim_buf_get_name(0),
+        util.escape_path(util.get_current_buffer_file_path()),
         "--single-quote"
       },
       stdin = true
@@ -45,9 +49,4 @@ require("formatter").setup(
   }
 )
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>f",
-  "<CMD>Format<CR>",
-  {noremap = true, silent = true}
-)
+vim.keymap.set('n', '<leader>f', '<CMD>Format<CR>', {noremap = true, silent = true})
