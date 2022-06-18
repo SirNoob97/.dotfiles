@@ -6,7 +6,7 @@ local function on_attach(client, bufnr)
   local opts = {noremap = true, silent = true}
   local keymap = vim.keymap
   
-  keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+  keymap.set('n', '<leader>a', vim.diagnostic.open_float, opts)
   keymap.set('n', '[[', vim.diagnostic.goto_prev, opts)
   keymap.set('n', ']]', vim.diagnostic.goto_next, opts)
   keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
