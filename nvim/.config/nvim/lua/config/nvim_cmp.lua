@@ -11,9 +11,9 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-local luasnip = require 'luasnip'
+local luasnip = require('luasnip')
 
-local cmp = require 'cmp'
+local cmp = require('cmp')
 cmp.setup {
   completion = {
     autocomplete = false,
