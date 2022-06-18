@@ -18,8 +18,8 @@ return packer.startup(
     use 'L3MON4D3/LuaSnip'
     use "rafamadriz/friendly-snippets"
 
-    use "mfussenegger/nvim-jdtls"
     use "neovim/nvim-lspconfig"
---    use "mhartington/formatter.nvim"
+    use "mhartington/formatter.nvim"
+    use "mfussenegger/nvim-jdtls"
   end
 )

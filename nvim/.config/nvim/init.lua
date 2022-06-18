@@ -23,4 +23,4 @@ require("lss.tsserver")
 --)
 --
 require("lsp_config")
---require("config.formatter_conf")
+require("config.formatter_conf")
