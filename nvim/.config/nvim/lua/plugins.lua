@@ -21,5 +21,6 @@ return packer.startup(
     use "neovim/nvim-lspconfig"
     use "mhartington/formatter.nvim"
     use "mfussenegger/nvim-jdtls"
+    use 'mfussenegger/nvim-dap'
   end
 )
