@@ -24,7 +24,7 @@ __start() {
 # Wallpaper manager
 if cmd_exist feh ; then
   __kill feh
-  __start feh --randomize --bg-fill --no-fehbg /home/martin/Pictures/wallpaper &
+  __start feh --randomize --bg-fill --no-fehbg /home/martin/Pictures/wallpapers
 fi
 
 # Notification daemon
