@@ -87,6 +87,7 @@ keys = [
     #  Key([mod], "r", lazy.spawn("rofi -show run"), desc="Launch Rofi"),
     Key([mod], "v", lazy.spawn("code"), desc="Launch VS Code"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
+    Key([mod], "e", lazy.spawn("emacs"), desc="Launch Emacs"),
 ]
 
 
