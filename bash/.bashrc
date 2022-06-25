@@ -4,7 +4,6 @@ case $- in
     *) return;;
 esac
 
-EDITOR=vim
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
