@@ -39,4 +39,9 @@ fi
     #__start nm-applet
 #fi
 
+if cmd_exist emacs ; then
+  __kill emacs
+  emacs --daemon &> ~/.emacs.out
+fi
+
 exit 0
