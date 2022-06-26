@@ -91,7 +91,22 @@ keys = [
 ]
 
 
-groups = [Group(i) for i in "123456789"]
+groups = [
+    Group("1", matches=[
+        Match(wm_class="emacs"),
+        Match(wm_class="Emacs")
+    ], layout="monadtall"),
+    Group("2", matches=[
+        Match(wm_class="Navigator"),
+        Match(wm_class="firefox"),
+        Match(wm_class="Google_chrome"),
+        Match(wm_class="google_chrome")
+    ], layout="stack"),
+    Group("3", matches=[Match(wm_class="Alacritty")], layout="columns"),
+    Group("4", layout="monadtall"),
+    Group("5", layout="monadtall"),
+    Group("6", layout="monadtall"),
+]
 for i in groups:
     keys.extend([
         Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Switch to group {}".format(i.name)),
