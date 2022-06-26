@@ -117,21 +117,27 @@ for i in groups:
         #     desc="move focused window to group {}".format(i.name)),
     ])
 
+layout_theme = {
+    "border_normal": "#222222",
+    "border_focus":"#ff4400",
+    "border_width": 3,
+    "margin": 5,
+}
+
 layouts = [
-    layout.Max(),
-     layout.Tile(
-         border_normal="#222222",
-         border_focus="#ff4400",
-         border_width=3,
-         margin=5,
-         add_after_last=True
-     ),
-     layout.VerticalTile(
-         border_normal="#222222",
-         border_focus="#ff4400",
-         border_width=3,
-         margin=5,
-     ),
+    layout.Stack(**layout_theme, num_stacks=1),
+    layout.MonadTall(
+        **layout_theme,
+        single_border_width=3,
+        single_margin=5
+    ),
+    layout.Columns(
+        **layout_theme,
+        border_normal_stack="#222222",
+        border_focus_stack="#ff4400",
+        border_on_single=3,
+        margin_on_single=5,
+    ),
 ]
 
 widget_defaults = dict(
