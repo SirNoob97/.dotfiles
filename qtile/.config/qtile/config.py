@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import os
-import sys
+# import sys
 import subprocess
 
 from libqtile import bar, layout, widget
@@ -9,7 +9,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile import hook
 from libqtile.utils import guess_terminal
-from libqtile.widget.battery import Battery, BatteryState
+# from libqtile.widget.battery import Battery, BatteryState
 
 def exec_autostart():
     script_path = os.path.expanduser('~/.config/qtile/autostart.sh')
