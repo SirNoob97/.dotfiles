@@ -14,7 +14,7 @@ alias drop-caches='sudo sync && sudo sysctl -w vm.drop_caches=3'
 alias meminfo='cat /proc/meminfo | sort'
 
 alias ls='ls --color=auto'
-alias ll='ls -alhF'
+alias ll='ls -alhF --group-directories-first'
 alias lac='ls -aCF'
 
 alias grep='grep --color=auto'
