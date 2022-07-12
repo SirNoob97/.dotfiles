@@ -49,7 +49,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 
-source $HOME/.env
 source $HOME/.aliases
 source $HOME/.config/bashconfig/completion.sh
 source $HOME/.config/bashconfig/alias-completion.sh

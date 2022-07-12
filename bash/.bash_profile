@@ -1,3 +1,5 @@
+# .bash_profile
+
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 
@@ -15,3 +17,8 @@ export ACCENTED_VOWELS="á, é, í, ó, ú"
 
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -c -a 'emacs'"
+
+# Get the aliases and functions
+#if [ -f ~/.bashrc ]; then
+#	. ~/.bashrc
+#fi
