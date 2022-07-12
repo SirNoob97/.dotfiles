@@ -155,8 +155,8 @@ groups = [
           matches=[
               Match(wm_class="Navigator"),
               Match(wm_class="firefox"),
-              Match(wm_class="Google_chrome"),
-              Match(wm_class="google_chrome")
+              Match(wm_class="google-chrome"),
+              Match(wm_class="Google-chrome"),
           ],
           layout="stack"),
     Group("3", matches=[Match(wm_class="Alacritty")], layout="columns"),
