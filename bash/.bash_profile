@@ -20,7 +20,6 @@ export VISUAL="emacsclient -c -a 'emacs'"
 
 export NVM_DIR="$HOME/.nvm"
 export SDKMAN_DIR="$HOME/.sdkman"
-export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
 # Get the aliases and functions
 #if [ -f ~/.bashrc ]; then
