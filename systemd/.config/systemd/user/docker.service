@@ -1,0 +1,23 @@
+[Unit]
+Description=Docker Application Container Engine (Rootless)
+Documentation=https://docs.docker.com/go/rootless/
+
+[Service]
+Environment=PATH=/usr/bin:/sbin:/usr/sbin:/home/martin/.sdkman/candidates/maven/current/bin:/home/martin/.sdkman/candidates/java/current/bin:/home/martin/.sdkman/candidates/gradle/current/bin:/home/martin/.nvm/versions/node/v16.15.0/bin:/usr/share/Modules/bin:/opt/isc/isc-bind/root/usr/bin:/opt/isc/isc-bind/root/usr/sbin:/home/martin/.cargo/bin/bin/bin:/home/martin/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/usr/local/go/bin:/home/martin/.local/bin:/home/martin/.cargo/bin/bin
+ExecStart=/usr/bin/dockerd-rootless.sh 
+ExecReload=/bin/kill -s HUP $MAINPID
+TimeoutSec=0
+RestartSec=2
+Restart=always
+StartLimitBurst=3
+StartLimitInterval=60s
+LimitNOFILE=infinity
+LimitNPROC=infinity
+LimitCORE=infinity
+TasksMax=infinity
+Delegate=yes
+Type=simple
+KillMode=mixed
+
+[Install]
+WantedBy=default.target
