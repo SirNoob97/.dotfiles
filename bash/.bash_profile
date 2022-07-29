@@ -21,6 +21,8 @@ export VISUAL="emacsclient -c -a 'emacs'"
 export NVM_DIR="$HOME/.nvm"
 export SDKMAN_DIR="$HOME/.sdkman"
 
+. "/home/martin/.cargo/bin/bin/env"
+
 # Get the aliases and functions
 #if [ -f ~/.bashrc ]; then
 #	. ~/.bashrc
