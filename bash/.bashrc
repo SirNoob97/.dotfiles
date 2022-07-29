@@ -42,10 +42,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
-
 source $HOME/.aliases
 source $HOME/.config/bashconfig/completion.sh
 source $HOME/.config/bashconfig/alias-completion.sh
