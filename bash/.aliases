@@ -1,9 +1,5 @@
 #!/bin/bash
 
-alias exbash='exec bash'
-alias sbrc='source ~/.bashrc'
-alias vbrc='vim ~/.bashrc'
-
 alias touch_screen='xinput enable "G2Touch Multi-Touch by G2TSP"'
 alias clipboard='xclip -selection clipboard'
 
@@ -15,7 +11,6 @@ alias meminfo='cat /proc/meminfo | sort'
 
 alias ls='ls --color=auto'
 alias ll='ls -alhF --group-directories-first'
-alias lac='ls -aCF'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -25,7 +20,6 @@ alias ..='cd ..'
 
 alias g='git'
 alias ga='git add'
-alias gc='git commit'
 alias gcm='git commit -m'
 alias gd='git diff'
 alias gst='git status'
@@ -34,7 +28,6 @@ alias gpo='git push origin'
 alias gloog='git log --oneline --graph'
 
 alias dk='docker'
-alias dkc='docker-compose'
 
 alias rm='rm -I'
 alias cp='cp -i'
