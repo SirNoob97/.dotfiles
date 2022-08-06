@@ -44,7 +44,9 @@
   "gradle.javaDebug.cleanOutput": true,
   "java.autobuild.enabled": false,
   "java.jdt.ls.java.home": "/home/martin/.sdkman/candidates/java/current",
+  // this are the default flags provided by vscode completion
   "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/martin/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar\"",
+  // this are the suggested flags in the eclipse jd tls github repository
   //"java.jdt.ls.vmargs": "-XX:+UseG1GC -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -XX:+UseStringDeduplication -Xmx1G -Xms100m -Dlog.protocol=true -Dlog.level=ALL -javaagent:\"/home/martin/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar\"",
   "[java]": {
     "editor.defaultFormatter": "redhat.java"
