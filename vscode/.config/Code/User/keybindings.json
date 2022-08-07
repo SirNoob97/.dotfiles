@@ -283,5 +283,15 @@
   {
     "key": "ctrl+g t",
     "command": "editor.action.goToTypeDefinition"
+  },
+  {
+    "key": "alt+;",
+    "command": "editor.action.startFindReplaceAction",
+    "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "-editor.action.startFindReplaceAction",
+    "when": "editorFocus || editorIsOpen"
   }
 ]
