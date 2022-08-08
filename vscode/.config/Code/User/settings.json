@@ -107,5 +107,6 @@
   "material-icon-theme.folders.color": "#42a5f5",
   "material-icon-theme.saturation": 1,
   "material-icon-theme.hidesExplorerArrows": true,
-  "material-icon-theme.activeIconPack": "none"
+  "material-icon-theme.activeIconPack": "none",
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never"
 }
