@@ -313,5 +313,13 @@
     "key": "ctrl+shift+d",
     "command": "-workbench.view.debug",
     "when": "viewContainer.workbench.view.debug.enabled"
+  },
+  {
+    "key": "ctrl+c f",
+    "command": "explorer.newFile"
+  },
+  {
+    "key": "ctrl+c d",
+    "command": "explorer.newFolder"
   }
 ]
