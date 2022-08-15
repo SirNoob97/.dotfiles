@@ -36,11 +36,5 @@ esac
 
 source $HOME/.aliases
 source $HOME/.config/bashconfig/completion.sh
-source $HOME/.config/bashconfig/alias-completion.sh
-
-#THIS MUST BE AT THE END OF THE FILE FOR NVM TO WORK!!!
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+source $HOME/.config/bashconfig/alias_completion.sh
+source $HOME/.config/bashconfig/version_managers.sh

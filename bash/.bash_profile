@@ -23,13 +23,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 . "/home/martin/.cargo/bin/bin/env"
 
-# Get the aliases and functions
-#if [ -f ~/.bashrc ]; then
-#	. ~/.bashrc
-#fi
-
-# These env variables are needed for non interactive shells
-[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && . "$HOME/.sdkman/bin/sdkman-init.sh"
-
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+source $HOME/.config/bashconfig/version_managers.sh
