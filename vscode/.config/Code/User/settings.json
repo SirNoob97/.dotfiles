@@ -55,7 +55,6 @@
   "java.debug.settings.showHex": false,
   "java.debug.settings.showQualifiedNames": false,
   "java.configuration.workspaceCacheLimit": 10,
-  "java.import.gradle.wrapper.enabled": false,
   "java.codeGeneration.insertionLocation": "lastMember",
   "java.inlayHints.parameterNames.enabled": "none",
   "vim.argumentObjectClosingDelimiters": [")", "]", "}"],
@@ -108,5 +107,6 @@
   "material-icon-theme.saturation": 1,
   "material-icon-theme.hidesExplorerArrows": true,
   "material-icon-theme.activeIconPack": "none",
-  "terminal.integrated.shellIntegration.decorationsEnabled": "never"
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+  "gradle.reuseTerminals": "all"
 }
