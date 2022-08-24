@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char **argv) {
-  char *fileName = "/proc/loadavg";
-  FILE *file = fopen(fileName, "r");
+#define LOADAVG_FILE "/proc/loadavg"
 
-  if (file == NULL) {
-    printf("Cannot open file: %s!!!\n", fileName);
+int main(int argc, char **argv) {
+  FILE *file;
+
+  if ((file = fopen(LOADAVG_FILE, "r")) == NULL) {
+    printf("Cannot open file: %s!!!\n", LOADAVG_FILE);
     exit(1);
   }
 
@@ -17,9 +18,8 @@ int main(int argc, char **argv) {
   int fields = 3;
 
   while (c != EOF && fields > 0) {
-    if (c == delim) {
+    if (c == delim)
       fields--;
-    }
 
     strncat(output, &c, 1);
     c = fgetc(file);
