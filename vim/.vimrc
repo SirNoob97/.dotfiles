@@ -103,9 +103,6 @@ nnoremap <silent><leader><left> :vertical resize +5<CR>
 
 " Plugins
 call plug#begin('~/.vim/plugged')
-  Plug 'vim-airline/vim-airline'
-  Plug 'tpope/vim-fugitive'
-
   Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
 
   Plug 'gruvbox-community/gruvbox'
@@ -116,11 +113,6 @@ colorscheme gruvbox
 set background=dark
 let g:gruvbox_termcolors = 256
 let g:gruvbox_contrast_light = 'medium'
-
-" Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_extensions = ['branch', 'coc']
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
