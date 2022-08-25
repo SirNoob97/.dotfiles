@@ -11,22 +11,16 @@ int main(int argc, char **argv) {
     printf("Cannot open file: %s!!!\n", LOADAVG_FILE);
     exit(1);
   }
+  double av1, av5, av15;
+  int rc = fscanf(file, "%lf %lf %lf", &av1, &av5, &av15);
+  fclose(file);
 
-  char c = fgetc(file);
-  char output[2] = "";
-  char delim = ' ';
-  int fields = 3;
-
-  while (c != EOF && fields > 0) {
-    if (c == delim)
-      fields--;
-
-    strncat(output, &c, 1);
-    c = fgetc(file);
+  if (rc < 2) {
+    printf("Cannot read from file: %s!!!\n", LOADAVG_FILE);
+    exit(1);
   }
 
-  printf("%s\n", output);
+  printf("%.2f %.2f %.2f", av1, av5, av15);
 
-  fclose(file);
   return 0;
 }
