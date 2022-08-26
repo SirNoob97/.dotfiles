@@ -12,7 +12,7 @@ void get_uptime(double *restrict uptime_secs) {
   FILE *fp;
   if ((fp = fopen(UPTIME_FILE, "r")) == NULL) {
     printf("Cannot open file: %s!!!\n", UPTIME_FILE);
-    exit(1);
+    exit(EXIT_FAILURE);
   }
 
   double up = 0, idle = 0;
@@ -21,7 +21,7 @@ void get_uptime(double *restrict uptime_secs) {
 
   if (rc < 2) {
     printf("Cannot read from file: %s!!!\n", UPTIME_FILE);
-    exit(1);
+    exit(EXIT_FAILURE);
   }
 
   if (uptime_secs)
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
   time_t realseconds;
   if (time(&realseconds) < 0) {
     printf("'time' function retrieve: %ld!!!\n", realseconds);
-    exit(1);
+    exit(EXIT_FAILURE);
   }
 
   double uptime_secs;
