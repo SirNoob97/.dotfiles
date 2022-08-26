@@ -148,10 +148,12 @@ keys = [
 
 groups = [
     Group("1",
-          matches=[Match(wm_class="emacs"),
-                   Match(wm_class="Emacs"),
-                   Match(wm_class="code"),
-                   Match(wm_class="Code")],
+          matches=[
+              Match(wm_class="emacs"),
+              Match(wm_class="Emacs"),
+              Match(wm_class="code"),
+              Match(wm_class="Code")
+          ],
           layout="monadtall"),
     Group("2",
           matches=[
