@@ -218,7 +218,9 @@ screens = [
                 widget.Sep(),
                 widget.GroupBox(),
                 widget.Spacer(),
-                widget.Clock(format='%Y-%m-%d %H:%M'),
+                widget.GenPollText(update_interval=1,
+                                   func=custom_widget('c-version/time', '')),
+                #widget.Clock(format='%Y-%m-%d %H:%M'),
                 widget.Spacer(),
                 widget.GenPollText(
                     update_interval=1,
