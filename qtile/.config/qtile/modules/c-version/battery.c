@@ -1,4 +1,3 @@
-#include <bits/types/__locale_t.h>
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
