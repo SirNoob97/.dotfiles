@@ -1,5 +1,6 @@
 #include <ctype.h>
 #include <dirent.h>
+#include <libnotify/notification.h>
 #include <libnotify/notify.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,11 +11,12 @@
 #define CHARGING_STATE "charging"
 #define DISCHARGING_STATE "discharging"
 #define FULL_STATE "full"
-#define UNKNOWN_STATE "unknown"
 
 static __thread char upbuf[256];
 
 enum battery_percentage {
+  TWELVE_PERCENT = 12,
+  TWENTY_PERCENT = 20,
   THIRTY_PERCENT = 30,
   FOURTY_PERCENT = 40,
   FIFTY_PERCENT = 50,
@@ -68,26 +70,42 @@ struct battery fetch_info() {
   return info;
 }
 
-void set_icon(struct battery *info) {
-  if (strcmp(CHARGING_STATE, info->status) == 0) {
-    strcpy(info->icon, "ﮣ");
-    return;
-  }
+void send_notification(int current_capacity) {
+  notify_init(__FILE__);
+  notify_set_app_name(__FILE__);
 
-  if (strcmp(UNKNOWN_STATE, info->status) == 0) {
-    strcpy(info->icon, "?");
-    return;
-  }
-
-  if (strcmp(FULL_STATE, info->status) == 0) {
-    strcpy(info->icon, "");
-    return;
-  }
-
-
+  NotifyNotification *notify;
+  notify = notify_notification_new("Low Battery", "Battery level below 12%", NULL);
+  notify_notification_set_timeout(notify, 10000);
+  notify_notification_set_category(notify, "Power Monitoring");
+  notify_notification_set_urgency(notify, NOTIFY_URGENCY_NORMAL);
+  notify_notification_show(notify, NULL);
 }
 
-int main() {
+char *set_icon(struct battery *info) {
+  if (strcmp(CHARGING_STATE, info->status) == 0)
+    return "ﮣ";
+
+  if (strcmp(FULL_STATE, info->status) == 0)
+    return "";
+
+  if (ONE_HUNDRED_PERCENT > info->capacity && (NINETY_PERCENT - 1) < info->capacity) return "";
+  if (NINETY_PERCENT > info->capacity && (EIGHTY_PERCENT - 1) < info->capacity) return "";
+  if (EIGHTY_PERCENT > info->capacity && (SEVENTY_PERCENT - 1) < info->capacity) return "";
+  if (SEVENTY_PERCENT > info->capacity && (SIXTY_PERCENT - 1) < info->capacity) return "";
+  if (SIXTY_PERCENT > info->capacity && (FIFTY_PERCENT - 1) < info->capacity) return "";
+  if (FOURTY_PERCENT > info->capacity && (THIRTY_PERCENT - 1) < info->capacity) return "";
+  if (THIRTY_PERCENT > info->capacity && (TWENTY_PERCENT - 1) < info->capacity) return "";
+
+  if (TWENTY_PERCENT > info->capacity) {
+    send_notification(info->capacity);
+    return "";
+  }
+
+  return "?";
+}
+
+int main(int argc, char *argv[]) {
   char notification[255];
   struct battery info = fetch_info();
 
@@ -95,14 +113,11 @@ int main() {
   notification[0] = '\0';
   info.icon[0] = '\0';
 
-  set_icon(&info);
+  strcpy(info.icon, set_icon(&info));
+
   sprintf(upbuf, "%d %s %s", info.capacity, info.status, info.icon);
   printf("%s", upbuf);
 
-  NotifyNotification *notify;
-  notify = notify_notification_new("Battery status", upbuf, NULL);
-  notify_init("battery");
-  notify_notification_show(notify, NULL);
 
   return 0;
 }
