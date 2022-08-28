@@ -237,7 +237,10 @@ screens = [
                 #  ),
                 #  widget.Sep(),
                 widget.GenPollText(update_interval=1,
-                                   func=custom_widget('battery.sh', '')),
+                                   func=custom_widget('c-version/battery',
+                                                      '')),
+                # widget.GenPollText(update_interval=1,
+                # func=custom_widget('battery.sh', '')),
                 #  widget.Sep(),
                 #  widget.GenPollText(
                 #      update_interval = 20,
