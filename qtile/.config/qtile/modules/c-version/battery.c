@@ -69,11 +69,22 @@ struct battery fetch_info() {
 }
 
 void set_icon(struct battery *info) {
-  if(strcmp(CHARGING_STATE, info->status))
+  if (strcmp(CHARGING_STATE, info->status) == 0) {
     strcpy(info->icon, "ﮣ");
+    return;
+  }
 
-  if(strcmp(FULL_STATE, info->status))
+  if (strcmp(UNKNOWN_STATE, info->status) == 0) {
+    strcpy(info->icon, "?");
+    return;
+  }
+
+  if (strcmp(FULL_STATE, info->status) == 0) {
     strcpy(info->icon, "");
+    return;
+  }
+
+
 }
 
 int main() {
