@@ -106,11 +106,9 @@ char *set_icon(struct battery *info) {
 }
 
 int main(int argc, char *argv[]) {
-  char notification[255];
   struct battery info = fetch_info();
 
   upbuf[0] = '\0';
-  notification[0] = '\0';
   info.icon[0] = '\0';
 
   strcpy(info.icon, set_icon(&info));
