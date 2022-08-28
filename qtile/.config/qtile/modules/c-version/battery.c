@@ -113,7 +113,7 @@ int main(int argc, char *argv[]) {
 
   strcpy(info.icon, set_icon(&info));
 
-  sprintf(upbuf, "%d %s %s", info.capacity, info.status, info.icon);
+  sprintf(upbuf, "%d%% %s", info.capacity, info.icon);
   printf("%s", upbuf);
 
 
