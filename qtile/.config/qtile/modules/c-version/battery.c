@@ -12,8 +12,6 @@
 #define DISCHARGING_STATE "discharging"
 #define FULL_STATE "full"
 
-static __thread char upbuf[256];
-
 enum battery_percentage {
   TWELVE_PERCENT = 12,
   TWENTY_PERCENT = 20,
@@ -109,14 +107,11 @@ char *set_icon(struct battery *info) {
 int main(int argc, char *argv[]) {
   struct battery info = fetch_info();
 
-  upbuf[0] = '\0';
   info.icon[0] = '\0';
 
   strcpy(info.icon, set_icon(&info));
 
-  sprintf(upbuf, "%d%% %s", info.capacity, info.icon);
-  printf("%s", upbuf);
-
+  printf("%d%% %s", info.capacity, info.icon);
 
   return 0;
 }
