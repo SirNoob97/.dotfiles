@@ -88,8 +88,10 @@ int main() {
   sprintf(upbuf, "%d %s %s", info.capacity, info.status, info.icon);
   printf("%s", upbuf);
 
-  sprintf(notification, "notify-send -u normal -t 10000 'battery' 'battery level: %s'", upbuf);
-  system(notification);
+  NotifyNotification *notify;
+  notify = notify_notification_new("Battery status", upbuf, NULL);
+  notify_init("battery");
+  notify_notification_show(notify, NULL);
 
   return 0;
 }
