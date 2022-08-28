@@ -1,12 +1,29 @@
+#include <ctype.h>
 #include <dirent.h>
+#include <libnotify/notify.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #define CAPACITY_FILE "/sys/class/power_supply/BAT0/capacity"
 #define STATUS_FILE "/sys/class/power_supply/BAT0/status"
+#define CHARGING_STATE "charging"
+#define DISCHARGING_STATE "discharging"
+#define FULL_STATE "full"
+#define UNKNOWN_STATE "unknown"
 
 static __thread char upbuf[256];
+
+enum battery_percentage {
+  THIRTY_PERCENT = 30,
+  FOURTY_PERCENT = 40,
+  FIFTY_PERCENT = 50,
+  SIXTY_PERCENT = 60,
+  SEVENTY_PERCENT = 70,
+  EIGHTY_PERCENT = 80,
+  NINETY_PERCENT = 90,
+  ONE_HUNDRED_PERCENT = 100,
+};
 
 struct battery {
   int capacity;
