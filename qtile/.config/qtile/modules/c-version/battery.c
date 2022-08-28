@@ -94,6 +94,7 @@ char *set_icon(struct battery *info) {
   if (EIGHTY_PERCENT > info->capacity && (SEVENTY_PERCENT - 1) < info->capacity) return "";
   if (SEVENTY_PERCENT > info->capacity && (SIXTY_PERCENT - 1) < info->capacity) return "";
   if (SIXTY_PERCENT > info->capacity && (FIFTY_PERCENT - 1) < info->capacity) return "";
+  if (FIFTY_PERCENT > info->capacity && (FOURTY_PERCENT - 1) < info->capacity) return "";
   if (FOURTY_PERCENT > info->capacity && (THIRTY_PERCENT - 1) < info->capacity) return "";
   if (THIRTY_PERCENT > info->capacity && (TWENTY_PERCENT - 1) < info->capacity) return "";
 
