@@ -61,6 +61,9 @@ struct battery fetch_info() {
     exit(EXIT_FAILURE);
   }
 
+  if (info.status[0] >= 'A' && info.status[0] <= 'Z')
+    info.status[0] = tolower(info.status[0]);
+
   return info;
 }
 
