@@ -28,6 +28,7 @@ enum battery_percentage {
 struct battery {
   int capacity;
   char status[32];
+  char icon[2];
 };
 
 struct battery fetch_info() {
@@ -67,13 +68,24 @@ struct battery fetch_info() {
   return info;
 }
 
+void set_icon(struct battery *info) {
+  if(strcmp(CHARGING_STATE, info->status))
+    strcpy(info->icon, "ﮣ");
+
+  if(strcmp(FULL_STATE, info->status))
+    strcpy(info->icon, "");
+}
+
 int main() {
-  upbuf[0] = '\0';
   char notification[255];
-  notification[0] = '\0';
   struct battery info = fetch_info();
 
-  sprintf(upbuf, "%d %s", info.capacity, info.status);
+  upbuf[0] = '\0';
+  notification[0] = '\0';
+  info.icon[0] = '\0';
+
+  set_icon(&info);
+  sprintf(upbuf, "%d %s %s", info.capacity, info.status, info.icon);
   printf("%s", upbuf);
 
   sprintf(notification, "notify-send -u normal -t 10000 'battery' 'battery level: %s'", upbuf);
