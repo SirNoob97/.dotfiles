@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/env bash
+
+set -u -o pipefail
 
 connection=$(nmcli --terse --fields='TYPE,STATE,CONNECTION' device status \
   | grep ':connected:')

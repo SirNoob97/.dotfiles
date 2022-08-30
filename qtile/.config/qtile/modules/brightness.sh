@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/env bash
+
+set -u -o pipefail
 
 # the 'brightness' file belongs to root, so keep that in mind
 

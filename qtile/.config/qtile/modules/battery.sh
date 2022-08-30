@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/env bash
+
+set -u -o pipefail
 
 CHARGING="charging"
 FULL="full"
