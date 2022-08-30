@@ -1,10 +1,12 @@
 /* Inspired by
  * https://gist.github.com/edufelipe/6108057
-*/
+ */
 
 #include <ifaddrs.h>
 #include <linux/wireless.h>
+#include <netdb.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
@@ -18,8 +20,8 @@ int check_wireless(const char *ifname, char *protocol) {
   strncpy(pwrq.ifr_name, ifname, IFNAMSIZ);
 
   if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
-    perror("socket");
-    return 0;
+    printf("Cant create a socket for the domain: %d", AF_INET);
+    exit(EXIT_FAILURE);
   }
 
   if (ioctl(sock, SIOCGIWNAME, &pwrq) != -1) {
@@ -34,28 +36,27 @@ int check_wireless(const char *ifname, char *protocol) {
 }
 
 int main(int argc, char *argv[]) {
-  struct ifaddrs *ifaddr, *ifa;
+  struct ifaddrs *ifaddrs, *ifadd;
 
-  if (getifaddrs(&ifaddr) == -1) {
-    perror("getifaddrs");
-    return -1;
+  if (getifaddrs(&ifaddrs) == -1) {
+    printf("Cant get interface addresses list");
+    exit(EXIT_FAILURE);
   }
 
-  /* Walk through linked list, maintaining head pointer so we
-     can free list later */
-  for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next) {
+  for (ifadd = ifaddrs; ifadd != NULL; ifadd = ifadd->ifa_next) {
     char protocol[IFNAMSIZ] = {0};
+    int family = ifadd->ifa_addr->sa_family;
 
-    if (ifa->ifa_addr == NULL || ifa->ifa_addr->sa_family != AF_PACKET)
-      continue;
-
-    if (check_wireless(ifa->ifa_name, protocol)) {
-      printf("interface %s is wireless: %s\n", ifa->ifa_name, protocol);
-    } else {
-      printf("interface %s is not wireless\n", ifa->ifa_name);
+    /* IPv6 can be checked using AF_INET6 */
+    if (family == AF_INET && strcmp(ifadd->ifa_name, "lo") != 0) {
+      if (check_wireless(ifadd->ifa_name, protocol)) {
+        printf("直");
+      } else {
+        printf("");
+      }
     }
   }
 
-  freeifaddrs(ifaddr);
+  freeifaddrs(ifaddrs);
   return 0;
 }
