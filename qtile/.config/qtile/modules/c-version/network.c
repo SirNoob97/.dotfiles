@@ -17,7 +17,7 @@ int check_wireless(const char *ifname, char *protocol) {
   int sock = -1;
   struct iwreq pwrq;
   memset(&pwrq, 0, sizeof(pwrq));
-  strncpy(pwrq.ifr_name, ifname, IFNAMSIZ);
+  memcpy(pwrq.ifr_name, ifname, IFNAMSIZ);
 
   if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
     printf("Cant create a socket for the domain: %d", AF_INET);
