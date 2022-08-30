@@ -16,8 +16,8 @@ notification_bin=
 notification_level=
 
 function __cmd_exist {
-  unalias "$1" >/dev/null 2>&1
-  command -v "$1" >/dev/null 2>&1
+  unalias "${1}" >/dev/null 2>&1
+  command -v "${1}" >/dev/null 2>&1
 }
 
 function __set_notification {
@@ -48,26 +48,26 @@ function __set_variables {
     upower)
       awk_pattern='{if($2 ~ /fully-charged/) print "full"; else print $2}'
       battery_device=$(upower -e | grep BAT0)
-      battery_status=$(upower -i "$battery_device" | grep 'state' | awk "$awk_pattern")
-      battery_percentage=$(upower -i "$battery_device" | grep 'percentage' | awk '{print $2}')
+      battery_status=$(upower -i "${battery_device}" | grep 'state' | awk "${awk_pattern}")
+      battery_percentage=$(upower -i "${battery_device}" | grep 'percentage' | awk '{print $2}')
       ;;
     *)
       exit 1
       ;;
   esac
 
-  [ -n "$battery_status" ] && [ "${battery_status,,}" = "$CHARGING" ] \
+  [ -n "${battery_status}" ] && [ "${battery_status,,}" = "${CHARGING}" ] \
     && battery_output="${battery_percentage} ﮣ"
 
-  [ -n "$battery_status" ] && [ "${battery_status,,}" = "$FULL" ] \
+  [ -n "${battery_status}" ] && [ "${battery_status,,}" = "${FULL}" ] \
     && battery_output="${battery_percentage} "
 }
 
 function __output {
-  if [ -n "$battery_status" ] && [ -n "$battery_percentage" ]; then
+  if [ -n "${battery_status}" ] && [ -n "${battery_percentage}" ]; then
 	  percentage=${battery_percentage%%%}
 
-	  if [ "$battery_status" = "$DISCHARGING" ]; then
+	  if [ "${battery_status}" = "${DISCHARGING}" ]; then
 	    [ $percentage -gt 89 ] && [ $percentage -lt 100 ] && battery_icon=""
 	    [ $percentage -gt 79 ] && [ $percentage -lt 90 ] && battery_icon=""
 	    [ $percentage -gt 69 ] && [ $percentage -lt 80 ] && battery_icon=""
@@ -82,7 +82,7 @@ function __output {
 	  fi
   fi
 
-  [ -n "$battery_output" ] && echo $battery_output || echo "$battery_percentage $battery_icon"
+  [ -n "${battery_output}" ] && echo $battery_output || echo "${battery_percentage} ${battery_icon}"
 }
 
 if __cmd_exist dunstify; then
