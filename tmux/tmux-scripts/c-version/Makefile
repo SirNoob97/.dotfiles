@@ -10,11 +10,15 @@ endif
 
 CC = gcc
 CFLAGS = -Wall -O2
+HOSTNAME = hostname
 LOADAVG = load_average
 UPTIME = uptime
-BINS = $(shell find . -type f -perm -u+x \( -name $(LOADAVG) -or -name $(UPTIME) \) -print)
+BINS = $(shell find . -type f -perm -u+x \( -name $(LOADAVG) -or -name $(UPTIME) -or -name $(HOSTNAME) \) -print)
 
-all: $(LOADAVG) $(UPTIME)
+all: $(HOSTNAME) $(LOADAVG) $(UPTIME)
+
+$(HOSTNAME):
+> @$(CC) $(CFLAGS) -o $@ $@.c
 
 $(LOADAVG):
 > @$(CC) $(CFLAGS) -o $@ $@.c
