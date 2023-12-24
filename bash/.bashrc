@@ -34,6 +34,7 @@ xterm*|rxvt*)
     ;;
 esac
 
+source $HOME/.bash_profile
 source $HOME/.aliases
 source $HOME/.config/bashconfig/completion.sh
 source $HOME/.config/bashconfig/alias_completion.sh
