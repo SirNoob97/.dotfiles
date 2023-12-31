@@ -36,3 +36,4 @@ vim.o.expandtab = true
 vim.o.wrap = false
 vim.o.showmatch = true
 vim.o.showcmd = true
+vim.o.background = "dark"

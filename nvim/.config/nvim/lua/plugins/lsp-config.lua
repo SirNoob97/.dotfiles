@@ -25,6 +25,10 @@ return {
     config = function()
       local cmp = require("cmp")
       cmp.setup({
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
         snippet = {
           expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
@@ -34,15 +38,15 @@ return {
           completeopt = "menu,menuone,preview,noselect"
         },
         mapping = cmp.mapping.preset.insert({
-          --   ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          --   ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          --   ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          --   ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = 'vsnip' },
+          { name = "vsnip" },
           { name = "buffer" },
           { name = "path" },
         })
@@ -64,14 +68,24 @@ return {
         vim.keymap.set("n", "gr", "<CMD>Telescope lsp_references<CR>", opts)
         vim.keymap.set("n", "gi", "<CMD>Telescope lsp_implementations<CR>", opts)
         vim.keymap.set("n", "gt", "<CMD>Telescope lsp_type_definitions<CR>", opts)
+        vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+        vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+        vim.keymap.set("n", "<space>wl", function()
+          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, opts)
+        vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
         vim.keymap.set("n", "<space>f", function()
-          vim.lsp.buf.format { async = true }
+          vim.lsp.buf.format({ async = true })
         end, opts)
+        vim.keymap.set("n", "<space>D", vim.diagnostic.open_float)
+        vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+        vim.keymap.set("n", "[[", vim.diagnostic.goto_prev)
+        vim.keymap.set("n", "]]", vim.diagnostic.goto_next)
       end
 
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local opts = { capabilities = capabilities, on_attach = on_attach }
       local conf = require("lspconfig")
       conf.clangd.setup(opts)
