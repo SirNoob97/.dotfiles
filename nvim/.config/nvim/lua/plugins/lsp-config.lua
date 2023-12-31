@@ -58,11 +58,12 @@ return {
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/nvim-cmp",
+      "folke/neodev.nvim"
     },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local on_attach = function()
-        local opts = { silent = true, noremap = true }
+      local on_attach = function(client, bufnr)
+        local opts = { silent = true, noremap = true, buffer = bufnr }
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
         vim.keymap.set("n", "gd", "<CMD>Telescope lsp_definitions<CR>", opts)
         vim.keymap.set("n", "gr", "<CMD>Telescope lsp_references<CR>", opts)
